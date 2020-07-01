@@ -13,6 +13,9 @@ export default function Note() {
           </div>
         </div>
         <div class="col-8">
+          <div class="icons">
+            <i class="fas fa-pen new-note"></i>
+          </div>
           <input
             className="note-title"
             placeholder="Note Title"
@@ -23,6 +26,9 @@ export default function Note() {
             className="note-textarea"
             placeholder="Note Text"
           ></textarea>
+          <div class="icons">
+            <i class="fas fa-save save-note"></i>
+          </div>
         </div>
       </div>
     </div>
