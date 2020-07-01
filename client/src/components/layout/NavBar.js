@@ -11,9 +11,9 @@ export default function NavBar() {
         <Link className="navbar-brand" to="/emotions">
           <h1>Emotions</h1>
         </Link>
-        <div class="icons">
-          <i class="fas fa-save save-note"></i>
-          <i class="fas fa-pen new-note"></i>
+        <div className="icons">
+          <i className="fas fa-save save-note"></i>
+          <i className="fas fa-pen new-note"></i>
         </div>
       </nav>
     </div>

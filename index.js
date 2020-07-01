@@ -2,14 +2,21 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
-
+const subscriptionHandler = require('./subscriptionHandler');
+const compression = require("compression");
 const app = express();
 
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
+app.use(
+  cors({
+    origin(origin, cb) {
+      const whitelist = process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(",") : [];
+      cb(null, whitelist.includes(origin));
+    },
+    credentials: true
+  })
+);
 
-app.use(cors(corsOptions));
+app.use(compression());
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
@@ -19,6 +26,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.post("/subscription", subscriptionHandler.handlePushNotificationSubscription);
+app.get("/subscription/:id", subscriptionHandler.sendPushNotification);
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back our index.html file.
