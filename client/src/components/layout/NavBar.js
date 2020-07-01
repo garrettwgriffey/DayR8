@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    textAlign: "center",
+    fontSize: "50px",
   },
 }));
 
@@ -31,7 +31,7 @@ export default function NavBar() {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  // const open = Boolean(anchorEl);
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -41,9 +41,9 @@ export default function NavBar() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
   return (
     <div className={classes.root}>
