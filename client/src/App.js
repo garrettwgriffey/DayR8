@@ -4,7 +4,7 @@ import NavBar from "./components/layout/NavBar";
 import Footer from "./components/layout/Footer";
 import SignIn from "./components/pages/SignIn";
 import SignUp from "./components/pages/SignUp";
-// import Note from "./components/pages/Note";
+import Note from "./components/pages/Note";
 import "./App.css";
 
 function App() {
@@ -12,11 +12,11 @@ function App() {
     <Router>
       <>
         <NavBar />
-        <Route exact path="/" component={SignIn} />
+        {/* <Route exact path="/" component={SignIn} /> */}
         {/* <Route exact path="/singup" component={SignUp} /> */}
-        {/* <Note /> */}
+        <Note />
 
-        <SignUp />
+        {/* <SignUp /> */}
         <Footer />
       </>
     </Router>
