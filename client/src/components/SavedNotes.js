@@ -18,11 +18,10 @@ export default function ListDividers() {
 
   return (
     <List component="nav" className={classes.root} aria-label="mailbox folders">
-      <ListItem>
-        <ListItemText primary="Saved Notes" />
+      <ListItem button>
+        <ListItemText primary="How are we going to list the notes?" />
       </ListItem>
       <Divider />
-      {/* onces these btns are clicked the user can open their note.*/}
       <ListItem button divider>
         <ListItemText primary="Show dates?" />
       </ListItem>
