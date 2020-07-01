@@ -21,13 +21,15 @@ export default function DiscreteSlider() {
   return (
     <div className={classes.root}>
       <Typography id="discrete-slider" gutterBottom>
-        From 0 to 8, How are you feeling today?
+        From 0 to 8, How are you feeling today? (0 been the worst you can feel
+        and 8 the best you can feel)
       </Typography>
       <Slider
         defaultValue={0}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
+        // valueLabelDisplay="on"
         step={1}
         marks
         min={0}
