@@ -1,30 +1,47 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import EmotionsRate from "../EmotionsRate";
+import SavedNotes from "../SavedNotes";
+import NoteContent from "../NoteContent";
 
-export default function Note() {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    marginTop: "30px",
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
+  h1: {
+    color: "black",
+    fontSize: "50px",
+    marginTop: "3px",
+  },
+}));
+
+export default function CenteredGrid() {
+  const classes = useStyles();
+
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-4 list-container">
-          <div className="card">
-            <ul className="list-group">
-              <li class="list-group-item">Here goes the saved notes</li>
-            </ul>
-            <i className="fas fa-trash-alt float-right text-danger delete-note"></i>
-          </div>
-        </div>
-        <div class="col-8">
-          <input
-            className="note-title"
-            placeholder="Note Title"
-            maxlength="28"
-            type="text"
-          />
-          <textarea
-            className="note-textarea"
-            placeholder="Note Text"
-          ></textarea>
-        </div>
-      </div>
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>
+            <h1 className={classes.h1}>Saved Notes</h1>
+            <SavedNotes />
+          </Paper>
+        </Grid>
+        <Grid item xs={9}>
+          <Paper className={classes.paper}>
+            <EmotionsRate />
+            <NoteContent />
+          </Paper>
+        </Grid>
+      </Grid>
     </div>
   );
 }
