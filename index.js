@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
-const subscriptionHandler = require('./subscriptionHandler');
 const compression = require("compression");
 const app = express();
 
@@ -26,9 +25,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
-
-app.post("/subscription", subscriptionHandler.handlePushNotificationSubscription);
-app.get("/subscription/:id", subscriptionHandler.sendPushNotification);
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back our index.html file.

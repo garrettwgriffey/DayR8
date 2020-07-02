@@ -35,7 +35,7 @@ const app = (() => {
   function displayNotification() {
     if (Notification.permission === 'granted') {
       console.log("running what i want")
-      navigator.serviceWorker.getRegistration().then(reg => {
+      navigator.serviceWorker.register('sw.js').then((reg) => {
         console.log(reg)
         const options = {
           body: 'First notification!',
