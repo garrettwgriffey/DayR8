@@ -1,1 +1,0 @@
-importScripts('https://cdn.heyday.io/heyDaySw.min.js')
