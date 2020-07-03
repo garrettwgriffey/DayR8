@@ -1,3 +1,5 @@
+// Creates a user table for passport and encrypts password input before storing the info. We will likely use the user or their id as a foreign key to choose which information we allow them to see from the main database - Tim M.
+
 var bcrypt = require('bcryptjs')
 
 module.exports = function (sequelize, DataTypes) {

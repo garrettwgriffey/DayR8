@@ -1,3 +1,5 @@
+// We set this connection up dynamically in the config folder, but I am scared to delete this file right now - Tim M.
+
 const mysql = require("mysql");
 
 

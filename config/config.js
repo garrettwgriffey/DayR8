@@ -1,3 +1,5 @@
+// This config object is given to the models/index.js where we explicitly state on the end of `index.js line 6` if we are running either development, test, or production conditions from this file. We will have to set that line to production when we ship the final product, and change back to development when we work on it locally.
+
 require('dotenv').config()
 module.exports = {
   development: {

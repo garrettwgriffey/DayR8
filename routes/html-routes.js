@@ -1,3 +1,5 @@
+// Feel free to rewrite any routes in here, they are not real routes, they just give an idea of how to structure a new route to use the authentication offered by passport (user login is stored on the server during user session and is accessed to check authentication at various points in time as they trigger routes). You can also make static routes to explicitly serve a path without checking, but React-router covers that already - Tim M.
+
 var isAuthenticated = require('../config/authenticated')
 require('dotenv').config()
 

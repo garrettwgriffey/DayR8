@@ -1,3 +1,4 @@
+-- Seed data for feelings table
 Use feelings;
 
 INSERT INTO feelings (title, emotion, notes)

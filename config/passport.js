@@ -1,3 +1,5 @@
+// The code that implements passport. It searches the user table to find a matching user so that it can create a login event and/or session for that user. It is exported as passport which is an object that the server.js imports to add options into, such as their session duration. It is generated each time they login, and goes away when they logout or their session expires - Tim M.
+
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
 var db = require('../models')
