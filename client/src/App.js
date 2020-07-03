@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "./components/layout/NavBar";
 import Footer from "./components/layout/Footer";
 import SignIn from "./components/pages/SignIn";
@@ -10,15 +10,15 @@ import "./App.css";
 function App() {
   return (
     <Router>
-      <>
-        <NavBar />
-        {/* <Route exact path="/" component={SignIn} /> */}
-        {/* <Route exact path="/singup" component={SignUp} /> */}
-        <Note />
+      <NavBar />
+      <Switch>
+        <Route exact path="/" component={SignIn} />
+        <Route path="/signup" component={SignUp} />
+        {/* <Note /> */}
 
         {/* <SignUp /> */}
-        <Footer />
-      </>
+        {/* <Footer /> */}
+      </Switch>
     </Router>
   );
 }
