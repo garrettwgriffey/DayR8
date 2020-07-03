@@ -1,12 +1,10 @@
 var isAuthenticated = require('../config/authenticated')
 require('dotenv').config()
-const Handlebars = require('handlebars')
-Handlebars.registerPartial('card', '{{card}}')
 
 module.exports = function (app) {
   // Renders the index page if logged in, else login page is loaded
   app.get('/', isAuthenticated, function (req, res) {
-    res.render('index')
+    res.send('cool beans')
   })
 
   // Sends the user to the login page, if they are logged in then sends them to the main page
