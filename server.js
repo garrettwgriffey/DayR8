@@ -23,7 +23,6 @@ app.use(haltOnTimeout)
 
 // We need to use sessions to keep track of our user's login status
 app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true, cookie: { maxAge: 100000 } }))
-app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -50,6 +49,8 @@ app.get('*', (req, res) => {
 
 // set port, listen for requests
 const port = process.env.PORT || 5000;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}.`);
-});
+db.sequelize.sync().then(function () {
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}.`);
+  })
+})
