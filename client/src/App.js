@@ -12,9 +12,9 @@ function App() {
     <Router>
       <NavBar />
       <Switch>
-        <Route exact path="/" component={SignIn} />
-        <Route path="/signup" component={SignUp} />
-        {/* <Note /> */}
+        {/* <Route exact path="/" component={SignIn} />
+        <Route path="/signup" component={SignUp} /> */}
+        <Note />
 
         {/* <SignUp /> */}
         {/* <Footer /> */}
