@@ -1,8 +1,14 @@
-DROP DATABASE IF EXISTS feelings_DB;
+-- Heroku setup
+DROP DATABASE IF EXISTS wh9vaw41o85ds5ll;
 
-CREATE DATABASE feelings_DB;
+CREATE DATABASE wh9vaw41o85ds5ll;
 
-USE feelings_DB;
+-- Local database setup
+DROP DATABASE IF EXISTS restaurant_db;
+
+CREATE DATABASE restaurant_db;
+
+USE restaurant_db;
 
 CREATE TABLE feelings (
   id INT NOT NULL AUTO_INCREMENT,
