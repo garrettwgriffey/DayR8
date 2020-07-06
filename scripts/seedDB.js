@@ -24,7 +24,7 @@ var connection = mysql.createConnection(
       (err, results) => {
       if (err) throw (err); 
       console.log(results)
-        // connection.end();
+        connection.end();
      }
 )});
   
