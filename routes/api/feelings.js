@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const db = require("../models/db");
+const db = require("../../models");
 
-
+console.log(db);
 router.route("/")
   .get(db.findAll)
   .post(db.create);

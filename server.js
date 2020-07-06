@@ -28,7 +28,7 @@ app.use(passport.session())
 
 // Requiring our routes
 require('./routes/html-routes.js')(app)
-// require('./routes/restaurant_routes')(app)
+require('./routes')(app)
 
 // app.use(cors(corsOptions));
 
