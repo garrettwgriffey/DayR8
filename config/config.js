@@ -8,7 +8,13 @@ module.exports = {
     database: "dayr8",
     host: "localhost",
     port: 3306,
-    dialect: "mysql"
+    dialect: "mysql",
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
   },
   test: {
     username: 'root',
@@ -24,6 +30,12 @@ module.exports = {
     database: process.env.JAWS_DATABASE,
     host: process.env.JAWS_HOST,
     port: process.env.JAWS_PORT,
-    dialect: process.env.JAWS_DIALECT
+    dialect: process.env.JAWS_DIALECT,
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
   }
 }
