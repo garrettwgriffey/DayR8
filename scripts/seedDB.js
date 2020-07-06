@@ -1,30 +1,43 @@
-const mysql = require("mysql");
+// const mysql = require("mysql");
+const db = require('../models')
 
 
-var connection = mysql.createConnection(
-  process.env.NODE_ENV === "production" ? process.env.JAWSDB_URL :
-{
-    host: "localhost",
+// var connection = mysql.createConnection(
+//   process.env.NODE_ENV === "production" ? process.env.JAWSDB_URL :
+// {
+//     host: "localhost",
   
-    // Your port; if not 3306
-    port: 3306,
+//     // Your port; if not 3306
+//     port: 3306,
   
-    // Your username
-    user: "root",
+//     // Your username
+//     user: "root",
   
-    // Your password
-    password: "password",
-    database: "dayr8"
-  });
+//     // Your password
+//     password: "password",
+//     database: "dayr8"
+//   });
   
-  connection.connect(function(err) {
-    if (err) throw err;
-    console.log("connected as id " + connection.threadId);
-    connection.query("INSERT INTO feelings (`title`, `emotion`, `notes`) VALUES ('Today', 'happy', 'I felt up because this brightened my day') , ('Yesterday', 'anxious', 'My anxiety was triggered by Karens actions')" ,
-      (err, results) => {
-      if (err) throw (err); 
-      console.log(results)
-        connection.end();
-     }
-)});
+//   connection.connect(function(err) {
+//     if (err) throw err;
+//     console.log("connected as id " + connection.threadId);
+//     connection.query("INSERT INTO feelings (`title`, `emotion`, `notes`) VALUES ('Today', 'happy', 'I felt up because this brightened my day') , ('Yesterday', 'anxious', 'My anxiety was triggered by Karens actions')" ,
+//       (err, results) => {
+//       if (err) throw (err); 
+//       console.log(results)
+//         connection.end();
+//      }
+// )});
+const seeds = [
+  {
+    title: "Today",
+    emotion: "Happy",
+    notes: "I felt up because this brightened my day"
+  }
+]
+for (let i = 0; i < seeds.length; i++) {
+  db.Feelings.create(seeds[i])
+  .then((feeling) => {console.log(feeling)})
+  .catch((err) => {})
+}
   

@@ -1,16 +1,15 @@
 const router = require("express").Router();
-const db = require("../../models");
+const feelingsController = require("../../controllers/feelingsController");
 
-console.log(db);
 router.route("/")
-  .get(db.findAll)
-  .post(db.create);
+  .get(feelingsController.findAll)
+  .post(feelingsController.create);
 
 
 router
   .route("/:id")
-  .get(db.findById)
-  .put(db.update)
-  .delete(db.remove);
+  .get(feelingsController.findById)
+  .put(feelingsController.update)
+  .delete(feelingsController.remove);
 
 module.exports = router;
