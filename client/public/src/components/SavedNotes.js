@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SavedNotes() {
+export default function ListDividers() {
   const classes = useStyles();
 
   return (
@@ -35,5 +35,3 @@ function SavedNotes() {
     </List>
   );
 }
-
-export default SavedNotes;
