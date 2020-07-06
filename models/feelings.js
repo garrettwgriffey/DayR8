@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     emotion: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     notes: {
       type: DataTypes.TEXT,

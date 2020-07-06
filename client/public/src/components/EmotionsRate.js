@@ -15,7 +15,7 @@ function valuetext(value) {
   return `${value}`;
 }
 
-function EmotionsRate(props) {
+export default function DiscreteSlider() {
   const classes = useStyles();
 
   return (
@@ -34,9 +34,7 @@ function EmotionsRate(props) {
         marks
         min={0}
         max={8}
-      />{props.emotions}
+      />
     </div>
   );
 }
-
-export default EmotionsRate;

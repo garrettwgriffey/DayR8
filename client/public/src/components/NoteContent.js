@@ -11,20 +11,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function NoteContent(props) {
+export default function BasicTextFields() {
   const classes = useStyles();
 
   return (
     <form>
       <div className={classes.root} noValidate autoComplete="off">
-        <TextField
-          id="standard-basic"
-          label="Title"
-          onChange={(e) => {
-            props.setTitle(e.target.value);
-          }}
-          value={props.title}
-        />
+        <TextField id="standard-basic" label="Title" />
       </div>
       <div className={classes.root}>
         <TextField
@@ -32,14 +25,8 @@ function NoteContent(props) {
           label="Why the rate?"
           multiline
           rows={20}
-          onChange={(e) => {
-            props.setNote(e.target.value);
-          }}
-          value={props.note}
         />
       </div>
     </form>
   );
 }
-
-export default NoteContent;
