@@ -1,8 +1,21 @@
 // const mysql = require("mysql");
 const db = require('../models')
 
+const seeds = [
+  {
+    title: "Today",
+    emotion: "Happy",
+    notes: "I felt up because this brightened my day"
+  }
+]
+for (let i = 0; i < seeds.length; i++) {
+  db.Feelings.create(seeds[i])
+  .then((feeling) => {console.log(feeling)})
+  .catch((err) => {})
+}
 
-// var connection = mysql.createConnection(
+
+  // var connection = mysql.createConnection(
 //   process.env.NODE_ENV === "production" ? process.env.JAWSDB_URL :
 // {
 //     host: "localhost",
@@ -28,16 +41,3 @@ const db = require('../models')
 //         connection.end();
 //      }
 // )});
-const seeds = [
-  {
-    title: "Today",
-    emotion: "Happy",
-    notes: "I felt up because this brightened my day"
-  }
-]
-for (let i = 0; i < seeds.length; i++) {
-  db.Feelings.create(seeds[i])
-  .then((feeling) => {console.log(feeling)})
-  .catch((err) => {})
-}
-  
