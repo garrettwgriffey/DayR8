@@ -6,9 +6,9 @@ import Link from "@material-ui/core/Link";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textPrimary">
+    <Typography variant="body2" color="textSecondary">
       {"Copyright © "}
-      <Link color="inherit" href="https://dayr8.herokuapp.com/">
+      <Link color="inherit" href="https://dayr8.herokuapp.com/#/">
         DayR8
       </Link>{" "}
       {new Date().getFullYear()}
@@ -20,7 +20,7 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   footer: {
     padding: theme.spacing(3, 2),
-    marginTop: "50px",
+    marginTop: "30px",
     textAlign: "center",
     backgroundColor:
       theme.palette.type === "light"
@@ -31,11 +31,10 @@ const useStyles = makeStyles((theme) => ({
     left: "0",
     bottom: "0",
     width: "100%",
-    height: "5px",
   },
 }));
 
-function Footer() {
+export default function StickyFooter() {
   const classes = useStyles();
 
   return (
@@ -48,5 +47,3 @@ function Footer() {
     </div>
   );
 }
-
-export default Footer;
