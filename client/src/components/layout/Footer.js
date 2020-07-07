@@ -8,7 +8,12 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textPrimary">
       {"Copyright © "}
-      <Link color="inherit" href="https://dayr8.herokuapp.com/">
+      <Link
+        color="inherit"
+        href="https://dayr8.herokuapp.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         DayR8
       </Link>{" "}
       {new Date().getFullYear()}
