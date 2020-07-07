@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -24,9 +25,6 @@ const useStyles = makeStyles({
   hotline: {
     textAlign: "center",
   },
-  btn: {
-    marginLeft: "800px",
-  },
 });
 
 function Hotline() {
@@ -35,7 +33,7 @@ function Hotline() {
 
   return (
     <div className={classes.hotline}>
-      <Card className={classes.root}>
+      <div className={classes.root}>
         <CardContent>
           <Typography variant="h5" component="h2">
             Help is available
@@ -55,19 +53,16 @@ function Hotline() {
               1-800-273-8255
             </a>
           </Typography>
-        </CardContent>
-        <CardActions>
-          <Button
+          <Link
             href="https://suicidepreventionlifeline.org/"
             size="small"
             target="_blank"
             rel="noopener noreferrer"
-            className={classes.btn}
           >
             Official Website
-          </Button>
-        </CardActions>
-      </Card>
+          </Link>
+        </CardContent>
+      </div>
     </div>
   );
 }
