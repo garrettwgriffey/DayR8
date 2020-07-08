@@ -7,7 +7,7 @@ USE dayr8;
 CREATE TABLE feelings (
   id INT NOT NULL AUTO_INCREMENT,
   title VARCHAR (45) NOT NULL,
-  emotion VARCHAR(45) NOT NULL,
+  emotion VARCHAR(10) NOT NULL,
   notes VARCHAR(500) NOT NULL,
    PRIMARY KEY (id)
 );

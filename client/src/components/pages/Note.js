@@ -57,7 +57,7 @@ function Note() {
         </Grid>
         <Grid item xs={9}>
           <Paper className={classes.paper}>
-            <EmotionsRate setEmotions={setEmotions} emotions={emotions} />
+            <EmotionsRate setEmotions={setEmotions} emotion={emotions} />
             <NoteContent
               setNote={setNote}
               setTitle={setTitle}
