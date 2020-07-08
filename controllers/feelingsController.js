@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the FeelingssController
+// Defining methods for the Feelings Controller
 module.exports = {
   findAll: function(req, res) {
     db.Feelings
