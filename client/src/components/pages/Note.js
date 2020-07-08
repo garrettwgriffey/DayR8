@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-// import EmotionsRate from "../EmotionsRate";
+import EmotionsRate from "../EmotionsRate";
 import SavedNotes from "../SavedNotes";
 import NoteContent from "../NoteContent";
 import Button from "@material-ui/core/Button";
@@ -32,16 +32,16 @@ const useStyles = makeStyles((theme) => ({
 function Note() {
   const classes = useStyles();
   const [title, setTitle] = useState("");
-  // const [emotions, setEmotions] = useState;
+  const [emotions, setEmotions] = useState("");
   const [note, setNote] = useState("");
 
   // this is how we console log the state, will fire the console log when the state changes
   useEffect(() => {
-    console.log(title, note);
-  }, [title, note]);
+    console.log(title, note, emotions);
+  }, [title, note, emotions]);
 
   const onSubmitFeeling = () => {
-    API.submitFeeling({ title: title, notes: note })
+    API.submitFeeling({ title: title, notes: note, emotion: emotions })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
@@ -57,7 +57,7 @@ function Note() {
         </Grid>
         <Grid item xs={9}>
           <Paper className={classes.paper}>
-            {/* <EmotionsRate /> */}
+            <EmotionsRate setEmotions={setEmotions} emotions={emotions} />
             <NoteContent
               setNote={setNote}
               setTitle={setTitle}

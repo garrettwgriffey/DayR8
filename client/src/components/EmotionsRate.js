@@ -29,12 +29,16 @@ function EmotionsRate(props) {
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
-        // valueLabelDisplay="on"
+        valueLabelDisplay="on"
         step={1}
         marks
-        min={0}
+        min={1}
         max={8}
-      />{props.emotions}
+        onChange={(e) => {
+          props.setEmotions(e.target.value);
+        }}
+        // value={props.emotions}
+      />
     </div>
   );
 }
