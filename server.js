@@ -33,9 +33,16 @@ app.use(bodyParser.json());
 // Requiring our routes
 app.use(require("./routes"));
 
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back our index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 // set port, listen for requests
 const port = process.env.PORT || 5000;
