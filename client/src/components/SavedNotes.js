@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,25 +13,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SavedNotes() {
+function SavedNotes({savedNotes}) {
   const classes = useStyles();
+  
 
   return (
     <List component="nav" className={classes.root} aria-label="mailbox folders">
-      <ListItem button>
-        <ListItemText primary="How are we going to list the notes?" />
-      </ListItem>
-      <Divider />
-      <ListItem button divider>
-        <ListItemText primary="Show dates?" />
-      </ListItem>
-      <ListItem button>
-        <ListItemText primary="Show title?" />
-      </ListItem>
-      <Divider light />
-      <ListItem button>
-        <ListItemText primary="Show emotion rate?" />
-      </ListItem>
+      {savedNotes.map((feeling) => (
+        <ListItem button>
+          <ListItemText primary={feeling.title} />
+        </ListItem>
+      ))}
     </List>
   );
 }
