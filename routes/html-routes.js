@@ -3,9 +3,9 @@ require('dotenv').config()
 
 module.exports = function (app) {
   // Renders the index page if logged in, else login page is loaded
-  app.get('/', isAuthenticated, function (req, res) {
-    res.send('cool beans')
-  })
+  // app.get('/', isAuthenticated, function (req, res) {
+  //   res.send('cool beans')
+  // })
 
   // Sends the user to the login page, if they are logged in then sends them to the main page
   app.get('/login', isAuthenticated, function (req, res) {

@@ -41,7 +41,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Requiring our routes
-require("./routes/html-routes.js")(app);
 app.use(require("./routes"));
 
 // Serve static files from the React app
