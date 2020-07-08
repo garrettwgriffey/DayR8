@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Requiring our routes
-app.use(require("./routes"));
+// app.use(require("./routes"));
 
 // Serve static files from the React app
 // app.use(express.static(path.join(__dirname, 'client/build')));
