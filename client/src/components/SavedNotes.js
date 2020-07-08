@@ -4,7 +4,6 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -13,14 +12,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SavedNotes({savedNotes}) {
+function SavedNotes({ savedNotes, setTitle, setNote }) {
   const classes = useStyles();
-  
+
+  const showFeelings = (id) => {
+    console.log(id);
+    let selectedFeeling = savedNotes.filter((note) => note.id === id)[0];
+    console.log(selectedFeeling);
+    setNote(selectedFeeling.notes);
+    setTitle(selectedFeeling.title);
+  };
 
   return (
     <List component="nav" className={classes.root} aria-label="mailbox folders">
       {savedNotes.map((feeling) => (
-        <ListItem button>
+        <ListItem
+          button
+          key={feeling.id}
+          onClick={() => showFeelings(feeling.id)}
+        >
           <ListItemText primary={feeling.title} />
         </ListItem>
       ))}

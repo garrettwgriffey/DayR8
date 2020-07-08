@@ -68,7 +68,11 @@ function Note() {
         <Grid item xs={3}>
           <Paper className={classes.paper}>
             <h1 className={classes.h1}>Saved Notes</h1>
-            <SavedNotes savedNotes={savedNotes} />
+            <SavedNotes
+              savedNotes={savedNotes}
+              setNote={setNote}
+              setTitle={setTitle}
+            />
           </Paper>
         </Grid>
         <Grid item xs={9}>
