@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 
+// Module for DataTypes for Feelings Table
 module.exports = function (sequelize, DataTypes) {
   var Feelings = sequelize.define("Feelings", {
     title: {
