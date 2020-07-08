@@ -15,11 +15,11 @@ const timeout = require("connect-timeout");
 // };
 
 // Allows connection to JawsDB without timing out
-function haltOnTimeout(req, res, next) {
-  if (!req.timedout) next();
-}
-app.use(timeout(15000));
-app.use(haltOnTimeout);
+// function haltOnTimeout(req, res, next) {
+//   if (!req.timedout) next();
+// }
+// app.use(timeout(15000));
+// app.use(haltOnTimeout);
 
 // We need to use sessions to keep track of our user's login status
 app.use(
@@ -31,7 +31,6 @@ app.use(
   })
 );
 app.use(passport.initialize());
-app.use(passport.session());
 
 // app.use(cors(corsOptions));
 
@@ -52,9 +51,9 @@ if (process.env.NODE_ENV === "production") {
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back our index.html file.
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname+'/client/build/index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 // set port, listen for requests
 const port = process.env.PORT || 5000;
