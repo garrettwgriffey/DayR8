@@ -48,9 +48,9 @@ app.use(require("./routes"));
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back our index.html file.
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname+'/client/build/index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 // set port, listen for requests
 const port = process.env.PORT || 5000;
