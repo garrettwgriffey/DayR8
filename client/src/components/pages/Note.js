@@ -36,9 +36,9 @@ function Note() {
   const [note, setNote] = useState("");
 
   // this is how we console log the state, will fire the console log when the state changes
-  // useEffect(() => {
-  //   console.log(title, note);
-  // }, [title, note]);
+  useEffect(() => {
+    console.log(title, note);
+  }, [title, note]);
 
   const onSubmitFeeling = () => {
     API.submitFeeling({ title: title, notes: note })

@@ -31,8 +31,6 @@ const useStyles = makeStyles((theme) => ({
       theme.palette.type === "light"
         ? theme.palette.grey[200]
         : theme.palette.grey[800],
-
-    position: "fixed",
     left: "0",
     bottom: "0",
     width: "100%",
