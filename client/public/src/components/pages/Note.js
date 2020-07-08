@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import EmotionsRate from "../EmotionsRate";
 import SavedNotes from "../SavedNotes";
 import NoteContent from "../NoteContent";
+import Plot from "../plot";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +43,7 @@ export default function CenteredGrid() {
           </Paper>
         </Grid>
       </Grid>
+      <Plot />
     </div>
   );
 }
