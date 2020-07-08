@@ -21,7 +21,7 @@ function EmotionsRate(props) {
   return (
     <div className={classes.root}>
       <Typography id="discrete-slider" gutterBottom>
-        From 0 to 8, How are you feeling today? (0 been the worst you can feel
+        From 1 to 8, How are you feeling today? (0 been the worst you can feel
         and 8 the best you can feel)
       </Typography>
       <Slider
@@ -29,15 +29,13 @@ function EmotionsRate(props) {
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
-        valueLabelDisplay="on"
         step={1}
         marks
         min={1}
         max={8}
         onChange={(e) => {
-          props.setEmotions(e.target.value);
+          props.setEmotions(e.target.textContent);
         }}
-        // value={props.emotions}
       />
     </div>
   );
