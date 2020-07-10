@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 
+// Module for DataTypes for Feelings Table
 module.exports = function (sequelize, DataTypes) {
   var Feelings = sequelize.define("Feelings", {
     title: {
@@ -8,7 +9,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     emotion: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      allowNull: false,
     },
     notes: {
       type: DataTypes.TEXT,

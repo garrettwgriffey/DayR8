@@ -48,7 +48,7 @@ function Hotline() {
           <Typography variant="h4" component="p">
             <a
               href="tel:1-800-273-8255"
-              class="contact-number  contact-number--banner"
+              className="contact-number  contact-number--banner"
             >
               1-800-273-8255
             </a>

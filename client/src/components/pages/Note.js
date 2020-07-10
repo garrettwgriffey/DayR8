@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-// import EmotionsRate from "../EmotionsRate";
+import EmotionsRate from "../EmotionsRate";
 import SavedNotes from "../SavedNotes";
 import NoteContent from "../NoteContent";
 import Button from "@material-ui/core/Button";
@@ -32,17 +32,33 @@ const useStyles = makeStyles((theme) => ({
 function Note() {
   const classes = useStyles();
   const [title, setTitle] = useState("");
-  // const [emotions, setEmotions] = useState;
+  const [emotions, setEmotions] = useState("");
   const [note, setNote] = useState("");
+  const [savedNotes, setSavedNotes] = useState([]);
 
-  // this is how we console log the state, will fire the console log when the state changes
-  // useEffect(() => {
-  //   console.log(title, note);
-  // }, [title, note]);
+  useEffect(() => {
+    API.getFeeling()
+      .then((res) => setSavedNotes(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    console.log(title, note, emotions);
+  }, [title, note, emotions]);
 
   const onSubmitFeeling = () => {
-    API.submitFeeling({ title: title, notes: note })
-      .then((res) => console.log(res))
+    API.submitFeeling({
+      title: title,
+      notes: note,
+      emotion: emotions,
+    })
+      .then((res) => {
+        setNote("");
+        setTitle("");
+        API.getFeeling()
+          .then((res) => setSavedNotes(res.data))
+          .catch((err) => console.log(err));
+      })
       .catch((err) => console.log(err));
   };
 
@@ -52,12 +68,16 @@ function Note() {
         <Grid item xs={3}>
           <Paper className={classes.paper}>
             <h1 className={classes.h1}>Saved Notes</h1>
-            <SavedNotes />
+            <SavedNotes
+              savedNotes={savedNotes}
+              setNote={setNote}
+              setTitle={setTitle}
+            />
           </Paper>
         </Grid>
         <Grid item xs={9}>
           <Paper className={classes.paper}>
-            {/* <EmotionsRate /> */}
+            <EmotionsRate setEmotions={setEmotions} emotion={emotions} />
             <NoteContent
               setNote={setNote}
               setTitle={setTitle}
