@@ -8,7 +8,7 @@ export default {
     return axios.get("/api/feelings/");
   },
   login: function(loginInfo) {
-    return axios.post("/api/passport/auth", loginInfo).then(() => console.log("running api.js login"))
+    return axios.post("/api/passport/auth", loginInfo)
   },
   signup: function(signupInfo) {
     return axios.post("/api/passport/create", signupInfo)

@@ -1,9 +1,11 @@
 const router = require("express").Router();
 const passportController = require("../../controllers/passportController");
+const passport = require('../../config/passport');
 
 router.route("/auth")
   .get(passportController.logout)
-  .post(passportController.login)
+  .post(passport.authenticate('local'), (req, res) =>
+  {console.log("hitting controller"); res.json(req.user)})
     
 router.route("/create")
   .post(passportController.createAccount)

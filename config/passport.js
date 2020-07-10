@@ -13,12 +13,15 @@ function (username, password, done) {
       username: username
     }
   }).then(function (dbUser) {
+    console.log("running findOne")
     // If there's no user with the given username
     if (!dbUser) {
+      console.log("no user");
       return done(null, false, {
         message: 'Incorrect Username!'
       })
     } else if (!dbUser.validPassword(password)) {
+      console.log("incorrect password");
       return done(null, false, {
         message: 'Incorrect Password!'
       })

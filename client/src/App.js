@@ -42,14 +42,14 @@ class App extends Component {
   signup() {
     console.log(this.state.username)
     API.signup({username: this.state.username, password: this.state.password})
-      .then((res) => this.setUser(res.user))
+      .then((res) => this.setUser(res.data.username))
       .catch((err) => console.log(err));
     }
 
   login() {
     console.log(this.state.username)
     API.login({username: this.state.username, password: this.state.password})
-      .then((res) => console.log(res))
+      .then((res) => this.setUser(res.data.username))
       .catch((err) => console.log(err));
     }
 
@@ -58,7 +58,7 @@ class App extends Component {
   useEffect() {
     const sendValidation = async () => {
         try {
-            await API.login.then((res) => {this.setUser(res.user); console.log(this.state.user)});
+            await API.login.then((res) => {this.setUser(res.data.username); console.log(this.state.user)});
         } catch (error) {
             console.log(error);
         }
@@ -69,20 +69,24 @@ class App extends Component {
   render() {
     return (
       <>
-        <Router>
+        {/* <Router>
           <NavBar />
             <Switch>
               <Route exact path="/" component={SignIn} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/note" component={Note} />
-              {/* <Route exact component={NoMatch} /> */}
           </Switch>
           <Footer />
-        </Router>
+        </Router> */}
 
       {/* I need the below lines to test signup/signin - TM */}
 
-      {/* {!this.state.user ? (<SignIn login={this.login} setUsername={this.setUsername} setPassword={this.setPassword} />) : (<Note/>)} */}
+      {!this.state.user ? 
+        (<><NavBar />
+        <SignIn login={this.login} setUsername={this.setUsername} setPassword={this.setPassword} /></>) : 
+        (<><NavBar />
+        <Note /></>)}
+
       {/* {!this.state.user ? (<SignUp signup={this.signup} setUsername={this.setUsername} setPassword={this.setPassword} />) : (<Note/>)} */}
       </>
     );
