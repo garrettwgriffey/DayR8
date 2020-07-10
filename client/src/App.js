@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import NavBar from "./components/layout/NavBar";
 import Footer from "./components/layout/Footer";
 import SignIn from "./components/pages/SignIn";
@@ -7,7 +7,6 @@ import SignUp from "./components/pages/SignUp";
 import Note from "./components/pages/Note";
 import "./App.css";
 import {PrivateRoute} from './util/PrivateRoute';
-import { Validate } from './util/Validate';
 import API from './util/API';
 
 class App extends Component {
@@ -53,39 +52,59 @@ class App extends Component {
       .catch((err) => console.log(err));
     }
 
-  // Setting the user state by running validation as soon as this mounts. Either a user object is returned and user has a value, or user remains "" and we can show something else. - TM
-
-  useEffect() {
-    const sendValidation = async () => {
-        try {
-            await API.login.then((res) => {this.setUser(res.data.username); console.log(this.state.user)});
-        } catch (error) {
-            console.log(error);
-        }
-    };
-    sendValidation();
-  };
+  // Creating methods to pass props to Route components, which we are unable to do normally inside of Router. - TM
+  SignInPage = (props) => {
+    return (
+      <SignIn 
+        user={this.state.user} login={this.login} setUsername={this.setUsername} setPassword={this.setPassword}
+        {...props}
+      />
+    );
+  }
+  SignUpPage = (props) => {
+    return (
+      <SignUp 
+      user={this.state.user} signup={this.signup} setUsername={this.setUsername} setPassword={this.setPassword}
+        {...props}
+      />
+    );
+  }
+  NotePage = (props) => {
+    return (
+      <Note 
+      user={this.state.user}
+      // Insert props when we need them for doing cool stuff, such as flashing welcome messages to users using their username as a prop, etc - TM
+        {...props}
+      />
+    );
+  }
 
   render() {
+    let user
     return (
       <>
-        {/* <Router>
+        <Router>
           <NavBar />
             <Switch>
-              <Route exact path="/" component={SignIn} />
-              <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/note" component={Note} />
-          </Switch>
+              <Route exact path="/" component={this.SignInPage} />
+              <Route exact path="/signup" component={this.SignUpPage} />
+              {/* PrivateRoute sends conditional user information to decide whether to render the route or send to signup page. Sign in page default sends to infinite loop, will need to troubleshoot - TM */}
+              <PrivateRoute exact user={this.state.user ? (user=this.state.user) : (user=null)} path="/note" component={this.NotePage} />
+            </Switch>
           <Footer />
-        </Router> */}
+        </Router>
 
-      {/* I need the below lines to test signup/signin - TM */}
+      {/* I need the below lines for testing signup/signin - TM */}
 
-      {!this.state.user ? 
-        (<><NavBar />
-        <SignIn login={this.login} setUsername={this.setUsername} setPassword={this.setPassword} /></>) : 
-        (<><NavBar />
-        <Note /></>)}
+      {/* {!this.state.user ? 
+        (<>
+          <NavBar />
+          <SignIn login={this.login} setUsername={this.setUsername} setPassword={this.setPassword} />
+        </>) : (
+        <>
+          <NavBar />
+          <Note user={this.state.user} />
+        </>)} */}
 
       {/* {!this.state.user ? (<SignUp signup={this.signup} setUsername={this.setUsername} setPassword={this.setPassword} />) : (<Note/>)} */}
       </>
