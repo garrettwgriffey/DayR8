@@ -14,6 +14,6 @@ export default {
     return axios.post("/api/passport/create")
   },
   logout: function() {
-    return axios.get("/api/passport/logout")
+    return axios.get("/api/passport/auth")
   }
 };

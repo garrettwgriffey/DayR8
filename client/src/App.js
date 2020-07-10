@@ -10,10 +10,24 @@ import {PrivateRoute} from './util/PrivateRoute';
 import { Validate } from './util/Validate';
 import API from './util/API';
 
-function App() {
+class App extends React.Component() {
+  constructor(props) {
+    super(props)
+    this.setUser() = this.setUser.bind(this);
+    this.state = {
+      user: ""
+    };
+  }
+
+  setUser(data) {
+    this.setState({
+      user: data
+    })
+  }
+
   // Setting the user state by running validation as soon as this mounts. Either a user object is returned and user has a value, or user remains "" and we can show something else. - TM
-  const [user, setUser] = useState("");
-  useEffect(() => {
+
+  useEffect() {
     const sendValidation = async () => {
         try {
             await API.login.then((res) => {setUser(res); console.log(user)});
@@ -22,19 +36,21 @@ function App() {
         }
     };
     sendValidation();
-});
-  return (
-    <Router>
-      <NavBar />
-        <Switch>
-          <Route exact path="/" component={SignIn} />
-          <Route exact path="/signup" component={SignUp} />
-          <PrivateRoute exact path="/note" component={Note} />
-          {/* <Route exact component={NoMatch} /> */}
-      </Switch>
-      <Footer />
-    </Router>
-  );
+  };
+  render() {
+    return (
+      <Router>
+        <NavBar />
+          <Switch>
+            <Route exact path="/" component={SignIn} />
+            <Route exact path="/signup" component={SignUp} />
+            <PrivateRoute exact path="/note" component={Note} />
+            {/* <Route exact component={NoMatch} /> */}
+        </Switch>
+        <Footer />
+      </Router>
+    );
+  }
 }
 
 export default App;
