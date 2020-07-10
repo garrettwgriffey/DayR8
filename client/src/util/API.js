@@ -7,13 +7,13 @@ export default {
   getFeeling: function () {
     return axios.get("/api/feelings/");
   },
-  login: function () {
-    return axios.post("/api/passport/auth")
+  login: function(loginInfo) {
+    return axios.post("/api/passport/auth", loginInfo).then(() => console.log("running api.js login"))
   },
-  signup: function() {
-    return axios.post("/api/passport/create")
+  signup: function(signupInfo) {
+    return axios.post("/api/passport/create", signupInfo)
   },
   logout: function() {
-    return axios.get("/api/passport/logout")
+    return axios.get("/api/passport/auth")
   }
 };

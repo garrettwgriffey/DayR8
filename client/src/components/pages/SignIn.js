@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SignIn() {
+function SignIn(props) {
   const classes = useStyles();
 
   return (
@@ -46,17 +46,18 @@ function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={(event) => {event.preventDefault(); props.login(); console.log("running login")}}>
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
             autoFocus
+            onChange={(e) => props.setUsername(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -68,6 +69,7 @@ function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={(e) => props.setPassword(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

@@ -8,7 +8,7 @@ import SignIn from '../components/pages/SignIn';
 
 // This is a react Route that runs the sendValidation function before it mounts the page. If it passes and a user object is returned, it will return a react Route to the component. Otherwise it returns a SignIn component. - TM
 export const PrivateRoute = ({ path, component }) => {
-    const user = null;
+    let user = null;
     useEffect(() => {
         const sendValidation = async () => {
             try {

@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const db = require("./models");
 const app = express();
+const logger = require('morgan')
 var session = require("express-session");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
@@ -11,7 +12,7 @@ var passport = require("./config/passport");
 // var corsOptions = {
 //   origin: "http://localhost:8081"
 // };
-
+app.use(logger('dev'))
 // We need to use sessions to keep track of our user's login status
 app.use(
   session({
