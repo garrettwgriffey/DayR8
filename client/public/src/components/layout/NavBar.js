@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function NavBar() {
+export default function NavBar() {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -108,5 +108,3 @@ function NavBar() {
     </div>
   );
 }
-
-export default NavBar;

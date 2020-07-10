@@ -15,13 +15,13 @@ function valuetext(value) {
   return `${value}`;
 }
 
-function EmotionsRate(props) {
+export default function DiscreteSlider() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Typography id="discrete-slider" gutterBottom>
-        From 1 to 8, How are you feeling today? (0 been the worst you can feel
+        From 0 to 8, How are you feeling today? (0 been the worst you can feel
         and 8 the best you can feel)
       </Typography>
       <Slider
@@ -29,16 +29,12 @@ function EmotionsRate(props) {
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
+        // valueLabelDisplay="on"
         step={1}
         marks
-        min={1}
+        min={0}
         max={8}
-        onChange={(e) => {
-          props.setEmotions(e.target.textContent);
-        }}
       />
     </div>
   );
 }
-
-export default EmotionsRate;

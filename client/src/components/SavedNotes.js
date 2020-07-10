@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,25 +12,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ListDividers() {
+function SavedNotes({ savedNotes, setTitle, setNote }) {
   const classes = useStyles();
+
+  const showFeelings = (id) => {
+    console.log(id);
+    let selectedFeeling = savedNotes.filter((note) => note.id === id)[0];
+    console.log(selectedFeeling);
+    setNote(selectedFeeling.notes);
+    setTitle(selectedFeeling.title);
+  };
 
   return (
     <List component="nav" className={classes.root} aria-label="mailbox folders">
-      <ListItem button>
-        <ListItemText primary="How are we going to list the notes?" />
-      </ListItem>
-      <Divider />
-      <ListItem button divider>
-        <ListItemText primary="Show dates?" />
-      </ListItem>
-      <ListItem button>
-        <ListItemText primary="Show title?" />
-      </ListItem>
-      <Divider light />
-      <ListItem button>
-        <ListItemText primary="Show emotion rate?" />
-      </ListItem>
+      {savedNotes.map((feeling) => (
+        <ListItem
+          button
+          key={feeling.id}
+          onClick={() => showFeelings(feeling.id)}
+        >
+          <ListItemText primary={feeling.title} />
+        </ListItem>
+      ))}
     </List>
   );
 }
+
+export default SavedNotes;

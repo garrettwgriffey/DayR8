@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SignUp() {
+export default function SignUp() {
   const classes = useStyles();
 
   return (
@@ -47,16 +47,27 @@ function SignUp() {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
               <TextField
-                autoComplete="uname"
-                name="userName"
+                autoComplete="fname"
+                name="firstName"
                 variant="outlined"
                 required
                 fullWidth
-                id="userName"
-                label="User Name"
+                id="firstName"
+                label="First Name"
                 autoFocus
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                autoComplete="lname"
               />
             </Grid>
             <Grid item xs={12}>
@@ -110,5 +121,3 @@ function SignUp() {
     </Container>
   );
 }
-
-export default SignUp;

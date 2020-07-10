@@ -1,92 +1,42 @@
-/*
-Copyright 2018 Google Inc.
+  
+'use strict';
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+self.addEventListener('push', function(event) {
+  console.log('Received a push message', event);
 
-    http://www.apache.org/licenses/LICENSE-2.0
+  var title = 'Yay a message.';
+  var body = 'We have received a push message.';
+  var icon = '/images/icon-192x192.png';
+  var tag = 'simple-push-demo-notification-tag';
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-self.addEventListener('notificationclose', event => {
-    const notification = event.notification;
-    const primaryKey = notification.data.primaryKey;
-  
-    console.log('Closed notification: ' + primaryKey);
-  });
-  
-  self.addEventListener('notificationclick', event => {
-    const notification = event.notification;
-    const primaryKey = notification.data.primaryKey;
-    const action = event.action;
-  
-    if (action === 'close') {
-      notification.close();
-    } else {
-      event.waitUntil(
-        clients.matchAll().then(clis => {
-          const client = clis.find(c => {
-            return c.visibilityState === 'visible';
-          });
-          if (client !== undefined) {
-            client.navigate('samples/page' + primaryKey + '.html');
-            client.focus();
-          } else {
-            // there are no visible windows. Open one.
-            clients.openWindow('samples/page' + primaryKey + '.html');
-            notification.close();
-          }
-        })
-      );
-    }
-  
-    self.registration.getNotifications().then(notifications => {
-      notifications.forEach(notification => {
-        notification.close();
-      });
-    });
-  });
-  
-  self.addEventListener('push', event => {
-    let body;
-  
-    if (event.data) {
-      body = event.data.text();
-    } else {
-      body = 'Default body';
-    }
-  
-    const options = {
+  event.waitUntil(
+    self.registration.showNotification(title, {
       body: body,
-      icon: 'images/notification-flat.png',
-      vibrate: [100, 50, 100],
-      data: {
-        dateOfArrival: Date.now(),
-        primaryKey: 1
-      },
-      actions: [
-        {action: 'explore', title: 'Go to the site',
-          icon: 'images/checkmark.png'},
-        {action: 'close', title: 'Close the notification',
-          icon: 'images/xmark.png'},
-      ]
-    };
-    event.waitUntil(
-      clients.matchAll().then(c => {
-        console.log(c);
-        if (c.length === 0) {
-          // Show notification
-          self.registration.showNotification('Push Notification', options);
-        } else {
-          // Send a message to the page to update the UI
-          console.log('Application is already open!');
-        }
-      })
-    );
-  });
-  
+      icon: icon,
+      tag: tag
+    })
+  );
+});
+
+self.addEventListener('notificationclick', function(event) {
+  console.log('On notification click: ', event.notification.tag);
+  // Android doesn’t close the notification when you click on it
+  // See: http://crbug.com/463146
+  event.notification.close();
+
+  // This looks to see if the current is already open and
+  // focuses if it is
+  event.waitUntil(clients.matchAll({
+    type: 'window'
+  }).then(function(clientList) {
+    for (var i = 0; i < clientList.length; i++) {
+      var client = clientList[i];
+      if (client.url === '/' && 'focus' in client) {
+        return client.focus();
+      }
+    }
+    if (clients.openWindow) {
+      return clients.openWindow('/');
+    }
+  }));
+});
