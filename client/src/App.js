@@ -69,8 +69,21 @@ class App extends Component {
   render() {
     return (
       <>
+        <Router>
+          <NavBar />
+            <Switch>
+              <Route exact path="/" component={SignIn} />
+              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/note" component={Note} />
+              {/* <Route exact component={NoMatch} /> */}
+          </Switch>
+          <Footer />
+        </Router>
+
+      {/* I need the below lines to test signup/signin - TM */}
+
       {/* {!this.state.user ? (<SignIn login={this.login} setUsername={this.setUsername} setPassword={this.setPassword} />) : (<Note/>)} */}
-      {!this.state.user ? (<SignUp signup={this.signup} setUsername={this.setUsername} setPassword={this.setPassword} />) : (<Note/>)}
+      {/* {!this.state.user ? (<SignUp signup={this.signup} setUsername={this.setUsername} setPassword={this.setPassword} />) : (<Note/>)} */}
       </>
     );
   }
