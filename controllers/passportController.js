@@ -11,14 +11,8 @@ module.exports = {
       .then((res) => res.redirect(307, '/api/auth/login'))
       .catch((err) => res.status(401).json(err));
   },
-  login: function (req, res) {
-    console.log(req);
-    passport.authenticate('local')
-    .then((req, res) =>
-     {console.log("hitting controller"), res.json(req); })
-  },
   logout: function (req, res) {
     req.logout()
-    res.redirect('/login')
+    res.redirect('/api/auth/login')
   }
 };
