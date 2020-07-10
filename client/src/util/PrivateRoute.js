@@ -1,27 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { Validate } from './Validate';
-import SignIn from '../components/pages/SignIn';
-
+import SignUp from '../components/pages/SignUp';
 // We can make a context to give conditions for failing login - TM
 // import { UserContext } from '../context/contexts/UserContext';
 
-// This is a react Route that runs the sendValidation function before it mounts the page. If it passes and a user object is returned, it will return a react Route to the component. Otherwise it returns a SignIn component. - TM
-export const PrivateRoute = ({ path, component }) => {
-    let user = null;
-    useEffect(() => {
-        const sendValidation = async () => {
-            try {
-                await Validate().then((res) => user = res);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        sendValidation();
-    });
+// This just checks if a user is logged in to decide whether to display the hidden component or redirect to the signup. Sign in default sends it to an infinite loop which we need to locate the source of. - TM
+export const PrivateRoute = ({ user, path, component}) => {
     return user ? (
         <Route exact path={path} component={component} />
     ) : (
-        <Redirect to="/" component={SignIn} />
+        <Redirect to="/signup" component={SignUp} />
     );
 };

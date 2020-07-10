@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Note() {
+function Note(props) {
   const classes = useStyles();
   const [title, setTitle] = useState("");
   const [emotions, setEmotions] = useState("");
