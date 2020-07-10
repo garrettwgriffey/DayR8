@@ -8,6 +8,11 @@ const seeds = [
     notes: "I felt up because this brightened my day",
   },
 ];
+
+const userSeed = {username: "tim", password: "something"}
+
+db.User.create(userSeed).then((res) => console.log(res))
+
 for (let i = 0; i < seeds.length; i++) {
   db.Feelings.create(seeds[i])
     .then((feeling) => {

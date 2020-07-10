@@ -8,13 +8,15 @@ import Note from "./components/pages/Note";
 import "./App.css";
 import {PrivateRoute} from './util/PrivateRoute';
 import { Validate } from './util/Validate';
+import API from './util/API';
 
 function App() {
+  // Setting the user state by running validation as soon as this mounts. Either a user object is returned and user has a value, or user remains "" and we can show something else. - TM
   const [user, setUser] = useState("");
   useEffect(() => {
     const sendValidation = async () => {
         try {
-            await Validate().then((res) => {setUser(res); console.log(user)});
+            await API.login.then((res) => {setUser(res); console.log(user)});
         } catch (error) {
             console.log(error);
         }
