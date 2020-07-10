@@ -5,7 +5,6 @@ router.route("/")
   .get(feelingsController.findAll)
   .post(feelingsController.create);
 
-
 router
   .route("/:id")
   .get(feelingsController.findById)
