@@ -8,11 +8,11 @@ module.exports = {
     let password = req.body.password
     console.log(username, password)
     db.User.create({username, password})
-      .then((res) => res.redirect(307, '/api/auth/login'))
-      .catch((err) => res.status(401).json(err));
+      .then((user) => res.json(user))
+      .catch((err) => {res.status(401).json(err); console.log(err)});
   },
   logout: function (req, res) {
     req.logout()
-    res.redirect('/api/auth/login')
+    // res.redirect('/api/auth/login')
   }
 };

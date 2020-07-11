@@ -1,4 +1,5 @@
 import React from "react";
+import {Redirect} from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -34,8 +35,11 @@ const useStyles = makeStyles((theme) => ({
 
 function SignUp(props) {
   const classes = useStyles();
+  const user = props.user
 
   return (
+    <>
+    {user ? (<Redirect to="/note" />) : (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -98,7 +102,8 @@ function SignUp(props) {
           </Grid>
         </form>
       </div>
-    </Container>
+    </Container>)}
+    </>
   );
 }
 
