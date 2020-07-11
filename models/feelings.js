@@ -14,7 +14,7 @@ module.exports = function (sequelize, DataTypes) {
     notes: {
       type: DataTypes.TEXT,
       allowNull: false,
-    },
+    }
   });
   return Feelings;
 };

@@ -29,12 +29,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Note() {
+function Note(props) {
   const classes = useStyles();
   const [title, setTitle] = useState("");
   const [emotions, setEmotions] = useState("");
   const [note, setNote] = useState("");
   const [savedNotes, setSavedNotes] = useState([]);
+  const [newBtn, setNewBtn] = useState(true);
 
   useEffect(() => {
     API.getFeeling()
@@ -62,6 +63,14 @@ function Note() {
       .catch((err) => console.log(err));
   };
 
+  const updateBtn = (e) => {
+    e.preventDefault();
+    setNote("");
+    setTitle("");
+    setNewBtn(true);
+    setEmotions("");
+  };
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
@@ -72,26 +81,44 @@ function Note() {
               savedNotes={savedNotes}
               setNote={setNote}
               setTitle={setTitle}
+              setEmotions={setEmotions}
+              setNewBtn={setNewBtn}
             />
           </Paper>
         </Grid>
         <Grid item xs={9}>
           <Paper className={classes.paper}>
-            <EmotionsRate setEmotions={setEmotions} emotion={emotions} />
+            {emotions ? (
+              <h1>{emotions}</h1>
+            ) : (
+              <EmotionsRate setEmotions={setEmotions} emotion={emotions} />
+            )}
+
             <NoteContent
               setNote={setNote}
               setTitle={setTitle}
               note={note}
               title={title}
             />
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.btn}
-              onClick={onSubmitFeeling}
-            >
-              Save
-            </Button>
+            {newBtn ? (
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.btn}
+                onClick={onSubmitFeeling}
+              >
+                Save
+              </Button>
+            ) : (
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.btn}
+                onClick={updateBtn}
+              >
+                New note
+              </Button>
+            )}
           </Paper>
         </Grid>
       </Grid>

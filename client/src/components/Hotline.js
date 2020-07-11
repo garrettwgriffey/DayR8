@@ -1,10 +1,7 @@
 import React from "react";
 import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
@@ -29,7 +26,7 @@ const useStyles = makeStyles({
 
 function Hotline() {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+  
 
   return (
     <div className={classes.hotline}>

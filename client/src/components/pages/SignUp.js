@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SignUp() {
+function SignUp(props) {
   const classes = useStyles();
 
   return (
@@ -45,7 +45,7 @@ function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={(event) => {event.preventDefault(); props.signup(); console.log("running login")}}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -57,17 +57,7 @@ function SignUp() {
                 id="userName"
                 label="User Name"
                 autoFocus
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                onChange={(e) => props.setUsername(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -80,6 +70,7 @@ function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(e) => props.setPassword(e.target.value)}
               />
             </Grid>
             {/* <Grid item xs={12}>
