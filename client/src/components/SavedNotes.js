@@ -12,15 +12,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SavedNotes({ savedNotes, setTitle, setNote }) {
+function SavedNotes({
+  savedNotes,
+  setTitle,
+  setNote,
+  setEmotions,
+  setNewBtn,
+  updateBtn,
+}) {
   const classes = useStyles();
 
   const showFeelings = (id) => {
-    console.log(id);
     let selectedFeeling = savedNotes.filter((note) => note.id === id)[0];
     console.log(selectedFeeling);
     setNote(selectedFeeling.notes);
     setTitle(selectedFeeling.title);
+    setEmotions(selectedFeeling.emotion);
+    if (setNewBtn) {
+      setNewBtn(false);
+    } else {
+      updateBtn();
+    }
   };
 
   return (
