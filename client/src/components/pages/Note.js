@@ -68,6 +68,7 @@ function Note(props) {
     setNote("");
     setTitle("");
     setNewBtn(true);
+    setEmotions("");
   };
 
   return (
@@ -87,7 +88,12 @@ function Note(props) {
         </Grid>
         <Grid item xs={9}>
           <Paper className={classes.paper}>
-            <EmotionsRate setEmotions={setEmotions} emotion={emotions} />
+            {emotions ? (
+              <h1>{emotions}</h1>
+            ) : (
+              <EmotionsRate setEmotions={setEmotions} emotion={emotions} />
+            )}
+
             <NoteContent
               setNote={setNote}
               setTitle={setTitle}
