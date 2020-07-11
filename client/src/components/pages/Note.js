@@ -35,6 +35,7 @@ function Note(props) {
   const [emotions, setEmotions] = useState("");
   const [note, setNote] = useState("");
   const [savedNotes, setSavedNotes] = useState([]);
+  const [newBtn, setNewBtn] = useState(true);
 
   useEffect(() => {
     API.getFeeling()
@@ -62,6 +63,13 @@ function Note(props) {
       .catch((err) => console.log(err));
   };
 
+  const updateBtn = (e) => {
+    e.preventDefault();
+    setNote("");
+    setTitle("");
+    setNewBtn(true);
+  };
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
@@ -72,6 +80,8 @@ function Note(props) {
               savedNotes={savedNotes}
               setNote={setNote}
               setTitle={setTitle}
+              setEmotions={setEmotions}
+              setNewBtn={setNewBtn}
             />
           </Paper>
         </Grid>
@@ -84,14 +94,25 @@ function Note(props) {
               note={note}
               title={title}
             />
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.btn}
-              onClick={onSubmitFeeling}
-            >
-              Save
-            </Button>
+            {newBtn ? (
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.btn}
+                onClick={onSubmitFeeling}
+              >
+                Save
+              </Button>
+            ) : (
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.btn}
+                onClick={updateBtn}
+              >
+                New note
+              </Button>
+            )}
           </Paper>
         </Grid>
       </Grid>
