@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {browserHistory} from 'react-router';
 import {
   BrowserRouter as Router,
   Route,
@@ -21,12 +22,14 @@ class App extends Component {
       user: "",
       username: "",
       password: "",
+      signupRedirect: false
     };
     this.setUser = this.setUser.bind(this);
     this.setUsername = this.setUsername.bind(this);
     this.setPassword = this.setPassword.bind(this);
     this.signup = this.signup.bind(this);
     this.login = this.login.bind(this);
+    this.handleSignup = this.handleSignup.bind(this);
   }
 
   setUser(data) {
@@ -46,8 +49,13 @@ class App extends Component {
   signup() {
     console.log(this.state.username);
     API.signup({ username: this.state.username, password: this.state.password })
-      .then((res) => this.setUser(res.data.username))
+      .then((res) => {console.log(res); this.setUser(res.data.username);})
       .catch((err) => console.log(err));
+  }
+
+  handleSignup() {
+    this.setState({signupRedirect: true});
+    console.log("running handle signup")
   }
 
   login() {
@@ -76,6 +84,7 @@ class App extends Component {
         signup={this.signup}
         setUsername={this.setUsername}
         setPassword={this.setPassword}
+        signupRedirect={this.handleSignup}
         {...props}
       />
     );
@@ -97,10 +106,10 @@ class App extends Component {
         <Router>
           <NavBar />
           <Switch>
-            {/* <Route exact path="/" component={this.SignInPage} /> */}
-            {/* <Route exact path="/signup" component={this.SignUpPage} /> */}
+            <Route exact path="/" component={this.SignInPage} />
+            <Route exact path="/signup" component={this.SignUpPage} />
             {/* PrivateRoute sends conditional user information to decide whether to render the route or send to signup page. Sign in page default sends to infinite loop, will need to troubleshoot - TM */}
-            {/* <PrivateRoute exact user={this.state.user ? (user=this.state.user) : (user=null)} path="/note" component={this.NotePage} /> */}
+            <PrivateRoute exact user={this.state.user ? (user=this.state.user) : (user=null)} path="/note" component={this.NotePage} />
             <Note />
           </Switch>
           <Footer />

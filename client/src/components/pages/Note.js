@@ -73,6 +73,7 @@ function Note(props) {
 
   return (
     <div className={classes.root}>
+      <h1>Welcome {props.user}!</h1>
       <Grid container spacing={3}>
         <Grid item xs={3}>
           <Paper className={classes.paper}>
