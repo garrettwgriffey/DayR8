@@ -5,7 +5,7 @@ import SignUp from '../components/pages/SignUp';
 // import { UserContext } from '../context/contexts/UserContext';
 
 // This just checks if a user is logged in to decide whether to display the hidden component or redirect to the signup. Sign in default sends it to an infinite loop which we need to locate the source of. - TM
-export const PrivateRoute = ({ user, path, component}) => {
+export const PrivateRoute = ({ user, path, component }) => {
     return user ? (
         <Route exact path={path} component={component} />
     ) : (
