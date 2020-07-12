@@ -8,6 +8,7 @@ import NoteContent from "../NoteContent";
 import Button from "@material-ui/core/Button";
 import API from "../../util/API";
 import Hotline from "../Hotline";
+import ExPlot from "../Plot";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -123,6 +124,7 @@ function Note(props) {
           </Paper>
         </Grid>
       </Grid>
+      <ExPlot />
       <Hotline />
     </div>
   );

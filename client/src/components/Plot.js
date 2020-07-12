@@ -1,7 +1,7 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
 
-class App extends React.Component {
+class ExPlot extends React.Component {
   render() {
     return (
       <Plot
@@ -20,3 +20,5 @@ class App extends React.Component {
     );
   }
 }
+
+export default ExPlot;
