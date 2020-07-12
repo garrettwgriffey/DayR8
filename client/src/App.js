@@ -49,7 +49,7 @@ class App extends Component {
   signup() {
     console.log(this.state.username);
     API.signup({ username: this.state.username, password: this.state.password })
-      .then((res) => {console.log(res); console.log(this.state.username, this.state.password)})
+      .then((res) => {console.log(res); console.log(this.state.username, this.state.password);this.setState({username: this.state.username, password: this.state.password}); API.login({ username: this.state.username, password: this.state.password }).then((res) => this.setUser(res.data.username)); })
       .catch((err) => console.log(err));
   }
 
