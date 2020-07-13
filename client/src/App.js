@@ -107,10 +107,10 @@ class App extends Component {
         <Router>
           <NavBar />
           <Switch>
-            <Route exact path="/" component={this.SignInPage} />
-            <Route exact path="/signup" component={this.SignUpPage} />
+            {/* <Route exact path="/" component={this.SignInPage} /> */}
+            {/* <Route exact path="/signup" component={this.SignUpPage} /> */}
             {/* PrivateRoute sends conditional user information to decide whether to render the route or send to signup page. Sign in page default sends to infinite loop, will need to troubleshoot - TM */}
-            <PrivateRoute exact user={this.state.user ? (user=this.state.user) : (user=null)} path="/note" component={this.NotePage} />
+            {/* <PrivateRoute exact user={this.state.user ? (user=this.state.user) : (user=null)} path="/note" component={this.NotePage} /> */}
             <Note />
           </Switch>
           <Footer />

@@ -8,7 +8,7 @@ import NoteContent from "../NoteContent";
 import Button from "@material-ui/core/Button";
 import API from "../../util/API";
 import Hotline from "../Hotline";
-import ExPlot from "../Plot";
+// import ExPlot from "../Plot";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -90,10 +90,10 @@ function Note(props) {
         </Grid>
         <Grid item xs={9}>
           <Paper className={classes.paper}>
-            {emotions ? (
-              <h1>{emotions}</h1>
-            ) : (
+            {newBtn ? (
               <EmotionsRate setEmotions={setEmotions} emotion={emotions} />
+            ) : (
+              <h1>{emotions}</h1>
             )}
 
             <NoteContent
@@ -124,7 +124,7 @@ function Note(props) {
           </Paper>
         </Grid>
       </Grid>
-      <ExPlot />
+      {/* <ExPlot /> */}
       <Hotline />
     </div>
   );
