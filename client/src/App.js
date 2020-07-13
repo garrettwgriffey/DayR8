@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {browserHistory} from 'react-router';
+import { browserHistory } from "react-router";
 import {
   BrowserRouter as Router,
   Route,
@@ -15,21 +15,21 @@ import "./App.css";
 import { PrivateRoute } from "./util/PrivateRoute";
 import API from "./util/API";
 
-
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: "",
+      user: null,
       username: "",
       password: "",
-      signupRedirect: false
+      signupRedirect: false,
     };
     this.setUser = this.setUser.bind(this);
     this.setUsername = this.setUsername.bind(this);
     this.setPassword = this.setPassword.bind(this);
     this.signup = this.signup.bind(this);
     this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
   }
 
@@ -50,19 +50,36 @@ class App extends Component {
   signup() {
     console.log(this.state.username);
     API.signup({ username: this.state.username, password: this.state.password })
-      .then((res) => {console.log(res); console.log(this.state.username, this.state.password);this.setState({username: this.state.username, password: this.state.password}); API.login({ username: this.state.username, password: this.state.password }).then((res) => this.setUser(res.data.username)); })
+      .then((res) => {
+        console.log(res);
+        console.log(this.state.username, this.state.password);
+        this.setState({
+          username: this.state.username,
+          password: this.state.password,
+        });
+        API.login({
+          username: this.state.username,
+          password: this.state.password,
+        }).then((res) => this.setUser(res.data.username));
+      })
       .catch((err) => console.log(err));
   }
 
   handleSignup() {
-    this.setState({signupRedirect: true});
-    console.log("running handle signup")
+    this.setState({ signupRedirect: true });
+    console.log("running handle signup");
   }
 
   login() {
     console.log(this.state.username);
     API.login({ username: this.state.username, password: this.state.password })
       .then((res) => this.setUser(res.data.username))
+      .catch((err) => console.log(err));
+  }
+  logout() {
+    console.log("running logout");
+    API.logout()
+      .then((res) => this.setUser(null))
       .catch((err) => console.log(err));
   }
 
@@ -101,17 +118,22 @@ class App extends Component {
   };
 
   render() {
-    let user;
+    // let user;
     return (
       <>
         <Router>
-          <NavBar />
+          <NavBar logout={this.logout} user={this.state.user} />
           <Switch>
             <Route exact path="/" component={this.SignInPage} />
             <Route exact path="/signup" component={this.SignUpPage} />
             {/* PrivateRoute sends conditional user information to decide whether to render the route or send to signup page. Sign in page default sends to infinite loop, will need to troubleshoot - TM */}
-            <PrivateRoute exact user={this.state.user ? (user=this.state.user) : (user=null)} path="/note" component={this.NotePage} />
-            <Note />
+            <PrivateRoute
+              exact
+              user={this.state.user}
+              path="/note"
+              component={this.NotePage}
+            />
+            {/* <Note /> */}
           </Switch>
           <Footer />
         </Router>
