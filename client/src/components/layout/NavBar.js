@@ -27,14 +27,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function NavBar() {
+function NavBar({ user, logout }) {
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
+  // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   // const open = Boolean(anchorEl);
 
   const handleChange = (event) => {
-    setAuth(event.target.checked);
+    logout();
   };
 
   const handleMenu = (event) => {
@@ -60,19 +60,21 @@ function NavBar() {
           <Typography variant="h6" className={classes.title}>
             DayR8
           </Typography>
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={auth}
-                  onChange={handleChange}
-                  aria-label="login switch"
-                />
-              }
-              label={auth ? "Logout" : "Login"}
-            />
-          </FormGroup>
-          {auth && (
+          {user && (
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={user ? true : false}
+                    onChange={handleChange}
+                    aria-label="login switch"
+                  />
+                }
+                label="Logout"
+              />
+            </FormGroup>
+          )}
+          {user && (
             <div>
               <IconButton
                 aria-label="account of current user"
