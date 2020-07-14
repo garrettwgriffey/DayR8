@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import AlertDupUser from '../layout/AlertDupUser';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,11 +37,11 @@ const useStyles = makeStyles((theme) => ({
 function SignUp(props) {
   const classes = useStyles();
   const user = props.user
-
   return (
     <>
     {user ? (<Redirect to="/" />) : (
     <Container component="main" maxWidth="xs">
+      {props.dupUser ? <AlertDupUser /> : null}
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>

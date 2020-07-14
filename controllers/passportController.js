@@ -12,7 +12,6 @@ module.exports = {
         console.log(user);
         res.json(user);
       })
-
       .catch((err) => {
         res.status(401).json(err);
         console.log(err);
@@ -20,7 +19,6 @@ module.exports = {
   },
   logout: function (req, res) {
     req.logout();
-    // res.redirect("/api/auth/login");
     res.json("Logout");
   },
 };
