@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { browserHistory } from "react-router";
 import {
   BrowserRouter as Router,
   Route,
@@ -23,6 +22,7 @@ class App extends Component {
       username: "",
       password: "",
       signupRedirect: false,
+      dupUser: null
     };
     this.setUser = this.setUser.bind(this);
     this.setUsername = this.setUsername.bind(this);
@@ -51,8 +51,6 @@ class App extends Component {
     console.log(this.state.username);
     API.signup({ username: this.state.username, password: this.state.password })
       .then((res) => {
-        console.log(res);
-        console.log(this.state.username, this.state.password);
         this.setState({
           username: this.state.username,
           password: this.state.password,
@@ -60,14 +58,17 @@ class App extends Component {
         API.login({
           username: this.state.username,
           password: this.state.password,
-        }).then((res) => this.setUser(res.data.username));
+        }).then((res) => {
+          this.setUser(res.data.username)});
       })
-      .catch((err) => console.log(err));
+        .catch((err) => {
+          this.setState({dupUser: true});
+          setTimeout(() => {this.setState({dupUser: false})}, 5000)
+      });
   }
 
   handleSignup() {
     this.setState({ signupRedirect: true });
-    console.log("running handle signup");
   }
 
   login() {
@@ -76,6 +77,7 @@ class App extends Component {
       .then((res) => this.setUser(res.data.username))
       .catch((err) => console.log(err));
   }
+  
   logout() {
     console.log("running logout");
     API.logout()
@@ -99,6 +101,7 @@ class App extends Component {
     return (
       <SignUp
         user={this.state.user}
+        dupUser={this.state.dupUser}
         signup={this.signup}
         setUsername={this.setUsername}
         setPassword={this.setPassword}
@@ -118,7 +121,6 @@ class App extends Component {
   };
 
   render() {
-    // let user;
     return (
       <>
         <Router>
@@ -126,31 +128,15 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={this.SignInPage} />
             <Route exact path="/signup" component={this.SignUpPage} />
-            {/* PrivateRoute sends conditional user information to decide whether to render the route or send to signup page. Sign in page default sends to infinite loop, will need to troubleshoot - TM */}
             <PrivateRoute
               exact
               user={this.state.user}
               path="/note"
               component={this.NotePage}
             />
-            {/* <Note /> */}
           </Switch>
           <Footer />
         </Router>
-
-        {/* I need the below lines for testing signup/signin - TM */}
-
-        {/* {!this.state.user ? 
-        (<>
-          <NavBar />
-          <SignIn login={this.login} setUsername={this.setUsername} setPassword={this.setPassword} />
-        </>) : (
-        <>
-          <NavBar />
-          <Note user={this.state.user} />
-        </>)} */}
-
-        {/* {!this.state.user ? (<SignUp signup={this.signup} setUsername={this.setUsername} setPassword={this.setPassword} />) : (<Note/>)} */}
       </>
     );
   }
