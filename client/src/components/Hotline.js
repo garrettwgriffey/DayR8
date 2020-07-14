@@ -22,11 +22,11 @@ const useStyles = makeStyles({
   hotline: {
     textAlign: "center",
   },
+  marginBottom: "50px",
 });
 
 function Hotline() {
   const classes = useStyles();
-  
 
   return (
     <div className={classes.hotline}>
