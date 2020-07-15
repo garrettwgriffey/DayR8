@@ -128,7 +128,6 @@ function Note(props) {
           </Paper>
         </Grid>
       </Grid>
-      {/* <ExPlot /> */}
       <Hotline />
     </div>
   );

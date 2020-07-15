@@ -22,6 +22,7 @@ const useStyles = makeStyles({
   },
   hotline: {
     textAlign: "center",
+    float: "right",
   },
   marginBottom: "50px",
 });
@@ -33,56 +34,62 @@ function Hotline() {
     <div className={classes.hotline}>
       <div className={classes.root}>
         <CardContent>
-        <Grid item xs={6}>
-                    {/* SAMHSA */}
-                    <Typography variant="h5" component="h2">
-            Help is available
-          </Typography>
-          <Typography className={classes.pos} color="textSecondary">
-            Speak with a counselor today
-          </Typography>
-          <Typography variant="h5" component="p">
-            Substance Abuse and Mental Health Services Administration
-          </Typography>
-          <Typography variant="h4" component="p">
-            <a
-              href="tel:1-800-662-4357"
-              className="contact-number  contact-number--banner"
+        <Grid container spacing={6}>
+          <Grid item xs={6}>
+            {/* SAMHSA */}
+            <Grid item xs={6}>
+            <Typography variant="h5" component="h2">
+              Help is available
+            </Typography>
+            <Typography className={classes.pos} color="textSecondary">
+              Speak with a counselor today
+            </Typography>
+            </Grid>
+            <Typography variant="h5" component="p">
+              Substance Abuse and Mental Health Services Administration
+            </Typography>
+            <Typography variant="h4" component="p">
+              <a
+                href="tel:1-800-662-4357"
+                className="contact-number  contact-number--banner"
+              >
+                1-800-662-4357
+              </a>
+            </Typography>
+            <Link
+              href="https://www.samhsa.gov/find-help/national-helpline"
+              size="small"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              1-800-662-4357
-            </a>
-          </Typography>
-          <Link
-            href="https://www.samhsa.gov/find-help/national-helpline"
-            size="small"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Official Website
-          </Link>
-          <br />
-          {/* NSPL */}
-          <br />
-          <Typography variant="h5" component="p">
-            National Suicide Prevention Lifeline
-          </Typography>
-          <Typography variant="h4" component="p">
-            <a
-              href="tel:1-800-273-8255"
-              className="contact-number  contact-number--banner"
+              Official Website
+            </Link>
+            <br />
+            {/* NSPL */}
+            </Grid>
+            <br />
+            <Grid item xs={6}>
+            <Typography variant="h5" component="p">
+              National Suicide Prevention Lifeline
+            </Typography>
+            <Typography variant="h4" component="p">
+              <a
+                href="tel:1-800-273-8255"
+                className="contact-number  contact-number--banner"
+              >
+                1-800-273-8255
+              </a>
+            </Typography>
+            <Link
+              href="https://suicidepreventionlifeline.org/"
+              size="small"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              1-800-273-8255
-            </a>
-          </Typography>
-          <Link
-            href="https://suicidepreventionlifeline.org/"
-            size="small"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Official Website
-          </Link>
-        </Grid>
+              Official Website
+            </Link>
+          </Grid>
+          </Grid>
         </CardContent>
       </div>
     </div>
@@ -90,4 +97,3 @@ function Hotline() {
 }
 
 export default Hotline;
-
