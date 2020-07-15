@@ -22,9 +22,10 @@ const useStyles = makeStyles({
   },
   hotline: {
     textAlign: "center",
-    float: "right",
+    // float: "right",
   },
   marginBottom: "50px",
+
 });
 
 function Hotline() {
@@ -35,16 +36,17 @@ function Hotline() {
       <div className={classes.root}>
         <CardContent>
         <Grid container spacing={6}>
-          <Grid item xs={6}>
-            {/* SAMHSA */}
+          {/* Help is Available */}
             <Grid item xs={6}>
-            <Typography variant="h5" component="h2">
+            <Typography className={classes.hotline} variant="h5" component="h2">
               Help is available
             </Typography>
             <Typography className={classes.pos} color="textSecondary">
               Speak with a counselor today
             </Typography>
             </Grid>
+            {/* SAMHSA */}
+            <Grid item xs={6}>
             <Typography variant="h5" component="p">
               Substance Abuse and Mental Health Services Administration
             </Typography>
@@ -64,9 +66,9 @@ function Hotline() {
             >
               Official Website
             </Link>
+            </Grid>
             <br />
             {/* NSPL */}
-            </Grid>
             <br />
             <Grid item xs={6}>
             <Typography variant="h5" component="p">
