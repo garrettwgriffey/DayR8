@@ -34,12 +34,34 @@ function Hotline() {
       <div className={classes.root}>
         <CardContent>
         <Grid item xs={6}>
-        <Typography variant="h5" component="h2">
+                    {/* SAMHSA */}
+                    <Typography variant="h5" component="h2">
             Help is available
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
             Speak with a counselor today
           </Typography>
+          <Typography variant="h5" component="p">
+            Substance Abuse and Mental Health Services Administration
+          </Typography>
+          <Typography variant="h4" component="p">
+            <a
+              href="tel:1-800-662-4357"
+              className="contact-number  contact-number--banner"
+            >
+              1-800-662-4357
+            </a>
+          </Typography>
+          <Link
+            href="https://www.samhsa.gov/find-help/national-helpline"
+            size="small"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Official Website
+          </Link>
+          <br />
+          {/* NSPL */}
           <br />
           <Typography variant="h5" component="p">
             National Suicide Prevention Lifeline
