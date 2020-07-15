@@ -14,7 +14,11 @@ module.exports = function (sequelize, DataTypes) {
     notes: {
       type: DataTypes.TEXT,
       allowNull: false,
-    }
+    },
+    user: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   });
   return Feelings;
 };
