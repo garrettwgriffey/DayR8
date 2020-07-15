@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 function SignUp(props) {
   const classes = useStyles();
   const user = props.user
-  const {email}=validators;
+  const {email, password}=validators;
   return (
     <>
     {user ? (<Redirect to="/" />) : (
@@ -74,8 +74,8 @@ function SignUp(props) {
                 variant="outlined"
                 required
                 fullWidth
-                // error ={password(props.password)}
-                // helperText={password(props.password)}
+                error ={password(props.password)}
+                helperText={password(props.password)}
                 name="password"
                 label="Password"
                 type="password"
