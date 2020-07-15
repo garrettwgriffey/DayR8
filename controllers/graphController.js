@@ -5,13 +5,13 @@ const Op = Sequelize.Op;
 
 module.exports = {
     getWeek: function (req, res) {
-        var startOfWeek = moment().startOf('week').toDate()
-        var endOfWeek = moment().endOf('week').toDate()
+        var startOfWeek = moment().subtract(7,'d').toDate()
+        var currentDate = moment().toDate()
         console.log(startOfWeek)
         db.Feelings.findAll({
             where: {
                 createdAt: {
-                    [Op.between]: [startOfWeek, endOfWeek]
+                    [Op.between]: [startOfWeek, currentDate]
                 }
             }
         })
@@ -19,12 +19,12 @@ module.exports = {
         .catch((err) => res.status(422).json(err));
     },
     getMonth: function (req, res) {
-        var startOfMonth = moment().startOf('month').toDate()
-        var endOfMonth = moment().endOf('month').toDate()
+        var startOfMonth = moment().subtract(30,'d').toDate()
+        var currentDate = moment().toDate()
         db.Feelings.findAll({
             where: {
                 createdAt: {
-                    [Op.between]: [startOfMonth, endOfMonth]
+                    [Op.between]: [startOfMonth, currentDate]
                 }
             }
         })
@@ -32,12 +32,12 @@ module.exports = {
         .catch((err) => {res.status(400).json(err)})   
     },
     getYear: function (req, res) {
-        var startOfYear = moment().startOf('year').toDate()
-        var endOfYear = moment().endOf('year').toDate()
+        var startOfYear = moment().subtract(365,'d').toDate()
+        var currentDate = moment().toDate()
         db.Feelings.findAll({
             where: {
                 createdAt: {
-                    [Op.between]: [startOfYear, endOfYear]
+                    [Op.between]: [startOfYear, currentDate]
                 }
             }
         })
