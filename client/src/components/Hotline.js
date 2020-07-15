@@ -49,6 +49,15 @@ function Hotline() {
             >
               1-800-273-8255
             </a>
+            </Typography>
+            <Link
+            href="https://suicidepreventionlifeline.org/"
+            size="small"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Official Website
+          </Link>
             {/* SAMHSA */}
           <Typography className={classes.pos} color="textSecondary">
             The Helpline is free and confidential
