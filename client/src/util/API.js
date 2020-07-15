@@ -16,13 +16,13 @@ export default {
   logout: function() {
     return axios.get("/api/passport/auth")
   },
-  getByWeek: function() {
+  getByWeek: function(user) {
     return axios.get("/api/graph/week")
   },
-  getByMonth: function() {
+  getByMonth: function(user) {
     return axios.get("/api/graph/month")
   },
-  getByYear: function() {
+  getByYear: function(user) {
     return axios.get("/api/graph/year")
   },
 };

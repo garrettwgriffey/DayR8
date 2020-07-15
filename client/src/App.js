@@ -33,13 +33,6 @@ class App extends Component {
     this.handleSignup = this.handleSignup.bind(this);
   }
 
-  componentDidMount() {
-    console.log("running get by week")
-    API.getByWeek().then(res => console.log(res))
-    API.getByMonth().then(res => console.log(res))
-    API.getByYear().then(res => console.log(res))
-  }
-
   setUser(data) {
     this.setState({ user: data });
   }
@@ -88,7 +81,7 @@ class App extends Component {
   logout() {
     console.log("running logout");
     API.logout()
-      .then((res) => this.setUser(null))
+      .then((res) => {this.setUser(null); console.log(this.state.user)})
       .catch((err) => console.log(err));
   }
 

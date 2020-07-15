@@ -40,8 +40,12 @@ function Note(props) {
   const [note, setNote] = useState("");
   const [savedNotes, setSavedNotes] = useState([]);
   const [newBtn, setNewBtn] = useState(true);
-
+  
   useEffect(() => {
+    console.log("running get by week")
+    API.getByWeek({user: props.user}).then(res => console.log(res))
+    API.getByMonth({user: props.user}).then(res => console.log(res))
+    API.getByYear({user: props.user}).then(res => console.log(res))
     API.getFeeling()
       .then((res) => setSavedNotes(res.data))
       .catch((err) => console.log(err));
