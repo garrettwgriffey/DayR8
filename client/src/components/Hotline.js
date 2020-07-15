@@ -22,7 +22,6 @@ const useStyles = makeStyles({
   hotline: {
     textAlign: "center",
   },
-  marginBottom: "50px",
 });
 
 function Hotline() {
