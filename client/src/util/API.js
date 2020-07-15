@@ -15,5 +15,14 @@ export default {
   },
   logout: function() {
     return axios.get("/api/passport/auth")
-  }
+  },
+  getByWeek: function(user) {
+    return axios.get("/api/graph/week")
+  },
+  getByMonth: function(user) {
+    return axios.get("/api/graph/month")
+  },
+  getByYear: function(user) {
+    return axios.get("/api/graph/year")
+  },
 };

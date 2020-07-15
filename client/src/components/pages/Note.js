@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   btn: {
     margin: "10px",
   },
-  h1: {
+  welcome: {
     marginLeft: "10px",
   },
 }));
@@ -42,6 +42,10 @@ function Note(props) {
   const [newBtn, setNewBtn] = useState(true);
 
   useEffect(() => {
+    console.log("running get by week");
+    API.getByWeek({ user: props.user }).then((res) => console.log(res));
+    API.getByMonth({ user: props.user }).then((res) => console.log(res));
+    API.getByYear({ user: props.user }).then((res) => console.log(res));
     API.getFeeling()
       .then((res) => setSavedNotes(res.data))
       .catch((err) => console.log(err));
@@ -78,7 +82,7 @@ function Note(props) {
 
   return (
     <div className={classes.root}>
-      <h1 className={classes.h1}>Welcome {props.user}!</h1>
+      <h1 className={classes.welcome}>Welcome {props.user}!</h1>
       <Grid container spacing={3}>
         <Grid item xs={3}>
           <Paper className={classes.paper}>
@@ -89,6 +93,7 @@ function Note(props) {
               setTitle={setTitle}
               setEmotions={setEmotions}
               setNewBtn={setNewBtn}
+              user={props.user}
             />
           </Paper>
         </Grid>
