@@ -62,7 +62,7 @@
 <h5><a href= "https://www.linkedin.com/in/garrettwgriffey/">LinkedIn</a></h5>
 <hr>
 
-<h4><a href= "https://github.com/sammiefrog">@timothymickiewicz</a></h4>
+<h4><a href= "https://github.com/timothymickiewicz">@timothymickiewicz</a></h4>
 <img align="right" width="100" height="100" src="https://avatars3.githubusercontent.com/u/58575568?s=460&u=e0c95a7868c9b618cec0181a153e0e5f25cd2d25&v=4" alt="Github Profile Image">
 <h5><a href= "https://timothymickiewicz.github.io/">Portfolio</a></h5>  
 <h5><a href= "mailto:timothy.mickiewicz@gmail.com">timothy.mickiewicz@gmail.com</a></h5>       

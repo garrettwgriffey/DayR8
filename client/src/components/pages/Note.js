@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   btn: {
     margin: "10px",
   },
-  h1: {
+  welcome: {
     marginLeft: "10px",
   },
 }));
@@ -78,7 +78,7 @@ function Note(props) {
 
   return (
     <div className={classes.root}>
-      <h1 className={classes.h1}>Welcome {props.user}!</h1>
+      <h1 className={classes.welcome}>Welcome {props.user}!</h1>
       <Grid container spacing={3}>
         <Grid item xs={3}>
           <Paper className={classes.paper}>
