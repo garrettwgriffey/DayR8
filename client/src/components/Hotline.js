@@ -49,9 +49,24 @@ function Hotline() {
             >
               1-800-273-8255
             </a>
+            {/* SAMHSA */}
+          <Typography className={classes.pos} color="textSecondary">
+            The Helpline is free and confidential
+          </Typography>
+          <br />
+          <Typography variant="h5" component="p">
+            Substance Abuse and Mental Health Services Administration
+          </Typography>
+          <Typography variant="h4" component="p">
+            <a
+              href="tel:1-800-662-4357"
+              className="contact-number  contact-number--banner"
+            >
+              1-800-662-4357
+            </a>
           </Typography>
           <Link
-            href="https://suicidepreventionlifeline.org/"
+            href="https://www.samhsa.gov/find-help/national-helpline"
             size="small"
             target="_blank"
             rel="noopener noreferrer"
