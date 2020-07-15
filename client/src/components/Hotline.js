@@ -3,6 +3,7 @@ import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
   root: {
@@ -32,8 +33,8 @@ function Hotline() {
     <div className={classes.hotline}>
       <div className={classes.root}>
         <CardContent>
-          {/* NSPL */}
-          <Typography variant="h5" component="h2">
+        <Grid item xs={6}>
+        <Typography variant="h5" component="h2">
             Help is available
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
@@ -50,8 +51,8 @@ function Hotline() {
             >
               1-800-273-8255
             </a>
-            </Typography>
-            <Link
+          </Typography>
+          <Link
             href="https://suicidepreventionlifeline.org/"
             size="small"
             target="_blank"
@@ -59,27 +60,7 @@ function Hotline() {
           >
             Official Website
           </Link>
-          <br />
-            {/* SAMHSA */}
-          <Typography variant="h5" component="p">
-            Substance Abuse and Mental Health Services Administration
-          </Typography>
-          <Typography variant="h4" component="p">
-            <a
-              href="tel:1-800-662-4357"
-              className="contact-number  contact-number--banner"
-            >
-              1-800-662-4357
-            </a>
-          </Typography>
-          <Link
-            href="https://www.samhsa.gov/find-help/national-helpline"
-            size="small"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Official Website
-          </Link>
+        </Grid>
         </CardContent>
       </div>
     </div>
@@ -87,3 +68,4 @@ function Hotline() {
 }
 
 export default Hotline;
+
