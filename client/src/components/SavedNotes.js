@@ -30,6 +30,7 @@ function SavedNotes({
   setEmotions,
   setNewBtn,
   updateBtn,
+  user,
 }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -49,7 +50,7 @@ function SavedNotes({
       updateBtn();
     }
   };
-
+  console.log(user);
   return (
     <List component="nav" className={classes.root} aria-label="mailbox folders">
       <ListItem className={classes.btn} button onClick={handleClick}>
@@ -59,15 +60,17 @@ function SavedNotes({
 
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          {savedNotes.map((feeling) => (
-            <ListItem
-              button
-              key={feeling.id}
-              onClick={() => showFeelings(feeling.id)}
-            >
-              <ListItemText primary={feeling.title} />
-            </ListItem>
-          ))}
+          {savedNotes
+            .filter((feeling) => feeling.user === user)
+            .map((feeling) => (
+              <ListItem
+                button
+                key={feeling.id}
+                onClick={() => showFeelings(feeling.id)}
+              >
+                <ListItemText primary={feeling.title} />
+              </ListItem>
+            ))}
         </List>
       </Collapse>
     </List>
