@@ -32,6 +32,7 @@ function Hotline() {
     <div className={classes.hotline}>
       <div className={classes.root}>
         <CardContent>
+          {/* NSPL */}
           <Typography variant="h5" component="h2">
             Help is available
           </Typography>
@@ -58,11 +59,8 @@ function Hotline() {
           >
             Official Website
           </Link>
-            {/* SAMHSA */}
-          <Typography className={classes.pos} color="textSecondary">
-            The Helpline is free and confidential
-          </Typography>
           <br />
+            {/* SAMHSA */}
           <Typography variant="h5" component="p">
             Substance Abuse and Mental Health Services Administration
           </Typography>
