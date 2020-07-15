@@ -33,6 +33,11 @@ class App extends Component {
     this.handleSignup = this.handleSignup.bind(this);
   }
 
+  componentDidMount() {
+    console.log("running get by week")
+    API.getByWeek().then(res => console.log(res))
+  }
+
   setUser(data) {
     this.setState({ user: data });
   }
