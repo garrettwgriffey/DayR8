@@ -36,6 +36,8 @@ class App extends Component {
   componentDidMount() {
     console.log("running get by week")
     API.getByWeek().then(res => console.log(res))
+    API.getByMonth().then(res => console.log(res))
+    API.getByYear().then(res => console.log(res))
   }
 
   setUser(data) {

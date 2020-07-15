@@ -19,4 +19,10 @@ export default {
   getByWeek: function() {
     return axios.get("/api/graph/week")
   },
+  getByMonth: function() {
+    return axios.get("/api/graph/month")
+  },
+  getByYear: function() {
+    return axios.get("/api/graph/year")
+  },
 };
