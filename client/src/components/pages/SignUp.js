@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import AlertDupUser from '../layout/AlertDupUser';
+import validators from '../../util/validators';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 function SignUp(props) {
   const classes = useStyles();
   const user = props.user
+  const {email}=validators;
   return (
     <>
     {user ? (<Redirect to="/" />) : (
@@ -59,10 +61,12 @@ function SignUp(props) {
                 variant="outlined"
                 required
                 fullWidth
+                error = {email(props.username)}
+                helperText={email(props.username)}
                 id="userName"
                 label="User Name"
                 autoFocus
-                onChange={(e) => props.setUsername(e.target.value)}
+                onChange={(e) => props.setUsername(e.target.value)} 
               />
             </Grid>
             <Grid item xs={12}>
@@ -70,6 +74,8 @@ function SignUp(props) {
                 variant="outlined"
                 required
                 fullWidth
+                // error ={password(props.password)}
+                // helperText={password(props.password)}
                 name="password"
                 label="Password"
                 type="password"

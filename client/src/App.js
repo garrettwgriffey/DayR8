@@ -101,6 +101,8 @@ class App extends Component {
     return (
       <SignUp
         user={this.state.user}
+        username={this.state.username}
+      password = {this.state.password}
         dupUser={this.state.dupUser}
         signup={this.signup}
         setUsername={this.setUsername}
