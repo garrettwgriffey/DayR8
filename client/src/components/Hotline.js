@@ -42,7 +42,7 @@ function Hotline() {
           {/* Help is Available */}
             <Grid className={classes.help} item xs={12}>
             <Typography className={classes.hotline} variant="h5" component="h2">
-              Help is available
+              Help Is Available
             </Typography>
             <Typography className={classes.pos} color="textSecondary">
               Speak with a counselor today

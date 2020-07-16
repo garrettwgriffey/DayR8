@@ -1,12 +1,15 @@
 import React from "react";
 import { Chart } from "react-charts";
+import API from "../util/API";
 
-function MyChart() {
+function MyChart(props) {
+    console.log(props.chartData)
+    const chartData = props.chartData
     const data = React.useMemo(
       () => [
         {
           label: 'Series 1',
-          data: [{ x: new Date(2020,7,13), y: 1 }, { x: new Date(2020,7,14), y: 5 }, { x: new Date(2020,7,15), y: 10 }]
+          data: props.chartData
         },
         // {
         //   label: 'Series 2',
@@ -17,9 +20,9 @@ function MyChart() {
         //   data: [{ x: 1, y: 2 }, { x: 2, y: 4 }, { x: 3, y: 9 }]
         // }
       ],
-      []
+      [props.chartData]
     )
-   
+   console.log(data)
     const axes = React.useMemo(
       () => [
         { primary: true, type: 'utc', position: 'bottom' },
@@ -31,8 +34,9 @@ function MyChart() {
     return (
       <div
         style={{
-          width: '400px',
-          height: '300px'
+          width: '500px',
+          height: '400px',
+          marginLeft: '350px'
         }}
       >
         <Chart data={data} axes={axes} />
