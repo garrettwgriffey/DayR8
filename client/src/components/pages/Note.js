@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import API from "../../util/API";
 import Hotline from "../Hotline";
 import MyChart from "../Plot";
+import Analysis from "../../util/predictiveAnalysisModel"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,9 +44,9 @@ function Note(props) {
 
   useEffect(() => {
     console.log("running get by week");
-    API.getByWeek({ user: props.user }).then((res) => console.log(res));
-    API.getByMonth({ user: props.user }).then((res) => console.log(res));
-    API.getByYear({ user: props.user }).then((res) => console.log(res));
+    API.getByWeek({ user: props.user }).then((res) => {console.log(res);Analysis.predict(res, 7)});
+    API.getByMonth({ user: props.user }).then((res) => {console.log(res);Analysis.predict(res, 30)});
+    API.getByYear({ user: props.user }).then((res) => {console.log(res);Analysis.predict(res, 365)});
     API.getFeeling()
       .then((res) => setSavedNotes(res.data))
       .catch((err) => console.log(err));
