@@ -40,10 +40,20 @@ function Note(props) {
   const [note, setNote] = useState("");
   const [savedNotes, setSavedNotes] = useState([]);
   const [newBtn, setNewBtn] = useState(true);
+  const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
     console.log("running get by week");
-    API.getByWeek({ user: props.user }).then((res) => console.log(res));
+    API.getByWeek({ user: props.user }).then((res) => {
+      const apiData = res.data.map(obj => {
+        return{
+            x:new Date(obj.updatedAt),
+            y:parseInt(obj.emotion)
+        }
+    })
+    setChartData(apiData) 
+      console.log(res)
+    });
     API.getByMonth({ user: props.user }).then((res) => console.log(res));
     API.getByYear({ user: props.user }).then((res) => console.log(res));
     API.getFeeling()
@@ -133,7 +143,7 @@ function Note(props) {
           </Paper>
         </Grid>
       </Grid>
-      <MyChart />
+      <MyChart chartData={chartData}/>
       <Hotline />
     </div>
   );
