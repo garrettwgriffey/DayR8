@@ -4,7 +4,7 @@ const db = require("../models");
 const seeds = [
   {
     title: "Today",
-    emotion: 8,
+    emotion: 7,
     notes: "I felt up because this brightened my day",
     user: "tim@gmail.com",
     createdAt: "2020-07-15 00:19:19",
@@ -60,7 +60,7 @@ const seeds = [
   },
   {
     title: "January",
-    emotion: 8,
+    emotion: 5,
     notes: "From January 15",
     user: "tim@gmail.com",
     createdAt: "2020-01-15 00:19:19",
