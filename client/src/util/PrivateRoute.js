@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import SignUp from '../components/pages/SignUp';
+import SignIn from '../components/pages/SignIn';
 // We can make a context to give conditions for failing login - TM
 // import { UserContext } from '../context/contexts/UserContext';
 
@@ -9,6 +9,8 @@ export const PrivateRoute = ({ user, path, component }) => {
     return user ? (
         <Route exact path={path} component={component} />
     ) : (
-        <Redirect to="/" component={SignUp} />
+
+        <Redirect to="/" component={SignIn} />
+
     );
 };

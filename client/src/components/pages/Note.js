@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import API from "../../util/API";
 import Hotline from "../Hotline";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -47,6 +48,7 @@ function Note(props) {
   const [newBtn, setNewBtn] = useState(true);
 
   useEffect(() => {
+
     API.getFeeling()
       .then((res) => setSavedNotes(res.data))
       .catch((err) => console.log(err));
