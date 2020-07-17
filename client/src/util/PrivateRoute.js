@@ -9,6 +9,6 @@ export const PrivateRoute = ({ user, path, component }) => {
     return user ? (
         <Route exact path={path} component={component} />
     ) : (
-        <Redirect to="/signup" component={SignUp} />
+        <Redirect to="/" component={SignUp} />
     );
 };

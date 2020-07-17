@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      width: "80%",
+      width: "90%",
     },
   },
 }));
@@ -31,7 +31,7 @@ function NoteContent(props) {
           id="standard-textarea"
           label="Why the rate?"
           multiline
-          rows={20}
+          rows={10}
           onChange={(e) => {
             props.setNote(e.target.value);
           }}

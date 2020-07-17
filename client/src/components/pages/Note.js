@@ -8,7 +8,6 @@ import NoteContent from "../NoteContent";
 import Button from "@material-ui/core/Button";
 import API from "../../util/API";
 import Hotline from "../Hotline";
-import MyChart from "../Plot";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +29,12 @@ const useStyles = makeStyles((theme) => ({
   },
   welcome: {
     marginLeft: "10px",
+    marginBottom: "20px",
+  },
+  container: {
+    display: "flex",
+    justifyContent: "space-evenly",
+    flexWrap: "wrap",
   },
 }));
 
@@ -40,22 +45,8 @@ function Note(props) {
   const [note, setNote] = useState("");
   const [savedNotes, setSavedNotes] = useState([]);
   const [newBtn, setNewBtn] = useState(true);
-  const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    console.log("running get by week");
-    API.getByWeek({ user: props.user }).then((res) => {
-      const apiData = res.data.map(obj => {
-        return{
-            x:new Date(obj.updatedAt),
-            y:parseInt(obj.emotion)
-        }
-    })
-    setChartData(apiData) 
-      console.log(res)
-    });
-    API.getByMonth({ user: props.user }).then((res) => console.log(res));
-    API.getByYear({ user: props.user }).then((res) => console.log(res));
     API.getFeeling()
       .then((res) => setSavedNotes(res.data))
       .catch((err) => console.log(err));
@@ -93,7 +84,7 @@ function Note(props) {
   return (
     <div className={classes.root}>
       <h1 className={classes.welcome}>Welcome {props.user}!</h1>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} className={classes.container}>
         <Grid item xs={3}>
           <Paper className={classes.paper}>
             <h1 className={classes.h1}>Saved Notes</h1>
@@ -107,7 +98,7 @@ function Note(props) {
             />
           </Paper>
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={8}>
           <Paper className={classes.paper}>
             {newBtn ? (
               <EmotionsRate setEmotions={setEmotions} emotion={emotions} />
@@ -143,7 +134,6 @@ function Note(props) {
           </Paper>
         </Grid>
       </Grid>
-      <MyChart chartData={chartData}/>
       <Hotline />
     </div>
   );

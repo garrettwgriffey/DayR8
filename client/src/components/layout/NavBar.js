@@ -7,12 +7,14 @@ import {
   IconButton,
   Switch,
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormGroup from "@material-ui/core/FormGroup";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+// import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,13 +27,16 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     fontSize: "50px",
   },
+  lg: {
+    marginRight: "40px",
+  },
 }));
 
 function NavBar({ user, logout }) {
   const classes = useStyles();
-  // const [auth, setAuth] = React.useState(true);
+  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  // const open = Boolean(anchorEl);
+  const open = Boolean(anchorEl);
 
   const handleChange = (event) => {
     logout();
@@ -41,28 +46,29 @@ function NavBar({ user, logout }) {
     setAnchorEl(event.currentTarget);
   };
 
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          {/* <IconButton
+          <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
           >
             <MenuIcon />
-          </IconButton> */}
+          </IconButton>
           <Typography variant="h6" className={classes.title}>
             DayR8
           </Typography>
           {user && (
             <FormGroup>
               <FormControlLabel
+                className={classes.lg}
                 control={
                   <Switch
                     checked={user ? true : false}
@@ -85,7 +91,7 @@ function NavBar({ user, logout }) {
               >
                 <AccountCircle />
               </IconButton>
-              {/* <Menu
+              <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
@@ -100,9 +106,10 @@ function NavBar({ user, logout }) {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu> */}
+                <MenuItem>
+                  <Link to="/dashboard">Dashboard</Link>
+                </MenuItem>
+              </Menu>
             </div>
           )}
         </Toolbar>
