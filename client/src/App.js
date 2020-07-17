@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
   Switch,
 } from "react-router-dom";
 import NavBar from "./components/layout/NavBar";
@@ -49,13 +48,9 @@ class App extends Component {
   }
 
   signup() {
-    console.log(this.state.username);
     API.signup({ username: this.state.username, password: this.state.password })
       .then((res) => {
-        this.setState({
-          username: this.state.username,
-          password: this.state.password,
-        });
+        // Setting state to a verified user as a double check
         API.login({
           username: this.state.username,
           password: this.state.password,
@@ -71,10 +66,6 @@ class App extends Component {
       });
   }
 
-  handleSignup() {
-    this.setState({ signupRedirect: true });
-  }
-
   login() {
     console.log(this.state.username);
     API.login({ username: this.state.username, password: this.state.password })
@@ -83,11 +74,9 @@ class App extends Component {
   }
 
   logout() {
-    console.log("running logout");
     API.logout()
       .then((res) => {
         this.setUser(null);
-        console.log(this.state.user);
       })
       .catch((err) => console.log(err));
   }
@@ -114,7 +103,6 @@ class App extends Component {
         signup={this.signup}
         setUsername={this.setUsername}
         setPassword={this.setPassword}
-        signupRedirect={this.handleSignup}
         {...props}
       />
     );
@@ -132,7 +120,6 @@ class App extends Component {
     return (
       <Dashboard
         user={this.state.user}
-        // Insert props when we need them for doing cool stuff, such as flashing welcome messages to users using their username as a prop, etc - TM
         {...props}
       />
     );
