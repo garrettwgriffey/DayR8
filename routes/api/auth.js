@@ -6,7 +6,7 @@ const passport = require('../../config/passport');
 router.route("/auth")
   .get(passportController.logout)
   .post(passport.authenticate('local', { failureRedirect: '/login' }), (req, res) =>
-  {console.log("hitting controller", req.body); res.json(req.user)})
+  {console.log(req.body); res.json(req.user)})
     
 router.route("/create")
   .post(passportController.createAccount)

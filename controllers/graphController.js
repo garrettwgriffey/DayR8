@@ -18,7 +18,7 @@ module.exports = {
             }
         })
         .then((data) => {res.json(data)})
-        .catch((err) => res.status(422).json(err));
+        .catch((err) => res.status(400).json(err));
     },
     getMonth: function (req, res) {
         var username = req.session.passport.user.username
