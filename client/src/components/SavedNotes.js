@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   btn: {
-    width: "120%",
+    width: "110%",
   },
 }));
 

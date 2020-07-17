@@ -9,6 +9,8 @@ export const PrivateRoute = ({ user, path, component }) => {
     return user ? (
         <Route exact path={path} component={component} />
     ) : (
+
         <Redirect to="/" component={SignIn} />
+
     );
 };
