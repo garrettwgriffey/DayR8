@@ -6,8 +6,8 @@ const seeds = [
     title: "Today",
     emotion: 7,
     notes: "I felt up because this brightened my day",
-    user: "tim",
-    createdAt: "2020-07-16 00:19:19",
+    user: "tim@gmail.com",
+    createdAt: "2020-07-15 00:19:19",
   },
   {
     title: "New Note",
@@ -20,15 +20,15 @@ const seeds = [
     title: "New",
     emotion: 8,
     notes: "Another new note",
-    user: "tim",
+    user: "tim@gmail.com",
     createdAt: "2020-06-15 00:19:19",
   },
   {
     title: "From Last Year",
     emotion: 2,
     notes: "I felt up because this brightened my day",
-    user: "tim",
-    createdAt: "2019-07-14 00:19:19",
+    user: "tim@gmail.com",
+    createdAt: "2019-07-15 00:19:19",
   },
   {
     title: "From Last Month",
@@ -41,33 +41,33 @@ const seeds = [
     title: "Yesterday",
     emotion: 8,
     notes: "I felt up because this brightened my day",
-    user: "tim",
+    user: "tim@gmail.com",
     createdAt: "2020-07-14 00:19:19",
   },
   {
     title: "A Couple Days Ago",
     emotion: 8,
     notes: "I felt up because this brightened my day",
-    user: "tim",
+    user: "tim@gmail.com",
     createdAt: "2020-07-13 00:19:19",
   },
   {
     title: "Few Days Ago",
     emotion: 8,
     notes: "I felt up because this brightened my day",
-    user: "tim",
+    user: "tim@gmail.com",
     createdAt: "2020-07-12 00:19:19",
   },
   {
     title: "January",
     emotion: 5,
     notes: "From January 15",
-    user: "tim",
+    user: "tim@gmail.com",
     createdAt: "2020-01-15 00:19:19",
   },
 ];
 
-const userSeed = {username: "tim", password: "tim"}
+const userSeed = {username: "tim@gmail.com", password: "password"}
 
 db.User.create(userSeed).then((res) => console.log(res))
 
