@@ -2,16 +2,19 @@
 
 <h1 align= "center">DayR8</h1> 
 
-<h3><a href= "https://dayr8.herokuapp.com/">Live Link</a></h3>  
+<h3><a href= "https://dayr8.herokuapp.com/">Day-R8 Live Link</a></h3>  
 
-<h2> Table of Contents </h2>
+## **Table of Contents**
 <li><a href="#description">Description</a></li>  
-<li><a href="#installation">Installation</a></li> 
-<li><a href="#tech">Technology Stack</a></li> 
-<li><a href="#usage">Usage</a></li> 
 <li><a href="#screen">ScreenShots</a></li> 
-<li><a href="#contributors">Contributors</a></li>
+<li><a href="#usage">Usage</a></li> 
+
+<li><a href="#tech">Technology Stack</a></li> 
+<li><a href="#installation">Installation</a></li> 
 <li><a href="#test">Test</a></li>
+
+<li><a href="#contributors">Contributors</a></li>
+
 
 <h2 id="description"> Description </h2>
 <p>Day-R8 (Day Rate), is an application that allows a user to journal their feelings and emotions each day, or throughout the day.</p>
@@ -22,13 +25,14 @@
 
 
 
-<h2 id="usage"> Usage </h2>
-<p>As a new user to Day-R8, simply click the above "Live Link". Once the Day-R8 site is uploaded, click the "Sign Up".</p>
-_A user must enter a valid email address and create a password of at least 8 characters._
+## **Usage**  
+As a new user to Day-R8, simply click the above "Live Link". Once the Day-R8 site is uploaded, click the "Sign Up".
+**_A user must enter a valid email address and create a password of at least 8 characters._**
  On the slider scale, rate your day between 1-8. The user can type the emotion as the title for future reference. 
  Once the user is done with their journal entry _(or even a brief description)_, the save button must be clicked to record their entry.
  Each entry is saved, and the data ratings are charted and graphed. 
  The user is able to retrieve entries sorted by year and can also view an overall timeline of their emotions in a visual graph.
+
 <h2 id="installation"> Installation </h2>
 
 

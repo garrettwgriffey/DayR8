@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
+    marginTop: "50px",
   },
   bullet: {
     display: "inline-block",
@@ -22,13 +23,10 @@ const useStyles = makeStyles({
   },
   hotline: {
     textAlign: "center",
-    // float: "right",
   },
   help: {
     float: "right",
   },
-  marginBottom: "50px",
-
 });
 
 function Hotline() {
@@ -38,62 +36,66 @@ function Hotline() {
     <div className={classes.hotline}>
       <div className={classes.root}>
         <CardContent>
-        <Grid container spacing={3}>
-          {/* Help is Available */}
+          <Grid container spacing={3}>
+            {/* Help is Available */}
             <Grid className={classes.help} item xs={12}>
-            <Typography className={classes.hotline} variant="h5" component="h2">
-              Help Is Available
-            </Typography>
-            <Typography className={classes.pos} color="textSecondary">
-              Speak with a counselor today
-            </Typography>
+              <Typography
+                className={classes.hotline}
+                variant="h5"
+                component="h2"
+              >
+                Help Is Available
+              </Typography>
+              <Typography className={classes.pos} color="textSecondary">
+                Speak with a counselor today
+              </Typography>
             </Grid>
             {/* SAMHSA */}
             <Grid className={classes.help} item xs={6}>
-            <Typography variant="h5" component="p">
-              Substance Abuse and Mental Health Services Administration
-            </Typography>
-            <Typography variant="h4" component="p">
-              <a
-                href="tel:1-800-662-4357"
-                className="contact-number  contact-number--banner"
+              <Typography variant="h5" component="p">
+                Substance Abuse and Mental Health Services Administration
+              </Typography>
+              <Typography variant="h4" component="p">
+                <a
+                  href="tel:1-800-662-4357"
+                  className="contact-number  contact-number--banner"
+                >
+                  1-800-662-4357
+                </a>
+              </Typography>
+              <Link
+                href="https://www.samhsa.gov/find-help/national-helpline"
+                size="small"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                1-800-662-4357
-              </a>
-            </Typography>
-            <Link
-              href="https://www.samhsa.gov/find-help/national-helpline"
-              size="small"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Official Website
-            </Link>
+                Official Website
+              </Link>
             </Grid>
             <br />
             {/* NSPL */}
             <br />
             <Grid item xs={6}>
-            <Typography variant="h5" component="p">
-              National Suicide Prevention Lifeline
-            </Typography>
-            <Typography variant="h4" component="p">
-              <a
-                href="tel:1-800-273-8255"
-                className="contact-number  contact-number--banner"
+              <Typography variant="h5" component="p">
+                National Suicide Prevention Lifeline
+              </Typography>
+              <Typography variant="h4" component="p">
+                <a
+                  href="tel:1-800-273-8255"
+                  className="contact-number  contact-number--banner"
+                >
+                  1-800-273-8255
+                </a>
+              </Typography>
+              <Link
+                href="https://suicidepreventionlifeline.org/"
+                size="small"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                1-800-273-8255
-              </a>
-            </Typography>
-            <Link
-              href="https://suicidepreventionlifeline.org/"
-              size="small"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Official Website
-            </Link>
-          </Grid>
+                Official Website
+              </Link>
+            </Grid>
           </Grid>
         </CardContent>
       </div>
