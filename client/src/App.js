@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
   Switch,
 } from "react-router-dom";
 import NavBar from "./components/layout/NavBar";
@@ -13,6 +12,7 @@ import Note from "./components/pages/Note";
 import "./App.css";
 import { PrivateRoute } from "./util/PrivateRoute";
 import API from "./util/API";
+import Dashboard from "../src/components/pages/Dashboard";
 
 class App extends Component {
   constructor() {
@@ -22,7 +22,7 @@ class App extends Component {
       username: "",
       password: "",
       signupRedirect: false,
-      dupUser: null
+      dupUser: null,
     };
     this.setUser = this.setUser.bind(this);
     this.setUsername = this.setUsername.bind(this);
@@ -48,27 +48,22 @@ class App extends Component {
   }
 
   signup() {
-    console.log(this.state.username);
     API.signup({ username: this.state.username, password: this.state.password })
       .then((res) => {
-        this.setState({
-          username: this.state.username,
-          password: this.state.password,
-        });
+        // Setting state to a verified user as a double check
         API.login({
           username: this.state.username,
           password: this.state.password,
         }).then((res) => {
-          this.setUser(res.data.username)});
+          this.setUser(res.data.username);
+        });
       })
-        .catch((err) => {
-          this.setState({dupUser: true});
-          setTimeout(() => {this.setState({dupUser: false})}, 5000)
+      .catch((err) => {
+        this.setState({ dupUser: true });
+        setTimeout(() => {
+          this.setState({ dupUser: false });
+        }, 5000);
       });
-  }
-
-  handleSignup() {
-    this.setState({ signupRedirect: true });
   }
 
   login() {
@@ -77,11 +72,12 @@ class App extends Component {
       .then((res) => this.setUser(res.data.username))
       .catch((err) => console.log(err));
   }
-  
+
   logout() {
-    console.log("running logout");
     API.logout()
-      .then((res) => {this.setUser(null); console.log(this.state.user)})
+      .then((res) => {
+        this.setUser(null);
+      })
       .catch((err) => console.log(err));
   }
 
@@ -102,12 +98,11 @@ class App extends Component {
       <SignUp
         user={this.state.user}
         username={this.state.username}
-      password = {this.state.password}
+        password={this.state.password}
         dupUser={this.state.dupUser}
         signup={this.signup}
         setUsername={this.setUsername}
         setPassword={this.setPassword}
-        signupRedirect={this.handleSignup}
         {...props}
       />
     );
@@ -117,6 +112,14 @@ class App extends Component {
       <Note
         user={this.state.user}
         // Insert props when we need them for doing cool stuff, such as flashing welcome messages to users using their username as a prop, etc - TM
+        {...props}
+      />
+    );
+  };
+  Dashboard = (props) => {
+    return (
+      <Dashboard
+        user={this.state.user}
         {...props}
       />
     );
@@ -136,7 +139,15 @@ class App extends Component {
               path="/note"
               component={this.NotePage}
             />
+            <PrivateRoute
+              exact
+              user={this.state.user}
+              path="/dashboard"
+              component={this.Dashboard}
+            />
           </Switch>
+          {/* <Note /> */}
+          {/* <Dashboard /> */}
           <Footer />
         </Router>
       </>
