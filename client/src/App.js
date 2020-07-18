@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "./components/layout/NavBar";
 import Footer from "./components/layout/Footer";
 import SignIn from "./components/pages/SignIn";
@@ -117,12 +113,7 @@ class App extends Component {
     );
   };
   Dashboard = (props) => {
-    return (
-      <Dashboard
-        user={this.state.user}
-        {...props}
-      />
-    );
+    return <Dashboard user={this.state.user} {...props} />;
   };
 
   render() {
@@ -130,22 +121,22 @@ class App extends Component {
       <>
         <Router>
           <NavBar logout={this.logout} user={this.state.user} />
-          <Switch>
-            <Route exact path="/" component={this.SignInPage} />
-            <Route exact path="/signup" component={this.SignUpPage} />
-            <PrivateRoute
-              exact
-              user={this.state.user}
-              path="/note"
-              component={this.NotePage}
-            />
-            <PrivateRoute
-              exact
-              user={this.state.user}
-              path="/dashboard"
-              component={this.Dashboard}
-            />
-          </Switch>
+
+          <Route exact path="/" component={this.SignInPage} />
+          <Route exact path="/signup" component={this.SignUpPage} />
+          <PrivateRoute
+            exact
+            user={this.state.user}
+            path="/note"
+            component={this.NotePage}
+          />
+          <PrivateRoute
+            exact
+            user={this.state.user}
+            path="/dashboard"
+            component={this.Dashboard}
+          />
+
           {/* <Note /> */}
           {/* <Dashboard /> */}
           <Footer />

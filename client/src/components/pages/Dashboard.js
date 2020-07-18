@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Hotline from "../Hotline";
 import Back from "../../assets/back.png";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,13 +56,15 @@ function Dashboard(props) {
   }, []);
   return (
     <>
-      <div className="backBtn">
-        <Grid item xs={2}>
-          <Link to="/note ">
-            <img src={Back} className={classes.icon} />
-          </Link>
-        </Grid>
-      </div>
+      {props.user && (
+        <div className="backBtn">
+          <Grid item xs={2}>
+            <Link to="/note ">
+              <img src={Back} className={classes.icon} />
+            </Link>
+          </Grid>
+        </div>
+      )}
       <div className={classes.root}>
         <Grid container spacing={3} className={classes.container}>
           <Grid item xs={3}>
