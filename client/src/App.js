@@ -30,7 +30,7 @@ class App extends Component {
     this.signup = this.signup.bind(this);
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
-    this.handleSignup = this.handleSignup.bind(this);
+    // this.handleSignup = this.handleSignup.bind(this);
   }
 
   setUser(data) {
