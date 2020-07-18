@@ -7,6 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import Hotline from "../Hotline";
 import Back from "../../assets/back.png";
 import { Redirect, Link } from "react-router-dom";
+import Note from "./Note";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Dashboard(props) {
+  const NotePage = () => {
+    return <Note />;
+  };
   const classes = useStyles();
   const [chartData, setChartData] = useState([]);
 
@@ -54,13 +58,14 @@ function Dashboard(props) {
     API.getByMonth({ user: props.user }).then((res) => console.log(res));
     API.getByYear({ user: props.user }).then((res) => console.log(res));
   }, []);
+
   return (
     <>
       {props.user && (
         <div className="backBtn">
           <Grid item xs={2}>
             <Link to="/note ">
-              <img src={Back} className={classes.icon} />
+              <img src={Back} className={classes.icon} onClick={NotePage} />
             </Link>
           </Grid>
         </div>
