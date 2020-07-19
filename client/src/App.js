@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from "react-router-dom";
 import NavBar from "./components/layout/NavBar";
 import Footer from "./components/layout/Footer";
 import SignIn from "./components/pages/SignIn";
@@ -9,7 +13,6 @@ import "./App.css";
 import { PrivateRoute } from "./util/PrivateRoute";
 import API from "./util/API";
 import Dashboard from "../src/components/pages/Dashboard";
-
 class App extends Component {
   constructor() {
     super();
@@ -26,23 +29,18 @@ class App extends Component {
     this.signup = this.signup.bind(this);
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
-    // this.handleSignup = this.handleSignup.bind(this);
   }
-
   setUser(data) {
     this.setState({ user: data });
   }
-
   setUsername(data) {
     this.setState({ username: data });
     console.log(this.state.username);
   }
-
   setPassword(data) {
     this.setState({ password: data });
     console.log(this.state.password);
   }
-
   signup() {
     API.signup({ username: this.state.username, password: this.state.password })
       .then((res) => {
@@ -61,14 +59,12 @@ class App extends Component {
         }, 5000);
       });
   }
-
   login() {
     console.log(this.state.username);
     API.login({ username: this.state.username, password: this.state.password })
       .then((res) => this.setUser(res.data.username))
       .catch((err) => console.log(err));
   }
-
   logout() {
     API.logout()
       .then((res) => {
@@ -76,7 +72,6 @@ class App extends Component {
       })
       .catch((err) => console.log(err));
   }
-
   // Creating methods to pass props to Route components, which we are unable to do normally inside of Router. - TM
   SignInPage = (props) => {
     return (
@@ -113,30 +108,34 @@ class App extends Component {
     );
   };
   Dashboard = (props) => {
-    return <Dashboard user={this.state.user} {...props} />;
+    return (
+      <Dashboard
+        user={this.state.user}
+        {...props}
+      />
+    );
   };
-
   render() {
     return (
       <>
         <Router>
           <NavBar logout={this.logout} user={this.state.user} />
-
-          <Route exact path="/" component={this.SignInPage} />
-          <Route exact path="/signup" component={this.SignUpPage} />
-          <PrivateRoute
-            exact
-            user={this.state.user}
-            path="/note"
-            component={this.NotePage}
-          />
-          <PrivateRoute
-            exact
-            user={this.state.user}
-            path="/dashboard"
-            component={this.Dashboard}
-          />
-
+          <Switch>
+            <Route exact path="/" component={this.SignInPage} />
+            <Route exact path="/signup" component={this.SignUpPage} />
+            <PrivateRoute
+              exact
+              user={this.state.user}
+              path="/note"
+              component={this.NotePage}
+            />
+            <PrivateRoute
+              exact
+              user={this.state.user}
+              path="/dashboard"
+              component={this.Dashboard}
+            />
+          </Switch>
           {/* <Note /> */}
           {/* <Dashboard /> */}
           <Footer />
@@ -145,5 +144,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;

@@ -1,33 +1,82 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Chart } from "react-charts";
 import API from "../util/API";
-
 function MyChart(props) {
-  console.log(props.chartData);
-  const chartData = props.chartData;
+  const [chartData, setChartData] = useState([]);
+  useEffect(
+    () => {
+      if (props.type === "Week") {
+        API.getByWeek({ user: props.user }).then((res) => {
+          const apiData = res.data.map((point) => {
+            return {
+              x: new Date(point.createdAt.slice(0, 10)),
+              y: parseInt(point.emotion),
+            };
+          });
+          console.log(apiData)
+          setChartData(apiData);
+        })
+      }
+      else if (props.type === "Month") {
+        API.getByMonth({ user: props.user }).then((res) => {
+          const apiData = res.data.map((point) => {
+            return {
+              x: new Date(point.createdAt.slice(0, 10)),
+              y: parseInt(point.emotion),
+            };
+          });
+          console.log(apiData)
+          setChartData(apiData);
+        })
+      }
+      else if (props.type === "Year") {
+        API.getByYear({ user: props.user }).then((res) => {
+          const apiData = res.data.map((point) => {
+            return {
+              x: new Date(point.createdAt.slice(0, 10)),
+              y: parseInt(point.emotion),
+            };
+          });
+          console.log(apiData)
+          setChartData(apiData);
+        })
+      }
+    },
+    [],
+  )
+    // else if (props.month === "month") {
+    //   API.getByMonth({ user: props.user }).then((res) => {
+    //     const apiData = res.data.map((point) => {
+    //       return {
+    //         x: new Date(point.createdAt.slice(0, 10)),
+    //         y: parseInt(point.emotion),
+    //       };
+    //     });
+    //     console.log(apiData)
+    //     setChartData(apiData);
+    //   })
+    // }
+    // else if (props.year === "year") {
+    //   API.getByYear({ user: props.user }).then((res) => {
+    //     const apiData = res.data.map((point) => {
+    //       return {
+    //         x: new Date(point.createdAt.slice(0, 10)),
+    //         y: parseInt(point.emotion),
+    //       };
+    //     });
+    //     console.log(apiData)
+    //     setChartData(apiData);
+    //   })
+    // }
   const data = React.useMemo(
     () => [
       {
         label: "Series 1",
-        // data: props.chartData
-        data: [
-          { x: 1, y: 7 },
-          { x: 2, y: 8 },
-          { x: 3, y: 3 },
-        ],
-      },
-      // {
-      //   label: 'Series 2',
-      //   data: [{ x: 1, y: 7 }, { x: 2, y: 8 }, { x: 3, y: 3 }]
-      // },
-      // {
-      //   label: 'Series 3',
-      //   data: [{ x: 1, y: 2 }, { x: 2, y: 4 }, { x: 3, y: 9 }]
-      // }
+        data: chartData
+      }
     ],
-    [props.chartData]
+    [chartData]
   );
-  console.log(data);
   const axes = React.useMemo(
     () => [
       { primary: true, type: "utc", position: "bottom" },
@@ -35,7 +84,21 @@ function MyChart(props) {
     ],
     []
   );
-
+  const options = React.useMemo(
+    () => [
+        {
+          scales: {
+            xAxes: [{
+              type: 'time',
+              time: {
+                  unit: 'day'
+              }
+             }]
+          }
+        }
+      ],
+      []
+  )
   return (
     <div
       style={{
@@ -43,9 +106,8 @@ function MyChart(props) {
         height: "400px",
       }}
     >
-      <Chart data={data} axes={axes} />
+      <Chart data={data} axes={axes} options={options} />
     </div>
   );
 }
-
 export default MyChart;
