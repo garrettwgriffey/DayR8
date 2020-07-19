@@ -21,8 +21,8 @@ function EmotionsRate(props) {
   return (
     <div className={classes.root}>
       <Typography id="discrete-slider" gutterBottom>
-        From 1 to 8, How are you feeling today? (0 been the worst you can feel
-        and 8 the best you can feel)
+        From 1 to 8, How are you feeling today? (1 being the worst you can feel
+        and 8 being the best you can feel)
       </Typography>
       <Slider
         defaultValue={0}
