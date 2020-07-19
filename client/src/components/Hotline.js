@@ -23,6 +23,7 @@ const useStyles = makeStyles({
   },
   hotline: {
     textAlign: "center",
+    margin: "20px"
   },
   help: {
     float: "right",
