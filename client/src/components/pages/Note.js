@@ -9,7 +9,6 @@ import Button from "@material-ui/core/Button";
 import API from "../../util/API";
 import Hotline from "../Hotline";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -22,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   h1: {
     color: "black",
-    fontSize: "50px",
+    fontSize: "2.5rem",
     marginTop: "3px",
   },
   btn: {
@@ -36,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-evenly",
     flexWrap: "wrap",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
   },
 }));
 
@@ -48,7 +50,6 @@ function Note(props) {
   const [newBtn, setNewBtn] = useState(true);
 
   useEffect(() => {
-
     API.getFeeling()
       .then((res) => setSavedNotes(res.data))
       .catch((err) => console.log(err));
@@ -87,7 +88,7 @@ function Note(props) {
     <div className={classes.root}>
       <h1 className={classes.welcome}>Welcome {props.user}!</h1>
       <Grid container spacing={3} className={classes.container}>
-        <Grid item xs={3}>
+        <Grid item xs={12} md={3}>
           <Paper className={classes.paper}>
             <h1 className={classes.h1}>Saved Notes</h1>
             <SavedNotes
@@ -100,7 +101,8 @@ function Note(props) {
             />
           </Paper>
         </Grid>
-        <Grid item xs={8}>
+
+        <Grid item xs={12} md={9}>
           <Paper className={classes.paper}>
             {newBtn ? (
               <EmotionsRate setEmotions={setEmotions} emotion={emotions} />

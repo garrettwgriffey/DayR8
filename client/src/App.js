@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "./components/layout/NavBar";
 import Footer from "./components/layout/Footer";
 import SignIn from "./components/pages/SignIn";
@@ -108,12 +104,7 @@ class App extends Component {
     );
   };
   Dashboard = (props) => {
-    return (
-      <Dashboard
-        user={this.state.user}
-        {...props}
-      />
-    );
+    return <Dashboard user={this.state.user} {...props} />;
   };
   render() {
     return (
