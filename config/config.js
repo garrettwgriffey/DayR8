@@ -4,7 +4,7 @@ module.exports = {
   development: {
     username: "root",
     password: process.env.PASSWORD || process.env.password,
-    password: "root",
+    // password: "root",
     database: "dayr8",
     host: "localhost",
     port: 3306,

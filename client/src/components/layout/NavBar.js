@@ -27,9 +27,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     fontSize: "50px",
   },
-  lg: {
-    marginRight: "40px",
-  },
 }));
 
 function NavBar({ user, logout }) {
@@ -108,6 +105,9 @@ function NavBar({ user, logout }) {
               >
                 <MenuItem>
                   <Link to="/dashboard">Dashboard</Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/note">Note</Link>
                 </MenuItem>
               </Menu>
             </div>

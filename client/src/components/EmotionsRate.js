@@ -3,13 +3,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    width: 300,
+    width: 400,
     textAlign: "center",
-    marginLeft: "450px",
+    margin: "0 auto",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
-});
+}));
 
 function valuetext(value) {
   return `${value}`;
