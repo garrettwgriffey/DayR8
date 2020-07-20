@@ -15,15 +15,14 @@ const useStyles = makeStyles({
     margin: "0 2px",
     transform: "scale(0.8)",
   },
-  title: {
-    fontSize: 14,
-  },
+
   pos: {
     marginBottom: 12,
   },
   hotline: {
     textAlign: "center",
-    margin: "20px"
+
+    marginBottom: "80px",
   },
   help: {
     float: "right",
@@ -38,14 +37,10 @@ function Hotline() {
       <div className={classes.root}>
         <CardContent>
           <Grid container spacing={3}>
-            {/* Help is Available */}
+            
             <Grid className={classes.help} item xs={12}>
-              <Typography
-                className={classes.hotline}
-                variant="h5"
-                component="h2"
-              >
-                Help Is Available
+              <Typography variant="h5" component="h2">
+                <h3>Help Is Available</h3>
               </Typography>
               <Typography className={classes.pos} color="textSecondary">
                 Speak with a counselor today
