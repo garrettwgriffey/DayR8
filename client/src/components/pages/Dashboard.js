@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   h1: {
     color: "black",
-    fontSize: "50px",
+    fontSize: "3rem",
     marginTop: "3px",
   },
   container: {
@@ -50,19 +50,19 @@ function Dashboard(props) {
 
       <div className={classes.root}>
         <Grid container spacing={3} className={classes.container}>
-          <Grid item xs={3}>
+          <Grid item xs={11}>
             <Paper className={classes.paper}>
               <h1 className={classes.h1}>Week</h1>
               <MyChart type={"Week"} user={props.user} />
             </Paper>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={11}>
             <Paper className={classes.paper}>
               <h1 className={classes.h1}>Month</h1>
               <MyChart type={"Month"} user={props.user} />
             </Paper>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={11}>
             <Paper className={classes.paper}>
               <h1 className={classes.h1}>Year</h1>
               <MyChart type={"Year"} user={props.user} />
