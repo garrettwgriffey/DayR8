@@ -1,4 +1,7 @@
 const db = require("../models");
+const moment = require("moment");
+var Sequelize = require('sequelize')
+const Op = Sequelize.Op;
 
 // Defining methods for the Feelings Controller
 module.exports = {
@@ -28,5 +31,20 @@ module.exports = {
       .then((dbModel) => dbModel.remove())
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
+  },
+  getBySpecificMonth: function (req, res) {
+    console.log(req.body)
+    var username = req.session.passport.user.username
+    var startOfMonth = moment().startOf(req.body)
+    var endOfMonth = moment().endOf(req.body)
+    db.Feelings.findAll({
+      where: {
+          createdAt: {
+              [Op.between]: [startOfMonth, endOfMonth]
+          },
+          user: username
+      }
+  })
+  .then((data) => {res.json(data)})
   }
 };

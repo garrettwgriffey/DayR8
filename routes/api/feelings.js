@@ -11,4 +11,8 @@ router
   .put(feelingsController.update)
   .delete(feelingsController.remove);
 
+router
+  .route("/month")
+  .get(feelingsController.getBySpecificMonth)
+  
 module.exports = router;
