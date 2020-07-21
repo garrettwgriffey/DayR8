@@ -10,6 +10,10 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
 import moment from "moment";
 import API from "../util/API";
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,6 +21,37 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
+  accordion: {
+    border: '1px solid rgba(0, 0, 0, .125)',
+    boxShadow: 'none',
+    '&:not(:last-child)': {
+      borderBottom: 0,
+    },
+    '&:before': {
+      display: 'none',
+    },
+    '&$expanded': {
+      margin: 'auto',
+    },
+  },
+  summary: {
+    backgroundColor: 'rgba(0, 0, 0, .03)',
+    borderBottom: '1px solid rgba(0, 0, 0, .125)',
+    marginBottom: -1,
+    minHeight: 56,
+    '&$expanded': {
+      minHeight: 56,
+    },
+  },
+  content: {
+    '&$expanded': {
+      margin: '12px 0',
+    },
+  },
+  details: {
+    padding: theme.spacing(2),
+  },
+  expanded: {},
   list: {
     color: "black",
     fontWeight: "bold",
@@ -38,20 +73,23 @@ function SavedNotes({
   user,
 }) {
   const [notes, setNotes] = useState([]);
+  const [filteredNotes, setFilteredNotes] = useState([]);
   const [months, setMonths] = useState({});
   const [years, setYears] = useState([]);
   const classes = useStyles();
   const [openYear, setOpenYear] = React.useState(null);
-  const [openMonth, setOpenMonth] = React.useState(null);
+  const [openMonth, setOpenMonth] = React.useState(false);
+  
 
-  const handleClickYear = (year) => {
-    setOpenYear(year);
+  const handleClickYear = (panel) => (event, newExpanded) => {
+    setOpenYear(newExpanded ? panel : false);
   };
-  const handleClickMonth = (year, month) => {
+ 
+  const handleClickMonth =  (event, year, month) => {
     handleNotesByMonth(year, month);
-    setOpenMonth(month);
+    
   };
-
+  
   useEffect(() => {
     API.getFeeling(user).then((res) => {
       setNotes(res.data);
@@ -107,14 +145,17 @@ function SavedNotes({
     setYears(sortedYears);
   }
 
-  const handleNotesByMonth = (month, year) => {
+  const handleNotesByMonth = (year, month) => {
+    console.log (year, month)
     // *** Test call *** this is how we will structure our real calls when the buttons are working, grabbing btn texts, setting them to state hooks, replaying "May", "2019" with those values for the call
     API.getBySpecificMonth({
-      month: month,
       year: year,
+      month: month,
+      
     }).then((res) => {
       console.log(res.data);
-      setNotes([{ title: "ops" }]);
+      setFilteredNotes(res.data);
+      setOpenMonth(month ? month : false);
     });
   };
 
@@ -168,77 +209,102 @@ function SavedNotes({
   return (
     // years list open
     <List component="nav" className={classes.root} aria-label="mailbox folders">
-      {years.map((year) => {
-        return (
-          <ListItem
-            className={classes.btn}
-            button
-            onClick={() => handleClickYear(year)}
-          >
-            <ListItemText className={classes.list} primary={year} />
-            {openYear === year ? (
-              <>
-                <ExpandLess />
-                {/* months list open */}
-                <List
-                  component="nav"
-                  // className={classes.root}
-                  aria-label="mailbox folders"
-                >
-                  {months[year][0].map((month) => {
+    {years.map((year) => {
+      return (
+        <Accordion square expanded={openYear === year} onChange={handleClickYear(year)}>
+        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+          <Typography>{year}</Typography>
+        </AccordionSummary>
+        <AccordionDetails style={{root:{flexDirection: "column"}}}>
+        {months[year][0].map((month) => {
                     return (
-                      <ListItem
-                        className={classes.btn}
-                        button
-                        onClick={() => handleClickMonth(year, month)}
-                      >
-                        <ListItemText
-                          className={classes.list}
-                          primary={month}
-                        />
-                        {openMonth === month ? (
-                          <>
-                            <ExpandLess />
-                            {/* notes list open */}
-                            <List
-                              component="nav"
-                              // className={classes.root}
-                              aria-label="mailbox folders"
-                            >
-                              {notes.map((note) => {
-                                return (
-                                  <ListItem
-                                    className={classes.btn}
-                                    button
-                                    // onClick={() => handleClickMonth(note)} new func to retrieve the note to the page
-                                  >
-                                    <ListItemText
-                                      className={classes.list}
-                                      primary={note.title}
-                                    />
-                                  </ListItem>
-                                );
-                              })}
-                              {/* notes list close */}
-                            </List>
-                          </>
-                        ) : (
-                          <ExpandMore />
-                        )}
-                      </ListItem>
-                    );
-                  })}
-                  {/* month list close */}
-                </List>
-              </>
-            ) : (
-              <ExpandMore />
-            )}
-          </ListItem>
-        );
-      })}
-      {/* year list close */}
-    </List>
+
+        <Accordion square expanded={openMonth === month} onChange={(e)=> handleClickMonth(e, year, month)}>
+        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+          <Typography>{month}</Typography>
+        </AccordionSummary>
+        {filteredNotes.length && filteredNotes.map((note) => {
+        return (
+      <AccordionDetails>
+          
+          <Typography>
+           {note.title}
+          </Typography>
+        </AccordionDetails>)})}
+      </Accordion>)})}
+        </AccordionDetails>
+      </Accordion>)})}
+      </List>
+    // 
+    //   
+    //     return (
+    //       <ListItem
+    //         className={classes.btn}
+    //         button
+    //         onClick={() => handleClickYear(year)}
+    //       >
+    //         <ListItemText className={classes.list} primary={year} />
+    //         {openYear === year ? (
+    //           <>
+    //             <ExpandLess />
+    //             {/* months list open */}
+    //             <List
+    //               component="nav"
+    //               // className={classes.root}
+    //               aria-label="mailbox folders"
+    //             >
+    //               
+    //                   <ListItem
+    //                     className={classes.btn}
+    //                     button
+    //                     onClick={() => handleClickMonth(year, month)}
+    //                   >
+    //                     <ListItemText
+    //                       className={classes.list}
+    //                       primary={month}
+    //                     />
+    //                     {openMonth === month ? (
+    //                       <>
+    //                         <ExpandLess />
+    //                         {/* notes list open */}
+    //                         <List
+    //                           component="nav"
+    //                           // className={classes.root}
+    //                           aria-label="mailbox folders"
+    //                         >
+    //                           
+    //                               <ListItem
+    //                                 className={classes.btn}
+    //                                 button
+    //                                 // onClick={() => handleClickMonth(note)} new func to retrieve the note to the page
+    //                               >
+    //                                 <ListItemText
+    //                                   className={classes.list}
+    //                                   primary={note.title}
+    //                                 />
+    //                               </ListItem>
+    //                             );
+    //                           })}
+    //                           {/* notes list close */}
+    //                         </List>
+    //                       </>
+    //                     ) : (
+    //                       <ExpandMore />
+    //                     )}
+    //                   </ListItem>
+    //                 );
+    //               })}
+    //               {/* month list close */}
+    //             </List>
+    //           </>
+    //         ) : (
+    //           <ExpandMore />
+    //         )}
+    //       </ListItem>
+    //     );
+    //   })}
+    //   {/* year list close */}
+    // </List>
   );
 }
 
