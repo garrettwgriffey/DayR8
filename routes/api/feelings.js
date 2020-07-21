@@ -12,7 +12,7 @@ router
   .delete(feelingsController.remove);
 
 router
-  .route("/month")
+  .route("/month/:month/:year")
   .get(feelingsController.getBySpecificMonth)
 
 module.exports = router;
