@@ -33,13 +33,16 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   getBySpecificMonth: function (req, res) {
-    var username = req.session.passport.user.username
-    var startOfMonth = moment().startOf(req.body.month)
-    var endOfMonth = moment().endOf(req.body.month)
+    let month = req.params.month.slice(1)
+    month = moment().month(month).format("M")
+    let year = req.params.year.slice(1)
+    let startDate = moment([year, month - 1])
+    let endDate = moment(startDate).endOf('month')
+    let username = req.session.passport.user.username
     db.Feelings.findAll({
       where: {
           createdAt: {
-              [Op.between]: [startOfMonth, endOfMonth]
+              [Op.between]: [startDate, endDate]
           },
           user: username
       }

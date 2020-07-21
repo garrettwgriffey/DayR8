@@ -89,8 +89,9 @@ function SavedNotes({
     // Creates the months state by doing: year: [months] with the users historical data
     attachYearToMonths(sortedYears, results)
     setYears(sortedYears)
-    // Figure out how to receive this on the server side for api call
-    API.getBySpecificMonth({month: "May"}).then((res) => console.log(res));
+  
+    // *** Test call *** this is how we will structure our real calls when the buttons are working, grabbing btn texts, setting them to state hooks, replaying "May", "2019" with those values for the call
+    API.getBySpecificMonth({month: "May", year: "2019"}).then((res) => console.log(res));
   }
 
   // Gets a list of all of the months that have notes saved, sorted by number then converted to name using moment formatting.
@@ -100,7 +101,7 @@ function SavedNotes({
     let readyToFormat = []
     let finalData = []
 
-    // If the years match for the entry, push into the sorted months
+    // If the years match, push into the sorted months
     for (let i=0;i<sortedDataByYear.length;i++) {
       if (sortedDataByYear[i].createdAt.slice(0,4).includes(year)) {
           sortedMonths.push(parseInt(sortedDataByYear[i].createdAt.slice(5,7)))
