@@ -6,7 +6,12 @@ const Op = Sequelize.Op;
 // Defining methods for the Feelings Controller
 module.exports = {
   findAll: function (req, res) {
-    db.Feelings.findAll(req.query)
+    let username = req.session.passport.user.username
+    db.Feelings.findAll({
+      where: {
+          user: username
+      }
+  })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
