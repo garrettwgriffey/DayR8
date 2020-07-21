@@ -25,4 +25,8 @@ export default {
   getByYear: function(user) {
     return axios.get("/api/graph/year")
   },
+  getBySpecificMonth: function(month) {
+    console.log(month)
+    return axios.get("/api/feelings/month", month)
+  },
 };

@@ -49,11 +49,11 @@ function Note(props) {
   const [savedNotes, setSavedNotes] = useState([]);
   const [newBtn, setNewBtn] = useState(true);
 
-  useEffect(() => {
-    API.getFeeling()
-      .then((res) => setSavedNotes(res.data))
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   API.getFeeling()
+  //     .then((res) => setSavedNotes(res.data))
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   useEffect(() => {
     console.log(title, note, emotions);
