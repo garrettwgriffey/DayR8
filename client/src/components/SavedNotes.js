@@ -89,7 +89,8 @@ function SavedNotes({
     // Creates the months state by doing: year: [months] with the users historical data
     attachYearToMonths(sortedYears, results)
     setYears(sortedYears)
-    
+    // Figure out how to receive this on the server side for api call
+    API.getBySpecificMonth({month: "May"}).then((res) => console.log(res));
   }
 
   // Gets a list of all of the months that have notes saved, sorted by number then converted to name using moment formatting.

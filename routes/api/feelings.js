@@ -7,12 +7,12 @@ router.route("/")
 
 router
   .route("/:id")
-  .get(feelingsController.findById)
+  // .get(feelingsController.findById)
   .put(feelingsController.update)
   .delete(feelingsController.remove);
 
 router
   .route("/month")
   .get(feelingsController.getBySpecificMonth)
-  
+
 module.exports = router;

@@ -10,11 +10,11 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findById: function (req, res) {
-    db.Feelings.findById(req.params.id)
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
+  // findById: function (req, res) {
+  //   db.Feelings.findById(req.params.id)
+  //     .then((dbModel) => res.json(dbModel))
+  //     .catch((err) => res.status(422).json(err));
+  // },
   create: function (req, res) {
     console.log(req);
     db.Feelings.create(req.body)
@@ -33,10 +33,9 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   getBySpecificMonth: function (req, res) {
-    console.log(req.body)
     var username = req.session.passport.user.username
-    var startOfMonth = moment().startOf(req.body)
-    var endOfMonth = moment().endOf(req.body)
+    var startOfMonth = moment().startOf(req.body.month)
+    var endOfMonth = moment().endOf(req.body.month)
     db.Feelings.findAll({
       where: {
           createdAt: {
