@@ -3,77 +3,72 @@ import { Chart } from "react-charts";
 import API from "../util/API";
 function MyChart(props) {
   const [chartData, setChartData] = useState([]);
-  useEffect(
-    () => {
-      if (props.type === "Week") {
-        API.getByWeek({ user: props.user }).then((res) => {
-          const apiData = res.data.map((point) => {
-            return {
-              x: new Date(point.createdAt.slice(0, 10)),
-              y: parseInt(point.emotion),
-            };
-          });
-          console.log(apiData)
-          setChartData(apiData);
-        })
-      }
-      else if (props.type === "Month") {
-        API.getByMonth({ user: props.user }).then((res) => {
-          const apiData = res.data.map((point) => {
-            return {
-              x: new Date(point.createdAt.slice(0, 10)),
-              y: parseInt(point.emotion),
-            };
-          });
-          console.log(apiData)
-          setChartData(apiData);
-        })
-      }
-      else if (props.type === "Year") {
-        API.getByYear({ user: props.user }).then((res) => {
-          const apiData = res.data.map((point) => {
-            return {
-              x: new Date(point.createdAt.slice(0, 10)),
-              y: parseInt(point.emotion),
-            };
-          });
-          console.log(apiData)
-          setChartData(apiData);
-        })
-      }
-    },
-    [],
-  )
-    // else if (props.month === "month") {
-    //   API.getByMonth({ user: props.user }).then((res) => {
-    //     const apiData = res.data.map((point) => {
-    //       return {
-    //         x: new Date(point.createdAt.slice(0, 10)),
-    //         y: parseInt(point.emotion),
-    //       };
-    //     });
-    //     console.log(apiData)
-    //     setChartData(apiData);
-    //   })
-    // }
-    // else if (props.year === "year") {
-    //   API.getByYear({ user: props.user }).then((res) => {
-    //     const apiData = res.data.map((point) => {
-    //       return {
-    //         x: new Date(point.createdAt.slice(0, 10)),
-    //         y: parseInt(point.emotion),
-    //       };
-    //     });
-    //     console.log(apiData)
-    //     setChartData(apiData);
-    //   })
-    // }
+  useEffect(() => {
+    if (props.type === "Week") {
+      API.getByWeek({ user: props.user }).then((res) => {
+        const apiData = res.data.map((point) => {
+          return {
+            x: new Date(point.createdAt.slice(0, 10)),
+            y: parseInt(point.emotion),
+          };
+        });
+        console.log(apiData);
+        setChartData(apiData);
+      });
+    } else if (props.type === "Month") {
+      API.getByMonth({ user: props.user }).then((res) => {
+        const apiData = res.data.map((point) => {
+          return {
+            x: new Date(point.createdAt.slice(0, 10)),
+            y: parseInt(point.emotion),
+          };
+        });
+        console.log(apiData);
+        setChartData(apiData);
+      });
+    } else if (props.type === "Year") {
+      API.getByYear({ user: props.user }).then((res) => {
+        const apiData = res.data.map((point) => {
+          return {
+            x: new Date(point.createdAt.slice(0, 10)),
+            y: parseInt(point.emotion),
+          };
+        });
+        console.log(apiData);
+        setChartData(apiData);
+      });
+    }
+  }, []);
+  // else if (props.month === "month") {
+  //   API.getByMonth({ user: props.user }).then((res) => {
+  //     const apiData = res.data.map((point) => {
+  //       return {
+  //         x: new Date(point.createdAt.slice(0, 10)),
+  //         y: parseInt(point.emotion),
+  //       };
+  //     });
+  //     console.log(apiData)
+  //     setChartData(apiData);
+  //   })
+  // }
+  // else if (props.year === "year") {
+  //   API.getByYear({ user: props.user }).then((res) => {
+  //     const apiData = res.data.map((point) => {
+  //       return {
+  //         x: new Date(point.createdAt.slice(0, 10)),
+  //         y: parseInt(point.emotion),
+  //       };
+  //     });
+  //     console.log(apiData)
+  //     setChartData(apiData);
+  //   })
+  // }
   const data = React.useMemo(
     () => [
       {
         label: "Series 1",
-        data: chartData
-      }
+        data: chartData,
+      },
     ],
     [chartData]
   );
@@ -86,23 +81,25 @@ function MyChart(props) {
   );
   const options = React.useMemo(
     () => [
-        {
-          scales: {
-            xAxes: [{
-              type: 'time',
+      {
+        scales: {
+          xAxes: [
+            {
+              type: "time",
               time: {
-                  unit: 'day'
-              }
-             }]
-          }
-        }
-      ],
-      []
-  )
+                unit: "day",
+              },
+            },
+          ],
+        },
+      },
+    ],
+    []
+  );
   return (
     <div
       style={{
-        width: "300px",
+        width: "auto",
         height: "400px",
       }}
     >
