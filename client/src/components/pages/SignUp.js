@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 10,
+    },
   },
   avatar: {
     margin: theme.spacing(1),

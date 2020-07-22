@@ -126,8 +126,8 @@ class App extends Component {
               path="/dashboard"
               component={this.Dashboard}
             />
-          </Switch>
-          {/* <Note /> */}
+          </Switch>{" "}
+          {/* <Note />
           {/* <Dashboard /> */}
           <Footer />
         </Router>

@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 10,
+    },
   },
   avatar: {
     margin: theme.spacing(1),
@@ -26,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+    marginBottom: 50,
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -96,9 +100,6 @@ function SignIn(props) {
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link to="#">Forgot password?</Link>
-                </Grid>
                 <Grid item>
                   <Link to="/signup">{"Don't have an account? Sign Up"}</Link>
                 </Grid>
