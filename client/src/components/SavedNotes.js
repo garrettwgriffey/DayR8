@@ -70,25 +70,28 @@ function SavedNotes({
   const [filteredNotes, setFilteredNotes] = useState([]);
   const [months, setMonths] = useState({});
   const [years, setYears] = useState([]);
-  const classes = useStyles();
   const [openYear, setOpenYear] = React.useState(null);
   const [openMonth, setOpenMonth] = React.useState(false);
+  const [currentOpenMonth, setCurrentOpenMonth] = useState(null)
+  const classes = useStyles();
 
   const handleClickYear = (panel) => (event, newExpanded) => {
     setOpenYear(newExpanded ? panel : false);
+    setOpenMonth(false)
+    setCurrentOpenMonth(false)
   };
 
   const handleClickMonth = (event, year, month) => {
     handleNotesByMonth(year, month);
   };
 
+  // Initializes the saved notes to the side of the page
   useEffect(() => {
     API.getFeeling(user).then((res) => {
       setAllNotes(res.data);
       checkYears(res.data);
-      // checkMonths(res.data);
     });
-  }, []);
+  }, [savedNotes]);
 
   useEffect(() => {
     console.log(years, months);
@@ -139,14 +142,17 @@ function SavedNotes({
 
   const handleNotesByMonth = (year, month) => {
     console.log(year, month);
-    // *** Test call *** this is how we will structure our real calls when the buttons are working, grabbing btn texts, setting them to state hooks, replaying "May", "2019" with those values for the call
     API.getBySpecificMonth({
       year: year,
       month: month,
+      user: user
     }).then((res) => {
       console.log(res.data);
       setFilteredNotes(res.data);
-      setOpenMonth(month ? month : false);
+      // If the current open month is the clicked month, close the accordion, else if it is not, open the selected month's accordion
+      setOpenMonth(currentOpenMonth === month ? false : month ? month : false);
+      // Sets the current open month to the clicked month, if the clicked month equals itself, return false to impact the above statement
+      setCurrentOpenMonth(currentOpenMonth === month ? false : month);
     });
   };
 
@@ -205,6 +211,7 @@ function SavedNotes({
         return (
           <Accordion
             square
+            TransitionProps={{ unmountOnExit: true }}
             expanded={openYear === year}
             onChange={handleClickYear(year)}
           >
@@ -219,6 +226,7 @@ function SavedNotes({
                 return (
                   <Accordion
                     square
+                    TransitionProps={{ unmountOnExit: true }}
                     expanded={openMonth === month}
                     onChange={(e) => handleClickMonth(e, year, month)}
                   >

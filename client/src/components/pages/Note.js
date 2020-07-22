@@ -51,7 +51,7 @@ function Note(props) {
   const [controlNewNote, setControlNewNote] = useState(true);
 
   useEffect(() => {
-    API.getLastEntry().then((res) => {
+    API.getLastEntry(props.user).then((res) => {
       if (res.data.join().trim() === '') {
         console.log("setting to false, disabled to false")
         setControlNewNote(false)
@@ -61,7 +61,7 @@ function Note(props) {
         setControlNewNote(true)
       }
     });
-     API.getFeeling()
+     API.getFeeling(props.user)
       .then((res) => setSavedNotes(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -80,8 +80,9 @@ function Note(props) {
       .then((res) => {
         setNote("");
         setTitle("");
-        API.getFeeling()
+        API.getFeeling(props.user)
           .then((res) => {
+            console.log("new note submitted, setting state for saved notes")
             setSavedNotes(res.data)
             setControlNewNote(true)
           })
@@ -146,7 +147,6 @@ function Note(props) {
                 color="primary"
                 className={classes.btn}
                 onClick={updateBtn}
-                disabled={controlNewNote ? true : false}
               >
                 New note
               </Button>

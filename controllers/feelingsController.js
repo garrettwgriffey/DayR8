@@ -6,7 +6,7 @@ const Op = Sequelize.Op;
 // Defining methods for the Feelings Controller
 module.exports = {
   findAll: function (req, res) {
-    let username = req.session.passport.user.username
+    let username = req.params.user.slice(1)
     db.Feelings.findAll({
       where: {
           user: username
@@ -16,7 +16,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findLastEntry: function(req, res) {
-    let username = req.session.passport.user.username
+    let username = req.params.user.slice(1)
     let startOfDay = moment().startOf('day')
     let endOfDay = moment(startOfDay).endOf('day')
     console.log(startOfDay, endOfDay)
@@ -59,7 +59,7 @@ module.exports = {
     let year = req.params.year.slice(1)
     let startDate = moment([year, month - 1])
     let endDate = moment(startDate).endOf('month')
-    let username = req.session.passport.user.username
+    let username = req.params.user.slice(1)
     db.Feelings.findAll({
       where: {
           createdAt: {
