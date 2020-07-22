@@ -17,17 +17,20 @@ app.use(logger("dev"));
 app.use(
   session({
     secret: "keyboard cat",
+    rolling: true,
     resave: true,
     saveUninitialized: true,
     cookie: { maxAge: 100000 },
   })
 );
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
+app.use(passport.session());
 
 // app.use(cors(corsOptions));
 
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 

@@ -39,30 +39,6 @@ function MyChart(props) {
       });
     }
   }, []);
-  // else if (props.month === "month") {
-  //   API.getByMonth({ user: props.user }).then((res) => {
-  //     const apiData = res.data.map((point) => {
-  //       return {
-  //         x: new Date(point.createdAt.slice(0, 10)),
-  //         y: parseInt(point.emotion),
-  //       };
-  //     });
-  //     console.log(apiData)
-  //     setChartData(apiData);
-  //   })
-  // }
-  // else if (props.year === "year") {
-  //   API.getByYear({ user: props.user }).then((res) => {
-  //     const apiData = res.data.map((point) => {
-  //       return {
-  //         x: new Date(point.createdAt.slice(0, 10)),
-  //         y: parseInt(point.emotion),
-  //       };
-  //     });
-  //     console.log(apiData)
-  //     setChartData(apiData);
-  //   })
-  // }
   const data = React.useMemo(
     () => [
       {

@@ -5,7 +5,7 @@ const Op = Sequelize.Op;
 
 module.exports = {
     getWeek: function (req, res) {
-        var username = req.session.passport.user.username
+        let username = req.params.user.slice(1)
         var startOfWeek = moment().subtract(7,'d').toDate()
         var currentDate = moment().toDate()
         console.log(startOfWeek)
@@ -21,7 +21,7 @@ module.exports = {
         .catch((err) => res.status(400).json(err));
     },
     getMonth: function (req, res) {
-        var username = req.session.passport.user.username
+        let username = req.params.user.slice(1)
         var startOfMonth = moment().subtract(30,'d').toDate()
         var currentDate = moment().toDate()
         db.Feelings.findAll({
@@ -36,7 +36,7 @@ module.exports = {
         .catch((err) => {res.status(400).json(err)})   
     },
     getYear: function (req, res) {
-        var username = req.session.passport.user.username
+        let username = req.params.user.slice(1)
         var startOfYear = moment().subtract(365,'d').toDate()
         var currentDate = moment().toDate()
         db.Feelings.findAll({
