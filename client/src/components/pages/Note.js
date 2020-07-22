@@ -62,12 +62,11 @@ function Note(props) {
         setControlNewNote(true)
       }
     })
-  })
-  // useEffect(() => {
-  //   API.getFeeling()
-  //     .then((res) => setSavedNotes(res.data))
-  //     .catch((err) => console.log(err));
-  // }, []);
+  });
+    API.getFeeling()
+      .then((res) => setSavedNotes(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   useEffect(() => {
     console.log(title, note, emotions);

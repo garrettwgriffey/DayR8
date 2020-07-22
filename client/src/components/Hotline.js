@@ -5,95 +5,88 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 275,
     marginTop: "50px",
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
-  },
-
-  pos: {
-    marginBottom: 12,
-  },
-  hotline: {
     textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: 100,
+    },
+  },
 
-    marginBottom: "80px",
+  container: {
+    display: "flex",
+    justifyContent: "space-evenly",
+    flexWrap: "wrap",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
   },
-  help: {
-    float: "right",
+  title: {
+    fontSize: "1.8rem",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 20,
+    },
   },
-});
+  phone: {
+    fontSize: "1.8rem",
+  },
+}));
 
 function Hotline() {
   const classes = useStyles();
 
   return (
-    <div className={classes.hotline}>
-      <div className={classes.root}>
-        <CardContent>
-          <Grid container spacing={3}>
-            
-            <Grid className={classes.help} item xs={12}>
-              <Typography variant="h5" component="h2">
-                <h3>Help Is Available</h3>
-              </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                Speak with a counselor today
-              </Typography>
-            </Grid>
-            {/* SAMHSA */}
-            <Grid className={classes.help} item xs={6}>
-              <Typography variant="h5" component="p">
-                Substance Abuse and Mental Health Services Administration
-              </Typography>
-              <Typography variant="h4" component="p">
-                <a
-                  href="tel:1-800-662-4357"
-                  className="contact-number  contact-number--banner"
-                >
-                  1-800-662-4357
-                </a>
-              </Typography>
-              <Link
-                href="https://www.samhsa.gov/find-help/national-helpline"
-                size="small"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Official Website
-              </Link>
-            </Grid>
-            <br />
-            {/* NSPL */}
-            <br />
-            <Grid item xs={6}>
-              <Typography variant="h5" component="p">
-                National Suicide Prevention Lifeline
-              </Typography>
-              <Typography variant="h4" component="p">
-                <a
-                  href="tel:1-800-273-8255"
-                  className="contact-number  contact-number--banner"
-                >
-                  1-800-273-8255
-                </a>
-              </Typography>
-              <Link
-                href="https://suicidepreventionlifeline.org/"
-                size="small"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Official Website
-              </Link>
-            </Grid>
-          </Grid>
-        </CardContent>
+    <div className={classes.root}>
+      <h1>Help Is Available</h1>
+      <h3>Speak with a counselor today</h3>
+      <div className={classes.container}>
+        {/* SAMHSA */}
+        <Grid item xs={12} md={6}>
+          <Typography className={classes.title} component="p">
+            Substance Abuse and Mental Health Services Administration
+          </Typography>
+          <Typography className={classes.phone} component="p">
+            <a
+              href="tel:1-800-662-4357"
+              className="contact-number  contact-number--banner"
+            >
+              1-800-662-4357
+            </a>
+          </Typography>
+          <Link
+            href="https://www.samhsa.gov/find-help/national-helpline"
+            size="small"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Official Website
+          </Link>
+        </Grid>
+
+        {/* NSPL */}
+
+        <Grid item xs={12} md={6}>
+          <Typography className={classes.title} component="p">
+            National Suicide Prevention Lifeline
+          </Typography>
+          <Typography className={classes.phone} component="p">
+            <a
+              href="tel:1-800-273-8255"
+              className="contact-number  contact-number--banner"
+            >
+              1-800-273-8255
+            </a>
+          </Typography>
+          <Link
+            href="https://suicidepreventionlifeline.org/"
+            size="small"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Official Website
+          </Link>
+        </Grid>
       </div>
     </div>
   );

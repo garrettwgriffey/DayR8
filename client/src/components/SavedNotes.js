@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import TextField from "@material-ui/core/TextField";
-import ListItemText from "@material-ui/core/ListItemText";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import Collapse from "@material-ui/core/Collapse";
+import Button from "@material-ui/core/Button";
 import moment from "moment";
 import API from "../util/API";
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,30 +16,30 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   accordion: {
-    border: '1px solid rgba(0, 0, 0, .125)',
-    boxShadow: 'none',
-    '&:not(:last-child)': {
+    border: "1px solid rgba(0, 0, 0, .125)",
+    boxShadow: "none",
+    "&:not(:last-child)": {
       borderBottom: 0,
     },
-    '&:before': {
-      display: 'none',
+    "&:before": {
+      display: "none",
     },
-    '&$expanded': {
-      margin: 'auto',
+    "&$expanded": {
+      margin: "auto",
     },
   },
   summary: {
-    backgroundColor: 'rgba(0, 0, 0, .03)',
-    borderBottom: '1px solid rgba(0, 0, 0, .125)',
+    backgroundColor: "rgba(0, 0, 0, .03)",
+    borderBottom: "1px solid rgba(0, 0, 0, .125)",
     marginBottom: -1,
     minHeight: 56,
-    '&$expanded': {
+    "&$expanded": {
       minHeight: 56,
     },
   },
   content: {
-    '&$expanded': {
-      margin: '12px 0',
+    "&$expanded": {
+      margin: "12px 0",
     },
   },
   details: {
@@ -64,35 +58,33 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SavedNotes({
-  // savedNotes,
-  // setTitle,
-  // setNote,
-  // setEmotions,
-  // setNewBtn,
-  // updateBtn,
+  savedNotes,
+  setTitle,
+  setNote,
+  setEmotions,
+  setNewBtn,
+  updateBtn,
   user,
 }) {
-  const [notes, setNotes] = useState([]);
+  const [allNotes, setAllNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([]);
   const [months, setMonths] = useState({});
   const [years, setYears] = useState([]);
   const classes = useStyles();
   const [openYear, setOpenYear] = React.useState(null);
   const [openMonth, setOpenMonth] = React.useState(false);
-  
 
   const handleClickYear = (panel) => (event, newExpanded) => {
     setOpenYear(newExpanded ? panel : false);
   };
- 
-  const handleClickMonth =  (event, year, month) => {
+
+  const handleClickMonth = (event, year, month) => {
     handleNotesByMonth(year, month);
-    
   };
-  
+
   useEffect(() => {
     API.getFeeling(user).then((res) => {
-      setNotes(res.data);
+      setAllNotes(res.data);
       checkYears(res.data);
       // checkMonths(res.data);
     });
@@ -146,12 +138,11 @@ function SavedNotes({
   }
 
   const handleNotesByMonth = (year, month) => {
-    console.log (year, month)
+    console.log(year, month);
     // *** Test call *** this is how we will structure our real calls when the buttons are working, grabbing btn texts, setting them to state hooks, replaying "May", "2019" with those values for the call
     API.getBySpecificMonth({
       year: year,
       month: month,
-      
     }).then((res) => {
       console.log(res.data);
       setFilteredNotes(res.data);
@@ -193,130 +184,75 @@ function SavedNotes({
     return finalData;
   }
 
-  // const showFeelings = (id) => {
-  //   let selectedFeeling = savedNotes.filter((note) => note.id === id)[0];
-  //   console.log(selectedFeeling);
-  //   setNote(selectedFeeling.notes);
-  //   setTitle(selectedFeeling.title);
-  //   setEmotions(selectedFeeling.emotion);
-  //   if (setNewBtn) {
-  //     setNewBtn(false);
-  //   } else {
-  //     updateBtn();
-  //   }
-  // };
+  const showFeelings = (id) => {
+    console.log("i was click");
+    let selectedFeeling = savedNotes.filter((note) => note.id === id)[0];
+    console.log(selectedFeeling);
+    setNote(selectedFeeling.notes);
+    setTitle(selectedFeeling.title);
+    setEmotions(selectedFeeling.emotion);
+    if (setNewBtn) {
+      setNewBtn(false);
+    } else {
+      updateBtn();
+    }
+  };
+
   console.log(user);
   return (
-    // years list open
     <List component="nav" className={classes.root} aria-label="mailbox folders">
-    {years.map((year) => {
-      return (
-        <Accordion square expanded={openYear === year} onChange={handleClickYear(year)}>
-        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>{year}</Typography>
-        </AccordionSummary>
-        <AccordionDetails style={{root:{flexDirection: "column"}}}>
-        {months[year][0].map((month) => {
-                    return (
-
-        <Accordion square expanded={openMonth === month} onChange={(e)=> handleClickMonth(e, year, month)}>
-        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>{month}</Typography>
-        </AccordionSummary>
-        {filteredNotes.length && filteredNotes.map((note) => {
+      {years.map((year) => {
         return (
-      <AccordionDetails>
-          
-          <Typography>
-           {note.title}
-          </Typography>
-        </AccordionDetails>)})}
-      </Accordion>)})}
-        </AccordionDetails>
-      </Accordion>)})}
-      </List>
-    // 
-    //   
-    //     return (
-    //       <ListItem
-    //         className={classes.btn}
-    //         button
-    //         onClick={() => handleClickYear(year)}
-    //       >
-    //         <ListItemText className={classes.list} primary={year} />
-    //         {openYear === year ? (
-    //           <>
-    //             <ExpandLess />
-    //             {/* months list open */}
-    //             <List
-    //               component="nav"
-    //               // className={classes.root}
-    //               aria-label="mailbox folders"
-    //             >
-    //               
-    //                   <ListItem
-    //                     className={classes.btn}
-    //                     button
-    //                     onClick={() => handleClickMonth(year, month)}
-    //                   >
-    //                     <ListItemText
-    //                       className={classes.list}
-    //                       primary={month}
-    //                     />
-    //                     {openMonth === month ? (
-    //                       <>
-    //                         <ExpandLess />
-    //                         {/* notes list open */}
-    //                         <List
-    //                           component="nav"
-    //                           // className={classes.root}
-    //                           aria-label="mailbox folders"
-    //                         >
-    //                           
-    //                               <ListItem
-    //                                 className={classes.btn}
-    //                                 button
-    //                                 // onClick={() => handleClickMonth(note)} new func to retrieve the note to the page
-    //                               >
-    //                                 <ListItemText
-    //                                   className={classes.list}
-    //                                   primary={note.title}
-    //                                 />
-    //                               </ListItem>
-    //                             );
-    //                           })}
-    //                           {/* notes list close */}
-    //                         </List>
-    //                       </>
-    //                     ) : (
-    //                       <ExpandMore />
-    //                     )}
-    //                   </ListItem>
-    //                 );
-    //               })}
-    //               {/* month list close */}
-    //             </List>
-    //           </>
-    //         ) : (
-    //           <ExpandMore />
-    //         )}
-    //       </ListItem>
-    //     );
-    //   })}
-    //   {/* year list close */}
-    // </List>
+          <Accordion
+            square
+            expanded={openYear === year}
+            onChange={handleClickYear(year)}
+          >
+            <AccordionSummary
+              aria-controls="panel1d-content"
+              id="panel1d-header"
+            >
+              <Typography>{year}</Typography>
+            </AccordionSummary>
+            <AccordionDetails style={{ root: { flexDirection: "column" } }}>
+              {months[year][0].map((month) => {
+                return (
+                  <Accordion
+                    square
+                    expanded={openMonth === month}
+                    onChange={(e) => handleClickMonth(e, year, month)}
+                  >
+                    <AccordionSummary
+                      aria-controls="panel1d-content"
+                      id="panel1d-header"
+                    >
+                      <Typography>{month}</Typography>
+                    </AccordionSummary>
+                    {filteredNotes.length &&
+                      filteredNotes
+                        .filter((note) => note.user === user)
+                        .map((note) => {
+                          return (
+                            <AccordionDetails>
+                              <Typography
+                                button
+                                key={note.id}
+                                onClick={() => showFeelings(note.id)}
+                              >
+                                {note.title}
+                              </Typography>
+                            </AccordionDetails>
+                          );
+                        })}
+                  </Accordion>
+                );
+              })}
+            </AccordionDetails>
+          </Accordion>
+        );
+      })}
+    </List>
   );
 }
 
 export default SavedNotes;
-// {savedNotes
-//   .filter((feeling) => feeling.user === user)
-//   .map((feeling) => (
-//     <ListItem
-//       button
-//       key={feeling.id}
-//       onClick={() => showFeelings(feeling.id)}
-//     >
-//       <ListItemText primary={feeling.title} />
-//     </ListItem>
-//   ))}

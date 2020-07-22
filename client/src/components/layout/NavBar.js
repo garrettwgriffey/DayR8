@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    fontSize: "50px",
+    fontSize: "2.5rem",
   },
 }));
 
@@ -51,14 +51,6 @@ function NavBar({ user, logout }) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" className={classes.title}>
             DayR8
           </Typography>
