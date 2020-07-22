@@ -3,14 +3,14 @@ import MyChart from "../Plot";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import Hotline from "../Hotline";
 import Back from "../../assets/back.png";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    marginTop: "50px",
+    marginTop: 50,
+    marginBottom: 100,
   },
   paper: {
     padding: theme.spacing(5),
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   h1: {
     color: "black",
     fontSize: "3rem",
-    marginTop: "3px",
+    marginTop: 3,
   },
   container: {
     display: "flex",
@@ -28,9 +28,13 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
   },
   icon: {
-    margin: "25px",
-    width: "35px",
-    height: "35px",
+    margin: 25,
+    width: 35,
+    height: 35,
+    marginBottom: 0,
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: -20,
+    },
   },
 }));
 
@@ -68,7 +72,6 @@ function Dashboard(props) {
               <MyChart type={"Year"} user={props.user} />
             </Paper>
           </Grid>
-          <Hotline />
         </Grid>
       </div>
     </>
