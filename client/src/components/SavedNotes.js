@@ -239,7 +239,7 @@ function SavedNotes({
                                 key={note.id}
                                 onClick={() => showFeelings(note.id)}
                               >
-                                {note.title}
+                                <Button>{note.title}</Button>
                               </Typography>
                             </AccordionDetails>
                           );
