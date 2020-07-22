@@ -52,7 +52,6 @@ function Note(props) {
 
   useEffect(() => {
     API.getLastEntry().then((res) => {
-      console.log(res);
       if (res.data.join().trim() === '') {
         console.log("setting to false, disabled to false")
         setControlNewNote(false)
@@ -61,9 +60,8 @@ function Note(props) {
         console.log("setting to true, disabled to true")
         setControlNewNote(true)
       }
-    })
-  });
-    API.getFeeling()
+    });
+     API.getFeeling()
       .then((res) => setSavedNotes(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -83,7 +81,10 @@ function Note(props) {
         setNote("");
         setTitle("");
         API.getFeeling()
-          .then((res) => setSavedNotes(res.data))
+          .then((res) => {
+            setSavedNotes(res.data)
+            setControlNewNote(true)
+          })
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
