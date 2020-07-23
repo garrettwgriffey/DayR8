@@ -54,8 +54,8 @@ As a new user to Day-R8, simply click the above "Live Link". Once the Day-R8 sit
 
 <h2 id="screen"> ScreenShots </h2>
 <h4> Desktop </h4>
-<!-- <img src= "" > -->
-<!-- <img src= "" > -->
+<img src= "client/public/media/user.mail.png" >
+
 <!-- <img src= ""> -->
 <!-- <img src= ""> -->
 <!-- <img src= "" > -->
