@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Chart } from 'react-charts'
 import API from "../util/API";
+import useChartConfig from "../hooks/useChartConfig";
 
 function BarChart(props) {
     const [chartData, setChartData] = useState([]);
@@ -56,16 +57,24 @@ function BarChart(props) {
         }),
         []
     )
+    const {
+        primaryAxisShow,
+        secondaryAxisShow,
+      } = useChartConfig({
+        show: ['primaryAxisShow', 'secondaryAxisShow']
+    })
     const axes = React.useMemo(
         () => [
-            { primary: true, type: "utc", position: 'bottom' },
-            { position: 'left', type: 'linear' }
+            { primary: true, type: "utc", position: 'bottom', show: primaryAxisShow },
+            { position: 'left', type: 'linear', show: secondaryAxisShow }
         ],
-        []
+        [primaryAxisShow, secondaryAxisShow]
     )
     const options = React.useMemo(
         () => [
           {
+            show: ['primaryAxisShow', 'secondaryAxisShow'],
+            maintainAspectRatio: true,
             scales: {
               xAxes: [
                 {
@@ -75,6 +84,11 @@ function BarChart(props) {
                   },
                 },
               ],
+              yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+              }]
             },
           },
         ],
@@ -83,8 +97,9 @@ function BarChart(props) {
     return (
         <div
             style={{
-            width: "auto",
-            height: "400px",
+                width: "auto",
+                height: "400px",
+                zIndex: 500
             }}
         >
             <Chart data={data} series={series} axes={axes} options={options} tooltip />

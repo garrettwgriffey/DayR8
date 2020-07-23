@@ -1,9 +1,10 @@
+// This doesn't exist yet, but they're working on it and have files for it. Keeping this here for when it's ready
+
 import React, { useState, useEffect } from "react";
 import { Chart } from 'react-charts'
 import API from "../util/API";
-import useChartConfig from "../hooks/useChartConfig";
 
-function AreaChart(props) {
+function BarChart(props) {
     const [chartData, setChartData] = useState([]);
     useEffect(() => {
     if (props.type === "Week") {
@@ -53,28 +54,21 @@ function AreaChart(props) {
     );
     const series = React.useMemo(
         () => ({
-            type: 'area'
+            type: 'pie'
         }),
         []
     )
-    const {
-        primaryAxisShow,
-        secondaryAxisShow,
-      } = useChartConfig({
-        show: ['primaryAxisShow', 'secondaryAxisShow']
-    })
     const axes = React.useMemo(
         () => [
-            { primary: true, type: "utc", position: 'bottom', show: primaryAxisShow },
-            { position: 'left', type: 'linear', show: secondaryAxisShow }
+            { primary: true, type: "utc", position: 'bottom' },
+            { position: 'left', type: 'linear' }
         ],
-        [primaryAxisShow, secondaryAxisShow]
+        []
     )
     const options = React.useMemo(
         () => [
-          { 
-            show: ['primaryAxisShow', 'secondaryAxisShow'],
-            maintainAspectRatio: true,
+          {
+            maintainAspectRatio: false,
             scales: {
               xAxes: [
                 {
@@ -84,11 +78,6 @@ function AreaChart(props) {
                   },
                 },
               ],
-              yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-              }]
             },
           },
         ],
@@ -106,4 +95,4 @@ function AreaChart(props) {
         </div>
     )
 }
-export default AreaChart;
+export default BarChart;
