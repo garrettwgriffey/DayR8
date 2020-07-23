@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       marginBottom: 100,
     },
+    [theme.breakpoints.down("md")]: {
+      marginBottom: 100,
+    },
   },
 
   container: {
