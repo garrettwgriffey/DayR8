@@ -7,7 +7,7 @@ const userSeed = {username: "tim@gmail.com", password: "password"}
 db.User.create(userSeed).then((res) => console.log(res))
 
 // Two years of fake random data
-for (let i = 0; i < 730; i++) {
+for (let i = 0; i < 365; i++) {
   let randomNumber = Math.floor(Math.random() * (9 - 1)) + 1;
   let countdownDays = moment().subtract(i, 'd').toDate()
   db.Feelings.create(  {

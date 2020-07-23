@@ -16,7 +16,7 @@ router
   .get(feelingsController.getBySpecificMonth)
 
 router
-  .route("/last")
+  .route("/last/:user")
   .get(feelingsController.findLastEntry)
   
 module.exports = router;

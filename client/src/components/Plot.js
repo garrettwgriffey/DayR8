@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Chart } from "react-charts";
 import API from "../util/API";
+
 function MyChart(props) {
   const [chartData, setChartData] = useState([]);
   useEffect(() => {
@@ -42,7 +43,7 @@ function MyChart(props) {
   const data = React.useMemo(
     () => [
       {
-        label: "Series 1",
+        label: "DayR8",
         data: chartData,
       },
     ],
@@ -79,7 +80,7 @@ function MyChart(props) {
         height: "400px",
       }}
     >
-      <Chart data={data} axes={axes} options={options} />
+      <Chart data={data} axes={axes} options={options} tooltip />
     </div>
   );
 }

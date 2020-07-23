@@ -28,8 +28,7 @@ export default {
   getBySpecificMonth: function(month) {
     return axios.get("/api/feelings/month/:" + month.month + "/:" + month.year + "/:" + month.user)
   },
-  getLastEntry: function() {
-    console.log("running get last entry")
-    return axios.get("api/feelings/last")
+  getLastEntry: function(user) {
+    return axios.get("api/feelings/last/:" + user)
   }
 };

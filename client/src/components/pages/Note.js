@@ -53,10 +53,12 @@ function Note(props) {
   useEffect(() => {
     API.getLastEntry(props.user).then((res) => {
       if (res.data.join().trim() === '') {
+        console.log(res.data)
         console.log("setting to false, disabled to false")
         setControlNewNote(false)
       }
       else if (res) {
+        console.log(res.data)
         console.log("setting to true, disabled to true")
         setControlNewNote(true)
       }
