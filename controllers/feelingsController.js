@@ -17,16 +17,18 @@ module.exports = {
   },
   findLastEntry: function(req, res) {
     let username = req.params.user.slice(1)
+    console.log(username)
     let startOfDay = moment().startOf('day')
     let endOfDay = moment(startOfDay).endOf('day')
+    console.log(startOfDay, endOfDay)
     console.log(startOfDay, endOfDay)
     db.Feelings.findAll({
       limit: 1,
       where: {
-        user: username,
         createdAt: {
           [Op.between]: [startOfDay, endOfDay]
-        }
+        },
+        user: username,
       },
     }).then((entry) => {res.json(entry); console.log(entry, "res")})
     .catch((err) => {res.status(422).json(err); console.log(err)})

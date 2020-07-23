@@ -8,14 +8,14 @@ module.exports = {
         let username = req.params.user.slice(1)
         var startOfWeek = moment().subtract(7,'d').toDate()
         var currentDate = moment().toDate()
-        console.log(startOfWeek)
         db.Feelings.findAll({
             where: {
                 createdAt: {
                     [Op.between]: [startOfWeek, currentDate]
                 },
-                user: username
-            }
+                user: username,
+            },
+            order: [ ['createdAt', 'DESC']]
         })
         .then((data) => {res.json(data)})
         .catch((err) => res.status(400).json(err));
@@ -29,8 +29,9 @@ module.exports = {
                 createdAt: {
                     [Op.between]: [startOfMonth, currentDate]
                 },
-                user: username
-            }
+                user: username,
+            },
+            order: [ ['createdAt', 'DESC']]
         })
         .then((data) => {res.json(data)})
         .catch((err) => {res.status(400).json(err)})   
@@ -44,8 +45,9 @@ module.exports = {
                 createdAt: {
                     [Op.between]: [startOfYear, currentDate]
                 },
-                user: username
-            }
+                user: username,
+            },
+            order: [ ['createdAt', 'DESC']]
         })
         .then((data) => {res.json(data)})
         .catch((err) => {res.status(400).json(err)})   

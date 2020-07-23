@@ -191,7 +191,6 @@ function SavedNotes({
   }
 
   const showFeelings = (id) => {
-    console.log("i was click");
     let selectedFeeling = savedNotes.filter((note) => note.id === id)[0];
     console.log(selectedFeeling);
     setNote(selectedFeeling.notes);
@@ -204,7 +203,6 @@ function SavedNotes({
     }
   };
 
-  console.log(user);
   return (
     <List component="nav" className={classes.root} aria-label="mailbox folders">
       {years.map((year) => {

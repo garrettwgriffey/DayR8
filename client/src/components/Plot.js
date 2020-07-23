@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Chart } from "react-charts";
 import API from "../util/API";
+import useChartConfig from "../hooks/useChartConfig";
+
 function MyChart(props) {
   const [chartData, setChartData] = useState([]);
   useEffect(() => {
@@ -12,7 +14,6 @@ function MyChart(props) {
             y: parseInt(point.emotion),
           };
         });
-        console.log(apiData);
         setChartData(apiData);
       });
     } else if (props.type === "Month") {
@@ -23,7 +24,6 @@ function MyChart(props) {
             y: parseInt(point.emotion),
           };
         });
-        console.log(apiData);
         setChartData(apiData);
       });
     } else if (props.type === "Year") {
@@ -34,30 +34,38 @@ function MyChart(props) {
             y: parseInt(point.emotion),
           };
         });
-        console.log(apiData);
         setChartData(apiData);
       });
     }
   }, []);
   const data = React.useMemo(
     () => [
-      {
-        label: "Series 1",
+    {
+        label: "DayR8",
         data: chartData,
-      },
+    },
     ],
     [chartData]
   );
+  const {
+    primaryAxisShow,
+    secondaryAxisShow,
+  } = useChartConfig({
+    series: 10,
+    show: ['primaryAxisShow', 'secondaryAxisShow']
+  })
   const axes = React.useMemo(
     () => [
-      { primary: true, type: "utc", position: "bottom" },
-      { type: "linear", position: "left" },
+      { primary: true, type: 'utc', position: 'bottom', show: primaryAxisShow },
+      { type: 'linear', position: 'left', show: secondaryAxisShow }
     ],
-    []
-  );
+    [primaryAxisShow, secondaryAxisShow]
+  )
   const options = React.useMemo(
     () => [
       {
+        show: ['primaryAxisShow', 'secondaryAxisShow'],
+        maintainAspectRatio: true,
         scales: {
           xAxes: [
             {
@@ -67,6 +75,11 @@ function MyChart(props) {
               },
             },
           ],
+          yAxes: [{
+            ticks: {
+                beginAtZero:true
+            },
+          }]
         },
       },
     ],
@@ -76,10 +89,10 @@ function MyChart(props) {
     <div
       style={{
         width: "auto",
-        height: "400px",
+        height: "400px"
       }}
     >
-      <Chart data={data} axes={axes} options={options} />
+      <Chart data={data} axes={axes} options={options} tooltip />
     </div>
   );
 }
