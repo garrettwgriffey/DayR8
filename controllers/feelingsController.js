@@ -59,17 +59,19 @@ module.exports = {
     let month = req.params.month.slice(1)
     month = moment().month(month).format("M")
     let year = req.params.year.slice(1)
-    let startDate = moment([year, month - 1])
-    let endDate = moment(startDate).endOf('month')
+    let startDate = moment([year, month - 1]).format("YYYY-MM-01")
+    let pseudoStartDate = moment([year, month - 2]).format("YYYY-MM-") + moment([year, month - 2]).endOf('month').format("DD")
+    let endDate = moment(startDate).endOf('month').format("YYYY-MM-DD")
     let username = req.params.user.slice(1)
+    console.log(startDate, endDate)
     db.Feelings.findAll({
       where: {
           createdAt: {
-              [Op.between]: [startDate, endDate]
+              [Op.between]: [pseudoStartDate, endDate]
           },
           user: username
       }
   })
-  .then((data) => {res.json(data)})
+  .then((data) => {console.log(data);res.json(data)})
   }
 };
