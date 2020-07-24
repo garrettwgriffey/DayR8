@@ -66,7 +66,6 @@ function SavedNotes({
   updateBtn,
   user,
 }) {
-  const [allNotes, setAllNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([]);
   const [months, setMonths] = useState({});
   const [years, setYears] = useState([]);
@@ -87,10 +86,10 @@ function SavedNotes({
 
   // Initializes the saved notes to the side of the page
   useEffect(() => {
-    API.getFeeling(user).then((res) => {
-      setAllNotes(res.data);
-      checkYears(res.data);
-    });
+    // API.getFeeling(user).then((res) => {
+    //   setAllNotes(res.data);
+      checkYears(savedNotes);
+ 
   }, [savedNotes]);
 
   useEffect(() => {

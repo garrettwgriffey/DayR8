@@ -37,7 +37,7 @@ function MyChart(props) {
         setChartData(apiData);
       });
     }
-  }, []);
+  }, [props.type, props.user]);
   const data = React.useMemo(
     () => [
     {

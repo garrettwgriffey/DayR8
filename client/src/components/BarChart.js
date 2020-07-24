@@ -40,7 +40,7 @@ function BarChart(props) {
         setChartData(apiData);
         });
     }
-    }, []);
+    }, [props.type, props.user]);
 
     const data = React.useMemo(
         () => [

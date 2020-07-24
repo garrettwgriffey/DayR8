@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
-import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 
@@ -10,9 +9,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "50px",
     textAlign: "center",
     [theme.breakpoints.down("sm")]: {
-      marginBottom: 100,
+      marginBottom: 300,
     },
     [theme.breakpoints.down("md")]: {
+      marginBottom: 150,
+    },
+    [theme.breakpoints.down("xs")]: {
       marginBottom: 100,
     },
   },
