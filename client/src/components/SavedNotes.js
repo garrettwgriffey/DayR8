@@ -86,10 +86,7 @@ function SavedNotes({
 
   // Initializes the saved notes to the side of the page
   useEffect(() => {
-    // API.getFeeling(user).then((res) => {
-    //   setAllNotes(res.data);
       checkYears(savedNotes);
- 
   }, [savedNotes]);
 
   useEffect(() => {
@@ -185,7 +182,7 @@ function SavedNotes({
     for (let c = 0; c < readyToFormat.length; c++) {
       finalData.push(moment(readyToFormat[c], "M").format("MMMM"));
     }
-
+    console.log(finalData)
     return finalData;
   }
 
@@ -244,7 +241,7 @@ function SavedNotes({
                                 key={note.id}
                                 onClick={() => showFeelings(note.id)}
                               >
-                                <Button>{note.title}</Button>
+                                <Button>{note.createdAt.slice(5,10)}</Button>
                               </Typography>
                             </AccordionDetails>
                           );
