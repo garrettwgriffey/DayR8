@@ -66,7 +66,7 @@ function Note(props) {
      API.getFeeling(props.user)
       .then((res) => setSavedNotes(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [props.user]);
 
   useEffect(() => {
     console.log(title, note, emotions);

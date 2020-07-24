@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MyChart from "../Plot";
 import BarChart from "../BarChart";
 import AreaChart from "../AreaChart";
@@ -81,7 +81,7 @@ function Dashboard(props) {
         <div className="backBtn">
           <Grid item xs={2}>
             <Link to="/note">
-              <img src={Back} className={classes.icon} />
+              <img src={Back} alt="return button" className={classes.icon} />
             </Link>
           </Grid>
         </div>
@@ -137,7 +137,7 @@ function Dashboard(props) {
               </Paper>
             </Grid>
           </Grid>
-          ) : setAreaChart ? (
+          ) : mountAreaChart ? (
             <Grid container spacing={3} className={classes.container}>
               <Grid item xs={11}>
                 <Paper className={classes.paper}>
