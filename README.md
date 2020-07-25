@@ -11,7 +11,7 @@
 
 <li><a href="#tech">Technology Stack</a></li> 
 <li><a href="#installation">Installation</a></li> 
-<li><a href="#test">Test</a></li>
+<!-- <li><a href="#test">Test</a></li> -->
 
 <li><a href="#contributors">Contributors</a></li>
 
@@ -56,13 +56,13 @@ As a new user to Day-R8, simply click the above "Live Link". Once the Day-R8 sit
 <!-- <img src= ""> -->
 <!-- <img src= ""> -->
 <!-- <img src= "" > -->
-<h4> Mobile </h4>
+<!-- <h4> Mobile </h4> -->
 <!-- <img width="200" height="350" src= ""> -->
 <!-- <img width="200" height="350" src= ""> -->
 <!-- <img width="200" height="350" src= ""> -->
 <!-- <img width="200" height="350" src= ""> -->
 <!-- <img width="200" height="350" src= ""> -->
-<h2 id="test"> Test </h2>
+<!-- <h2 id="test"> Test </h2> -->
 <!-- <img width="600" height="350" src= "p" > -->
 
 <h2 id="contributors"> Contributors/ Contact</h2>
