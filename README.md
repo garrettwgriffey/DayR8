@@ -37,20 +37,17 @@ As a new user to Day-R8, simply click the above "Live Link". Once the Day-R8 sit
 
 
 <h2 id="tech"> Technology Stack </h2>          
-<!-- <ul>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-</ul>           -->
+<ul>
+<li>React</li>
+<li>CSS / Material UI </li>
+<li>JSX</li>
+<li>JavaScript</li>
+<li>Sequelize</li>
+<li>MySql</li>
+<li>Node JS</li>
+<li>Express</li>
+<li>NPM Packages: Passport/bCrypt, Validator for React, React-Charts, Axios, Moment </li><li></li>
+</ul>          
 
 <h2 id="screen"> ScreenShots </h2>
 <h4> Desktop </h4>
