@@ -1,5 +1,5 @@
 -- Heroku setup
-DROP DATABASE IF EXISTS wh9vaw41o85ds5ll;
+DROP DATABASE IF EXISTS yiki30wgmx72odan
 
-CREATE DATABASE wh9vaw41o85ds5ll;
+CREATE DATABASE yiki30wgmx72odan
 

@@ -62,13 +62,15 @@ module.exports = {
     let startDate = moment([year, month - 1])
     let endDate = moment(startDate).endOf('month')
     let username = req.params.user.slice(1)
+    console.log(startDate, endDate)
     db.Feelings.findAll({
       where: {
           createdAt: {
               [Op.between]: [startDate, endDate]
           },
           user: username
-      }
+      },
+      order: [ ['createdAt', 'ASC']]
   })
   .then((data) => {res.json(data)})
   }
