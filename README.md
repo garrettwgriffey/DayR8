@@ -11,7 +11,7 @@
 
 <li><a href="#tech">Technology Stack</a></li> 
 <li><a href="#installation">Installation</a></li> 
-<li><a href="#test">Test</a></li>
+<!-- <li><a href="#test">Test</a></li> -->
 
 <li><a href="#contributors">Contributors</a></li>
 
