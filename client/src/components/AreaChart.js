@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Chart } from 'react-charts'
+import {makeWidthFlexible, XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, AreaSeries} from 'react-vis'
 import API from "../util/API";
-import useChartConfig from "../hooks/useChartConfig";
 
 function AreaChart(props) {
     const [chartData, setChartData] = useState([]);
+    const [xAxisArrayState, setXAxisArray] = useState([]);
+
     useEffect(() => {
     if (props.type === "Week") {
         API.getByWeek({ user: props.user }).then((res) => {
@@ -16,6 +17,11 @@ function AreaChart(props) {
         });
         console.log(apiData);
         setChartData(apiData);
+        for (let i=0;i<chartData.length;i++) {
+            let xAxisArray = xAxisArrayState;
+            xAxisArray.push(chartData[i].x);
+            setXAxisArray(xAxisArray);
+        }
         });
     } else if (props.type === "Month") {
         API.getByMonth({ user: props.user }).then((res) => {
@@ -27,6 +33,11 @@ function AreaChart(props) {
         });
         console.log(apiData);
         setChartData(apiData);
+        for (let i=0;i<chartData.length;i++) {
+            let xAxisArray = xAxisArrayState;
+            xAxisArray.push(chartData[i].x);
+            setXAxisArray(xAxisArray);
+        }
         });
     } else if (props.type === "Year") {
         API.getByYear({ user: props.user }).then((res) => {
@@ -38,72 +49,25 @@ function AreaChart(props) {
         });
         console.log(apiData);
         setChartData(apiData);
+        for (let i=0;i<chartData.length;i++) {
+            let xAxisArray = xAxisArrayState;
+            xAxisArray.push(chartData[i].x);
+            setXAxisArray(xAxisArray);
+        }
         });
     }
     }, [props.type, props.user]);
 
-    const data = React.useMemo(
-        () => [
-        {
-            label: "DayR8",
-            data: chartData,
-        },
-        ],
-        [chartData]
-    );
-    const series = React.useMemo(
-        () => ({
-            type: 'area'
-        }),
-        []
-    )
-    const {
-        primaryAxisShow,
-        secondaryAxisShow,
-      } = useChartConfig({
-        show: ['primaryAxisShow', 'secondaryAxisShow']
-    })
-    const axes = React.useMemo(
-        () => [
-            { primary: true, type: "utc", position: 'bottom', show: primaryAxisShow },
-            { position: 'left', type: 'linear', show: secondaryAxisShow }
-        ],
-        [primaryAxisShow, secondaryAxisShow]
-    )
-    const options = React.useMemo(
-        () => [
-          { 
-            show: ['primaryAxisShow', 'secondaryAxisShow'],
-            maintainAspectRatio: true,
-            scales: {
-              xAxes: [
-                {
-                  type: "time",
-                  time: {
-                    unit: "day",
-                  },
-                },
-              ],
-              yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-              }]
-            },
-          },
-        ],
-        []
-    );
+    const FlexibleXYPlot = makeWidthFlexible(XYPlot); 
+
     return (
-        <div
-            style={{
-                width: "auto",
-                height: "400px",
-                zIndex: 500
-            }}
-        >
-            <Chart data={data} series={series} axes={axes} options={options} tooltip />
-        </div>
+        <FlexibleXYPlot xType="time" yDomain={[0, 8]} height={400}>
+            <VerticalGridLines />
+            <HorizontalGridLines />
+            <XAxis axisDomain={xAxisArrayState} tickTotal={props.type === "Week" ? 7 : props.type === "Month" ? 15 : props.type === "Year" ? 12 : null} title="Date" position="end" />
+            <YAxis title="Rate" position="middle" />
+            <AreaSeries data={chartData} />
+        </FlexibleXYPlot>
     )
 }
 export default AreaChart;
