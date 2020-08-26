@@ -44,13 +44,19 @@ function SignIn(props) {
       {user ? (
         <Redirect to="/note" />
       ) : (
-        <Container component="main" maxWidth="xs">
+        <Container 
+          component="main" 
+          maxWidth="xs"
+        >
           <CssBaseline />
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>
-            <Typography component="h1" variant="h5">
+            <Typography 
+              component="h1" 
+              variant="h5"
+            >
               Sign in
             </Typography>
             <form
@@ -59,7 +65,6 @@ function SignIn(props) {
               onSubmit={(event) => {
                 event.preventDefault();
                 props.login();
-                console.log("running login");
               }}
             >
               <TextField

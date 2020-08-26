@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Note(props) {
-  const classes = useStyles();
   const [title, setTitle] = useState("");
   const [emotions, setEmotions] = useState("");
   const [note, setNote] = useState("");
@@ -50,16 +49,14 @@ function Note(props) {
   const [newBtn, setNewBtn] = useState(true);
   const [controlNewNote, setControlNewNote] = useState(true);
 
+  const classes = useStyles();
+
   useEffect(() => {
     API.getLastEntry(props.user).then((res) => {
       if (res.data.join().trim() === '') {
-        console.log(res.data)
-        console.log("setting to false, disabled to false")
         setControlNewNote(false)
       }
       else if (res) {
-        console.log(res.data)
-        console.log("setting to true, disabled to true")
         setControlNewNote(true)
       }
     });
@@ -67,10 +64,6 @@ function Note(props) {
       .then((res) => setSavedNotes(res.data))
       .catch((err) => console.log(err));
   }, [props.user]);
-
-  useEffect(() => {
-    console.log(title, note, emotions);
-  }, [title, note, emotions]);
 
   const onSubmitFeeling = () => {
     API.submitFeeling({
@@ -84,7 +77,6 @@ function Note(props) {
         setTitle("");
         API.getFeeling(props.user)
           .then((res) => {
-            console.log("new note submitted, setting state for saved notes")
             setSavedNotes(res.data)
             setControlNewNote(true)
           })
@@ -104,8 +96,16 @@ function Note(props) {
   return (
     <div className={classes.root}>
       <h1 className={classes.welcome}>Welcome {props.user}!</h1>
-      <Grid container spacing={3} className={classes.container}>
-        <Grid item xs={12} md={3}>
+      <Grid 
+        container 
+        spacing={3} 
+        className={classes.container}
+      >
+        <Grid 
+          item 
+          xs={12} 
+          md={3}
+        >
           <Paper className={classes.paper}>
             <h1 className={classes.h1}>Saved Notes</h1>
             <SavedNotes
@@ -119,10 +119,17 @@ function Note(props) {
           </Paper>
         </Grid>
 
-        <Grid item xs={12} md={9}>
+        <Grid 
+          item 
+          xs={12} 
+          md={9}
+        >
           <Paper className={classes.paper}>
             {newBtn ? (
-              <EmotionsRate setEmotions={setEmotions} emotion={emotions} />
+              <EmotionsRate 
+                setEmotions={setEmotions} 
+                emotion={emotions} 
+              />
             ) : (
               <h1>{emotions}</h1>
             )}
