@@ -44,14 +44,20 @@ function SignUp(props) {
       {user ? (
         <Redirect to="/" />
       ) : (
-        <Container component="main" maxWidth="xs">
+        <Container 
+          component="main" 
+          maxWidth="xs"
+        >
           {props.dupUser ? <AlertDupUser /> : null}
           <CssBaseline />
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>
-            <Typography component="h1" variant="h5">
+            <Typography 
+              component="h1" 
+              variant="h5"
+            >
               Sign up
             </Typography>
             <form
@@ -60,11 +66,16 @@ function SignUp(props) {
               onSubmit={(event) => {
                 event.preventDefault();
                 props.signup();
-                console.log("running login");
               }}
             >
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
+              <Grid 
+                container 
+                spacing={2}
+              >
+                <Grid 
+                  item 
+                  xs={12}
+                >
                   <TextField
                     autoComplete="uname"
                     name="userName"
@@ -79,7 +90,10 @@ function SignUp(props) {
                     onChange={(e) => props.setUsername(e.target.value)}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid 
+                  item 
+                  xs={12}
+                >
                   <TextField
                     variant="outlined"
                     required
@@ -104,9 +118,15 @@ function SignUp(props) {
               >
                 Sign Up
               </Button>
-              <Grid container justify="flex-end">
+              <Grid 
+                container 
+                justify="flex-end"
+              >
                 <Grid item>
-                  <Link to="/" variant="body2">
+                  <Link 
+                    to="/" 
+                    variant="body2"
+                  >
                     Already have an account? Sign in
                   </Link>
                 </Grid>

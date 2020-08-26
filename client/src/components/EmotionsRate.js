@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
@@ -19,16 +19,21 @@ function valuetext(value) {
 }
 
 function EmotionsRate(props) {
+  const [rate, setRate] = useState("");
+
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Typography id="discrete-slider" gutterBottom>
+      <Typography 
+        id="discrete-slider" 
+        gutterBottom
+      >
         From 1 to 8, How are you feeling today? (1 being the worst you can feel
         and 8 being the best you can feel)
       </Typography>
       <Slider
-        defaultValue={0}
+        defaultValue={1}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
@@ -36,10 +41,14 @@ function EmotionsRate(props) {
         marks
         min={1}
         max={8}
-        onChange={(e) => {
-          props.setEmotions(e.target.textContent);
+        onChange={(e, value) => {
+          props.setEmotions(value)
+          setRate(value)
         }}
       />
+      <div>
+        {rate}
+      </div>
     </div>
   );
 }

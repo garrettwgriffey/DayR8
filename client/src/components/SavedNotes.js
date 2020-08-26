@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
   },
   btn: {
     width: "110%",
-    // flexDirection: "column",
   },
 }));
 
@@ -72,6 +71,7 @@ function SavedNotes({
   const [openYear, setOpenYear] = React.useState(null);
   const [openMonth, setOpenMonth] = React.useState(false);
   const [currentOpenMonth, setCurrentOpenMonth] = useState(null)
+
   const classes = useStyles();
 
   const handleClickYear = (panel) => (event, newExpanded) => {
@@ -88,10 +88,6 @@ function SavedNotes({
   useEffect(() => {
       checkYears(savedNotes);
   }, [savedNotes]);
-
-  useEffect(() => {
-    console.log(years, months);
-  }, [years, months]);
 
   // I have hard-coded this for 3 years back. We need to figure out a way to make it more dynamic in creating key value pairs based off of the users history (aka, no users will have 3 years of data starting off, eventually they will have more, etc) I couldn't figure it out, the best I got was passing arrays in and hard accessing their indexes to create a set number of pairs - TM
   const attachYearToMonths = (years, monthsInYear) => {
@@ -182,13 +178,11 @@ function SavedNotes({
     for (let c = 0; c < readyToFormat.length; c++) {
       finalData.push(moment(readyToFormat[c], "M").format("MMMM"));
     }
-    console.log(finalData)
     return finalData;
   }
 
   const showFeelings = (id) => {
     let selectedFeeling = savedNotes.filter((note) => note.id === id)[0];
-    console.log(selectedFeeling);
     setNote(selectedFeeling.notes);
     setTitle(selectedFeeling.title);
     setEmotions(selectedFeeling.emotion);
@@ -200,7 +194,11 @@ function SavedNotes({
   };
 
   return (
-    <List component="nav" className={classes.root} aria-label="mailbox folders">
+    <List 
+      component="nav" 
+      className={classes.root} 
+      aria-label="mailbox folders"
+    >
       {years.map((year) => {
         return (
           <Accordion

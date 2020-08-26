@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Chart } from 'react-charts'
-import API from "../util/API";
+import API from "../../util/API";
 
 function BarChart(props) {
     const [chartData, setChartData] = useState([]);
