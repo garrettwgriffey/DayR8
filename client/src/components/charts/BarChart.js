@@ -17,7 +17,6 @@ function BarChart(props) {
             y: parseInt(point.emotion),
             };
         });
-        console.log(apiData);
         setChartData(apiData);
         for (let i=0;i<chartData.length;i++) {
             let xAxisArray = xAxisArrayState;
@@ -33,7 +32,6 @@ function BarChart(props) {
             y: parseInt(point.emotion),
             };
         });
-        console.log(apiData);
         setChartData(apiData);
         for (let i=0;i<chartData.length;i++) {
             let xAxisArray = xAxisArrayState;
@@ -49,7 +47,6 @@ function BarChart(props) {
             y: parseInt(point.emotion),
             };
         });
-        console.log(apiData);
         setChartData(apiData);
         for (let i=0;i<chartData.length;i++) {
             let xAxisArray = xAxisArrayState;
@@ -62,25 +59,27 @@ function BarChart(props) {
 
     return (
         <FlexibleXYPlot 
-            xType="time" 
-            yDomain={[0, 8]} 
+            xType="ordinal" 
+            yDomain={[0, 8]}
             height={400}
         >
             <VerticalGridLines />
             <HorizontalGridLines />
-            <XAxis 
-                axisDomain={xAxisArrayState} 
-                tickTotal={props.type === "Week" ? 7 : props.type === "Month" ? 15 : props.type === "Year" ? 12 : null} 
+            {props.type === "Week" ? <XAxis
                 title="Date" 
-                position="end" 
-            />
+                position="end"
+                tickFormat={function tickFormat(d){
+                    const date = new Date(d)
+                    return date.toString().substr(0, 10)
+                }}
+            /> : props.type === "Month" ? null : props.type === "Year" ? null : null}
             <YAxis 
                 title="Rate" 
                 position="middle" 
             />
             <VerticalBarSeries 
                 data={chartData} 
-                barWidth={0.1} 
+                barWidth={props.type === "Week" ? 0.8 : props.type === "Month" ? 0.5 : props.type === "Year" ? 0.1 : null} 
             />
         </FlexibleXYPlot>
     )

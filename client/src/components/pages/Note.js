@@ -140,6 +140,7 @@ function Note(props) {
               note={note}
               title={title}
             />
+            {controlNewNote ? <div>You already have an entry for today. Feel free to update your entry if something has changed!</div> : null}
             {newBtn ? (
               <Button
                 variant="contained"

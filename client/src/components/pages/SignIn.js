@@ -11,6 +11,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import ErrorAlert from "../layout/ErrorAlert";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -48,6 +49,7 @@ function SignIn(props) {
           component="main" 
           maxWidth="xs"
         >
+          {props.errorState ? <ErrorAlert type="login" /> : null}
           <CssBaseline />
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
@@ -101,6 +103,7 @@ function SignIn(props) {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
+                onClick={(e) => props.setErrorState(false)}
               >
                 Sign In
               </Button>

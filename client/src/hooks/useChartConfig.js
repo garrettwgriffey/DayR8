@@ -1,5 +1,6 @@
 import React from 'react'
 //
+// This is not being used currently - TM
 
 const options = {
   elementType: ['line', 'area', 'bar', 'bubble'],
