@@ -9,7 +9,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import AlertDupUser from "../layout/AlertDupUser";
+import ErrorAlert from "../layout/ErrorAlert";
 import validators from "../../util/validators";
 
 const useStyles = makeStyles((theme) => ({
@@ -48,7 +48,7 @@ function SignUp(props) {
           component="main" 
           maxWidth="xs"
         >
-          {props.dupUser ? <AlertDupUser /> : null}
+          {props.errorState ? <ErrorAlert type="signup" /> : null}
           <CssBaseline />
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
@@ -115,6 +115,7 @@ function SignUp(props) {
                 variant="contained"
                 color="primary"
                 className={classes.submit}
+                onClick={(e) => props.setErrorState(false)}
               >
                 Sign Up
               </Button>

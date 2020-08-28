@@ -17,6 +17,7 @@ function MyChart(props) {
             y: parseInt(point.emotion),
             };
         });
+        console.log(apiData)
         setChartData(apiData);
         for (let i=0;i<chartData.length;i++) {
             let xAxisArray = xAxisArrayState;

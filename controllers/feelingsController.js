@@ -1,6 +1,6 @@
 const db = require("../models");
 const moment = require("moment");
-var Sequelize = require('sequelize')
+let Sequelize = require('sequelize')
 const Op = Sequelize.Op;
 
 // Defining methods for the Feelings Controller
@@ -17,11 +17,8 @@ module.exports = {
   },
   findLastEntry: function(req, res) {
     let username = req.params.user.slice(1)
-    console.log(username)
     let startOfDay = moment().startOf('day')
     let endOfDay = moment(startOfDay).endOf('day')
-    console.log(startOfDay, endOfDay)
-    console.log(startOfDay, endOfDay)
     db.Feelings.findAll({
       limit: 1,
       where: {
@@ -62,7 +59,6 @@ module.exports = {
     let startDate = moment([year, month - 1])
     let endDate = moment(startDate).endOf('month')
     let username = req.params.user.slice(1)
-    console.log(startDate, endDate)
     db.Feelings.findAll({
       where: {
           createdAt: {
@@ -70,7 +66,7 @@ module.exports = {
           },
           user: username
       },
-      order: [ ['createdAt', 'ASC']]
+      order: [['createdAt', 'ASC']]
   })
   .then((data) => {res.json(data)})
   }
